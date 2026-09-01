@@ -17,7 +17,7 @@ body {
 
 .container {
     width: 100%;
-    max-width: 800px;
+    max-width: 1100px;
     padding: 25px;
 }
 
@@ -74,7 +74,7 @@ header p {
 
 #lineInput {
     width: 100%;
-    height: 65px;
+    height: 70px;
 
     background: #0e1014;
 
@@ -83,11 +83,11 @@ header p {
 
     color: white;
 
-    font-size: 30px;
+    font-size: 32px;
 
     text-align: center;
 
-    letter-spacing: 6px;
+    letter-spacing: 7px;
 
     outline: none;
 }
@@ -116,11 +116,11 @@ header p {
 
     align-items: center;
 
-    gap: 20px;
+    gap: 25px;
 
     margin-top: 30px;
 
-    padding: 20px;
+    padding: 22px;
 
     background: #22262e;
 
@@ -131,8 +131,8 @@ header p {
 /* Číslo linky */
 
 .line-number {
-    width: 80px;
-    height: 65px;
+    width: 100px;
+    height: 75px;
 
     display: flex;
 
@@ -145,7 +145,7 @@ header p {
 
     border-radius: 8px;
 
-    font-size: 34px;
+    font-size: 40px;
 
     font-weight: bold;
 }
@@ -164,13 +164,13 @@ header p {
 .direction span {
     color: #858b96;
 
-    font-size: 12px;
+    font-size: 13px;
 
     letter-spacing: 2px;
 }
 
 .direction strong {
-    font-size: 25px;
+    font-size: 30px;
 }
 
 
@@ -179,15 +179,15 @@ header p {
    =============================== */
 
 .stop-panel {
-    margin-top: 20px;
+    margin-top: 25px;
 
     text-align: center;
 
     background: #0e1014;
 
-    border-radius: 12px;
+    border-radius: 14px;
 
-    padding: 30px 20px;
+    padding: 45px 25px;
 }
 
 
@@ -196,20 +196,34 @@ header p {
 .stop-counter {
     color: #777e89;
 
-    font-size: 13px;
+    font-size: 18px;
 
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 
 
-/* Název zastávky */
+/* ===============================
+   VELKÝ NÁZEV ZASTÁVKY
+   =============================== */
 
 .stop-name {
-    font-size: 36px;
+    font-size: 64px;
+
+    line-height: 1.1;
 
     font-weight: bold;
 
-    margin: 18px 0 30px;
+    margin: 30px 0 45px;
+
+    min-height: 70px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
 
     transition:
         font-size 0.2s ease,
@@ -222,13 +236,13 @@ header p {
    =============================== */
 
 .stop-name.no-boarding {
-    font-size: 42px;
+    font-size: 70px;
 
     font-weight: bold;
 
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 
-    margin: 18px 0 30px;
+    margin: 30px 0 45px;
 }
 
 
@@ -241,7 +255,7 @@ header p {
 
     justify-content: center;
 
-    gap: 30px;
+    gap: 40px;
 
     flex-wrap: wrap;
 }
@@ -251,11 +265,11 @@ header p {
 
     align-items: center;
 
-    gap: 10px;
+    gap: 12px;
 
     color: #969ca7;
 
-    font-size: 14px;
+    font-size: 16px;
 }
 
 
@@ -268,13 +282,15 @@ kbd {
 
     border-bottom-width: 3px;
 
-    border-radius: 6px;
+    border-radius: 7px;
 
-    padding: 7px 12px;
+    padding: 9px 15px;
 
     color: white;
 
     font-family: inherit;
+
+    font-size: 16px;
 
     font-weight: bold;
 }
@@ -287,11 +303,13 @@ kbd {
 .message {
     text-align: center;
 
-    min-height: 20px;
+    min-height: 25px;
 
-    margin-top: 18px;
+    margin-top: 20px;
 
     color: #ff7070;
+
+    font-size: 16px;
 }
 
 
@@ -305,10 +323,10 @@ kbd {
 
 
 /* ===============================
-   MOBIL / MENŠÍ OBRAZOVKA
+   MENŠÍ OBRAZOVKA
    =============================== */
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
     .panel {
         padding: 20px;
@@ -319,21 +337,29 @@ kbd {
     }
 
     .line-number {
-        width: 65px;
-        height: 55px;
+        width: 75px;
+        height: 60px;
 
-        font-size: 28px;
+        font-size: 30px;
     }
 
     .direction strong {
-        font-size: 20px;
+        font-size: 22px;
+    }
+
+    .stop-panel {
+        padding: 35px 15px;
     }
 
     .stop-name {
-        font-size: 27px;
+        font-size: 42px;
     }
 
     .stop-name.no-boarding {
-        font-size: 32px;
+        font-size: 48px;
+    }
+
+    .controls {
+        gap: 20px;
     }
 }
