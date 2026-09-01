@@ -1,13 +1,15 @@
 {
     "999": {
-        "number": "",
+        "number": "SJ",
 
         "00": {
             "name": "Služební jízda",
             "stops": [
+                "Služební jízda"
             ]
         },
-    "001": {
+    
+        "001": {
         "number": "1",
 
         "01": {
