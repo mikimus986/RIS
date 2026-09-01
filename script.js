@@ -1,4 +1,5 @@
 let linesData = {};
+
 let currentLine = null;
 let currentDirection = null;
 let currentStop = 0;
@@ -16,7 +17,10 @@ const stopName = document.getElementById("stopName");
 const message = document.getElementById("message");
 
 
-// Načtení databáze
+// ===============================
+// NAČTENÍ DATABÁZE
+// ===============================
+
 fetch("lines.json")
     .then(response => {
         if (!response.ok) {
@@ -27,6 +31,7 @@ fetch("lines.json")
     })
     .then(data => {
         linesData = data;
+        console.log("Databáze linek načtena.");
     })
     .catch(error => {
         console.error(error);
@@ -36,41 +41,73 @@ fetch("lines.json")
     });
 
 
-// Enter = potvrzení kódu
+// ===============================
+// ENTER = POTVRDIT LINKU
+// ===============================
+
 lineInput.addEventListener("keydown", function(event) {
 
     if (event.key === "Enter") {
+
         event.preventDefault();
+
         loadLine();
     }
 
 });
 
 
-// Ovládání klávesnice
+// ===============================
+// KLÁVESNICE
+// ===============================
+
 document.addEventListener("keydown", function(event) {
 
-    // + na hlavní klávesnici
-    // + na numerické klávesnici
+    // -------------------------------
+    // + = DALŠÍ ZASTÁVKA
+    // -------------------------------
+
     if (
         event.key === "+" ||
         event.code === "NumpadAdd"
     ) {
+
         event.preventDefault();
+
         nextStop();
+    }
+
+
+    // -------------------------------
+    // * = NENASTUPUJTE
+    // -------------------------------
+
+    if (
+        event.key === "*" ||
+        event.code === "NumpadMultiply"
+    ) {
+
+        event.preventDefault();
+
+        showNoBoarding();
     }
 
 });
 
 
-// Načtení linky
+// ===============================
+// NAČTENÍ LINKY
+// ===============================
+
 function loadLine() {
 
     const code = lineInput.value.trim();
 
     message.textContent = "";
 
+
     // Musí být přesně 5 číslic
+
     if (!/^\d{5}$/.test(code)) {
 
         message.textContent =
@@ -81,13 +118,17 @@ function loadLine() {
 
 
     // První 3 číslice = linka
+
     const lineCode = code.substring(0, 3);
 
+
     // Poslední 2 číslice = směr
+
     const directionCode = code.substring(3, 5);
 
 
-    // Kontrola existence linky
+    // Kontrola linky
+
     if (!linesData[lineCode]) {
 
         message.textContent =
@@ -97,7 +138,8 @@ function loadLine() {
     }
 
 
-    // Kontrola existence směru
+    // Kontrola směru
+
     if (!linesData[lineCode][directionCode]) {
 
         message.textContent =
@@ -107,54 +149,106 @@ function loadLine() {
     }
 
 
+    // Uložení aktuální linky
+
     currentLine = lineCode;
+
     currentDirection = directionCode;
+
     currentStop = 0;
 
 
-    const line = linesData[lineCode];
-    const direction = line[directionCode];
+    // Získání údajů
+
+    const line =
+        linesData[lineCode];
+
+    const direction =
+        line[directionCode];
 
 
     // Zobrazení linky
-    lineNumber.textContent = line.number;
-    directionName.textContent = direction.name;
 
+    lineNumber.textContent =
+        line.number;
+
+
+    directionName.textContent =
+        direction.name;
+
+
+    // Zobrazení panelů
 
     lineInfo.classList.remove("hidden");
+
     stopPanel.classList.remove("hidden");
 
+
+    // Odstranění případného NENASTUPUJTE
+
+    stopName.classList.remove("no-boarding");
+
+
+    // Zobrazení první zastávky
 
     showStop();
 }
 
 
-// Zobrazení aktuální zastávky
+// ===============================
+// ZOBRAZENÍ ZASTÁVKY
+// ===============================
+
 function showStop() {
 
-    const direction =
-        linesData[currentLine][currentDirection];
-
-    const stops = direction.stops;
-
-    if (!stops || stops.length === 0) {
+    if (
+        currentLine === null ||
+        currentDirection === null
+    ) {
         return;
     }
 
 
+    const direction =
+        linesData[currentLine][currentDirection];
+
+
+    const stops =
+        direction.stops;
+
+
+    if (!stops || stops.length === 0) {
+
+        return;
+    }
+
+
+    // Odstranění NENASTUPUJTE
+
+    stopName.classList.remove("no-boarding");
+
+
+    // Název zastávky
+
     stopName.textContent =
         stops[currentStop];
 
+
+    // Počet zastávek
 
     stopCounter.textContent =
         `ZASTÁVKA ${currentStop + 1} / ${stops.length}`;
 }
 
 
-// Další zastávka
+// ===============================
+// DALŠÍ ZASTÁVKA
+// ===============================
+
 function nextStop() {
 
-    // Pokud ještě nebyla vybrána linka
+    // Není vybraná linka
+
     if (
         currentLine === null ||
         currentDirection === null
@@ -167,18 +261,76 @@ function nextStop() {
         linesData[currentLine][currentDirection].stops;
 
 
-    // Pokud jsme na poslední zastávce,
-    // vrátíme se na první.
+    if (!stops || stops.length === 0) {
+
+        return;
+    }
+
+
+    // Přechod na další zastávku
+
     if (currentStop < stops.length - 1) {
 
         currentStop++;
 
     } else {
 
-        currentStop = 0;
+        // Pokud jsme na konečné,
+        // vrátíme se na první zastávku
 
+        currentStop = 0;
     }
 
 
     showStop();
+}
+
+
+// ===============================
+// NENASTUPUJTE
+// ===============================
+
+function showNoBoarding() {
+
+    if (
+        currentLine === null ||
+        currentDirection === null
+    ) {
+        return;
+    }
+
+
+    const direction =
+        linesData[currentLine][currentDirection];
+
+
+    const stops =
+        direction.stops;
+
+
+    if (!stops || stops.length === 0) {
+
+        return;
+    }
+
+
+    // Funguje pouze na poslední zastávce
+
+    if (currentStop !== stops.length - 1) {
+
+        return;
+    }
+
+
+    // Zobrazení NENASTUPUJTE
+
+    stopName.textContent =
+        "NENASTUPUJTE";
+
+
+    stopName.classList.add("no-boarding");
+
+
+    stopCounter.textContent =
+        "KONEČNÁ ZASTÁVKA";
 }
