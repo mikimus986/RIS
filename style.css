@@ -194,3 +194,8 @@ kbd {
         font-size: 27px;
     }
 }
+.no-boarding {
+    font-size: 42px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
