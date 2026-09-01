@@ -1,10 +1,8 @@
 {
     "022": {
         "number": "22",
-
         "01": {
             "name": "Strnadova",
-
             "stops": [
                 "Nové nádraží",
                 "Hlavní nádraží",
@@ -16,10 +14,8 @@
                 "Strnadova"
             ]
         },
-
         "02": {
             "name": "Nové nádraží",
-
             "stops": [
                 "Strnadova",
                 "Nová čtvrť",
@@ -29,6 +25,34 @@
                 "Nové dvory",
                 "Hlavní nádraží",
                 "Nové nádraží"
+            ]
+        }
+    },
+
+    "023": {
+        "number": "23",
+        "01": {
+            "name": "Okružní",
+            "stops": [
+                "Avion",
+                "Food-court",
+                "Halasova",
+                "K náměstí",
+                "Lamovská",
+                "Kašparova",
+                "Okružní"
+            ]
+        },
+        "02": {
+            "name": "Avion",
+            "stops": [
+                "Okružní",
+                "Kašparova",
+                "Lamovská",
+                "K náměstí",
+                "Halasova",
+                "Food-court",
+                "Avion"
             ]
         }
     }
