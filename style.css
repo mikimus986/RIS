@@ -32,13 +32,14 @@ header {
 }
 
 header h1 {
-    font-size: 42px;
-    letter-spacing: 4px;
+    font-size: 48px;
+    letter-spacing: 5px;
 }
 
 header p {
     color: #9da3ad;
     margin-top: 5px;
+    font-size: 16px;
 }
 
 
@@ -69,7 +70,7 @@ header p {
 
     margin-bottom: 10px;
 
-    font-size: 14px;
+    font-size: 15px;
 }
 
 #lineInput {
@@ -83,11 +84,11 @@ header p {
 
     color: white;
 
-    font-size: 32px;
+    font-size: 34px;
 
     text-align: center;
 
-    letter-spacing: 7px;
+    letter-spacing: 8px;
 
     outline: none;
 }
@@ -191,7 +192,7 @@ header p {
 }
 
 
-/* Číslo zastávky */
+/* Počet zastávek */
 
 .stop-counter {
     color: #777e89;
@@ -203,27 +204,21 @@ header p {
 
 
 /* ===============================
-   VELKÝ NÁZEV ZASTÁVKY
+   OBROVSKÝ NÁZEV ZASTÁVKY
    =============================== */
 
 .stop-name {
-    font-size: 64px;
+    font-size: clamp(55px, 8vw, 110px);
 
-    line-height: 1.1;
+    line-height: 1.05;
 
     font-weight: bold;
 
-    margin: 30px 0 45px;
+    margin: 35px 0 50px;
 
-    min-height: 70px;
+    letter-spacing: 1px;
 
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    text-align: center;
+    word-break: break-word;
 
     transition:
         font-size 0.2s ease,
@@ -236,13 +231,13 @@ header p {
    =============================== */
 
 .stop-name.no-boarding {
-    font-size: 70px;
+    font-size: clamp(55px, 9vw, 125px);
 
     font-weight: bold;
 
     letter-spacing: 3px;
 
-    margin: 30px 0 45px;
+    margin: 35px 0 50px;
 }
 
 
@@ -303,13 +298,13 @@ kbd {
 .message {
     text-align: center;
 
-    min-height: 25px;
+    min-height: 20px;
 
     margin-top: 20px;
 
     color: #ff7070;
 
-    font-size: 16px;
+    font-size: 15px;
 }
 
 
@@ -328,18 +323,26 @@ kbd {
 
 @media (max-width: 700px) {
 
+    .container {
+        padding: 15px;
+    }
+
     .panel {
         padding: 20px;
     }
 
+    header h1 {
+        font-size: 38px;
+    }
+
     .line-info {
         padding: 15px;
+        gap: 15px;
     }
 
     .line-number {
         width: 75px;
         height: 60px;
-
         font-size: 30px;
     }
 
@@ -352,11 +355,12 @@ kbd {
     }
 
     .stop-name {
-        font-size: 42px;
+        font-size: clamp(45px, 12vw, 75px);
+        margin: 30px 0 40px;
     }
 
     .stop-name.no-boarding {
-        font-size: 48px;
+        font-size: clamp(45px, 13vw, 80px);
     }
 
     .controls {
