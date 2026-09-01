@@ -1,0 +1,35 @@
+{
+    "022": {
+        "number": "22",
+
+        "01": {
+            "name": "Strnadova",
+
+            "stops": [
+                "Nové nádraží",
+                "Hlavní nádraží",
+                "Nové dvory",
+                "Lesní",
+                "NC Ana",
+                "Česká",
+                "Nová čtvrť",
+                "Strnadova"
+            ]
+        },
+
+        "02": {
+            "name": "Nové nádraží",
+
+            "stops": [
+                "Strnadova",
+                "Nová čtvrť",
+                "Česká",
+                "NC Ana",
+                "Lesní",
+                "Nové dvory",
+                "Hlavní nádraží",
+                "Nové nádraží"
+            ]
+        }
+    }
+}
