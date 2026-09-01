@@ -231,7 +231,7 @@ header p {
    =============================== */
 
 .stop-name.no-boarding {
-    font-size: clamp(50px, 7vw, 115px);
+    font-size: clamp(45px, 5vw, 105px);
 
     font-weight: bold;
 
