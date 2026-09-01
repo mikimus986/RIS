@@ -69,9 +69,7 @@ lineInput.addEventListener("keydown", function(event) {
 
 document.addEventListener("keydown", function(event) {
 
-    // ====================================
     // + = DALŠÍ ZASTÁVKA
-    // ====================================
 
     if (
         event.key === "+" ||
@@ -97,8 +95,50 @@ function loadLine() {
     message.textContent = "";
 
 
-    // Kontrola formátu
-    // 3 číslice linka + 2 číslice směr
+    // ====================================
+    // 99901 = SLUŽEBNÍ JÍZDA
+    // ====================================
+
+    if (code === "99901") {
+
+        currentLine = null;
+        currentDirection = null;
+        currentStop = 0;
+
+
+        // Skryj informace o lince
+
+        lineInfo.classList.add("hidden");
+
+
+        // Zobraz panel zastávky
+
+        stopPanel.classList.remove("hidden");
+
+
+        // Žádné číslo zastávky
+
+        stopCounter.textContent = "";
+
+
+        // Text služební jízdy
+
+        stopName.textContent =
+            "Služební jízda";
+
+
+        stopName.classList.remove(
+            "no-boarding"
+        );
+
+
+        return;
+    }
+
+
+    // ====================================
+    // KONTROLA FORMÁTU
+    // ====================================
 
     if (!/^\d{5}$/.test(code)) {
 
@@ -113,9 +153,16 @@ function loadLine() {
     // ROZDĚLENÍ KÓDU
     // ====================================
 
-    const lineCode = code.substring(0, 3);
+    // První 3 číslice = linka
 
-    const directionCode = code.substring(3, 5);
+    const lineCode =
+        code.substring(0, 3);
+
+
+    // Poslední 2 číslice = směr
+
+    const directionCode =
+        code.substring(3, 5);
 
 
     // ====================================
@@ -145,14 +192,15 @@ function loadLine() {
 
 
     // ====================================
-    // NOVÁ LINKA / SMĚR
+    // NASTAVENÍ AKTUÁLNÍ LINKY
     // ====================================
 
-    currentLine = lineCode;
+    currentLine =
+        lineCode;
 
-    currentDirection = directionCode;
+    currentDirection =
+        directionCode;
 
-    // Vždy začít od první zastávky
     currentStop = 0;
 
 
@@ -167,7 +215,9 @@ function loadLine() {
     // RESET NENASTUPUJTE
     // ====================================
 
-    stopName.classList.remove("no-boarding");
+    stopName.classList.remove(
+        "no-boarding"
+    );
 
 
     // ====================================
@@ -186,9 +236,13 @@ function loadLine() {
     // ZOBRAZENÍ PANELŮ
     // ====================================
 
-    lineInfo.classList.remove("hidden");
+    lineInfo.classList.remove(
+        "hidden"
+    );
 
-    stopPanel.classList.remove("hidden");
+    stopPanel.classList.remove(
+        "hidden"
+    );
 
 
     // ====================================
@@ -200,10 +254,12 @@ function loadLine() {
 
 
 // ========================================
-// ZOBRAZENÍ AKTUÁLNÍ ZASTÁVKY
+// ZOBRAZENÍ ZASTÁVKY
 // ========================================
 
 function showStop() {
+
+    // Kontrola, jestli je vybraná linka
 
     if (
         currentLine === null ||
@@ -222,7 +278,10 @@ function showStop() {
         direction.stops;
 
 
-    if (!stops || stops.length === 0) {
+    if (
+        !stops ||
+        stops.length === 0
+    ) {
 
         return;
     }
@@ -230,16 +289,18 @@ function showStop() {
 
     // Odstranění NENASTUPUJTE
 
-    stopName.classList.remove("no-boarding");
+    stopName.classList.remove(
+        "no-boarding"
+    );
 
 
-    // Název zastávky
+    // Zobrazení zastávky
 
     stopName.textContent =
         stops[currentStop];
 
 
-    // Počet zastávek
+    // Zobrazení počtu zastávek
 
     stopCounter.textContent =
         `ZASTÁVKA ${currentStop + 1} / ${stops.length}`;
@@ -252,9 +313,29 @@ function showStop() {
 
 function nextStop() {
 
+    // ====================================
+    // SLUŽEBNÍ JÍZDA
+    // ====================================
+
+    // U 99901 nejsou žádné zastávky,
+    // takže + nic neudělá.
+
     if (
-        currentLine === null ||
+        currentLine === null &&
         currentDirection === null
+    ) {
+
+        return;
+    }
+
+
+    // ====================================
+    // KONTROLA LINKY
+    // ====================================
+
+    if (
+        !currentLine ||
+        !currentDirection
     ) {
 
         return;
@@ -265,29 +346,34 @@ function nextStop() {
         linesData[currentLine][currentDirection].stops;
 
 
-    if (!stops || stops.length === 0) {
-
-        return;
-    }
-
-
-    // ====================================
-    // POKUD UŽ JE NENASTUPUJTE
-    // ====================================
-
     if (
-        stopName.classList.contains("no-boarding")
+        !stops ||
+        stops.length === 0
     ) {
 
-        // Už nikam nepokračovat.
-        // Musí se znovu zadat kód linky.
+        return;
+    }
+
+
+    // ====================================
+    // NENASTUPUJTE
+    // ====================================
+
+    // Pokud už je zobrazeno
+    // NENASTUPUJTE, dál se nepokračuje.
+
+    if (
+        stopName.classList.contains(
+            "no-boarding"
+        )
+    ) {
 
         return;
     }
 
 
     // ====================================
-    // KONEČNÁ ZASTÁVKA
+    // KONEČNÁ
     // ====================================
 
     if (
