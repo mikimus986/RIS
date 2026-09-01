@@ -211,38 +211,38 @@
         "number": "63",
 
         "01": {
-            "name": "Lázně",
+            "name": "Lamovská",
             "stops": [
-                "Sminov, smyčka",
                 "Lázně",
-                "Svatého Martina",
-                "Kolombus",
-                "U nádraží",
-                "Nové nádraží",
+                "Sminov, smyčka",
                 "Arturova",
-                "Lamovská",
-                "Kašparova",
-                "Laciná",
-                "Na mostě",
-                "Okružní"
-            ]
-        },
-
-        "02": {
-            "name": "Sminov, smyčka",
-            "stops": [
+                "Nové nádraží",
+                "U nádraží",
+                "Kolombus",
+                "Svatého Martina",
                 "Okružní",
                 "Na mostě",
                 "Laciná",
                 "Kašparova",
+                "Lamovská"
+            ]
+        },
+
+        "02": {
+            "name": "Lázně",
+            "stops": [
                 "Lamovská",
-                "Arturova",
-                "Nové nádraží",
-                "U nádraží",
-                "Kolombus",
+                "Kašparova",
+                "Laciná",
+                "Na mostě",
+                "Okružní",
                 "Svatého Martina",
-                "Lázně",
-                "Sminov, smyčka"
+                "Kolombus",
+                "U nádraží",
+                "Nové nádraží",
+                "Arturova",
+                "Sminov, smyčka",
+                "Lázně"
             ]
         }
     },
