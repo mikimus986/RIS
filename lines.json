@@ -1,6 +1,149 @@
 {
+    "001": {
+        "number": "1",
+
+        "01": {
+            "name": "Lamov, u baru",
+            "stops": [
+                "Anské náměstí",
+                "IC Ana",
+                "Poliklinika Ansko",
+                "U řeky",
+                "Ulice",
+                "Šerifova",
+                "Nádraží Pralesov",
+                "Zoo",
+                "Pralesní",
+                "U pumpy",
+                "Malířka",
+                "Slovanské náměstí",
+                "Emplinova",
+                "U nádraží",
+                "Nové nádraží",
+                "Hlavní nádraží",
+                "Sovec",
+                "Sminov, u lávky",
+                "Ústřední hřbitov",
+                "Lesní",
+                "NC Ana",
+                "Dinocesta Ana",
+                "Lamov, železniční stanice",
+                "Lamov, vrakoviště",
+                "Lamov, u baru"
+            ]
+        },
+
+        "02": {
+            "name": "Anské náměstí",
+            "stops": [
+                "Lamov, u baru",
+                "Lamov, vrakoviště",
+                "Lamov, železniční stanice",
+                "Dinocesta Ana",
+                "NC Ana",
+                "Lesní",
+                "Ústřední hřbitov",
+                "Sminov, u lávky",
+                "Sovec",
+                "Hlavní nádraží",
+                "Nové nádraží",
+                "U nádraží",
+                "Emplinova",
+                "Slovanské náměstí",
+                "Malířka",
+                "U pumpy",
+                "Pralesní",
+                "Zoo",
+                "Nádraží Pralesov",
+                "Šerifova",
+                "Ulice",
+                "U řeky",
+                "Poliklinika Ansko",
+                "IC Ana",
+                "Anské náměstí"
+            ]
+        },
+
+        "03": {
+            "name": "Sminov, u lávky",
+            "stops": [
+                "Anské náměstí",
+                "IC Ana",
+                "Poliklinika Ansko",
+                "U řeky",
+                "Ulice",
+                "Šerifova",
+                "Nádraží Pralesov",
+                "Zoo",
+                "Pralesní",
+                "U pumpy",
+                "Malířka",
+                "Slovanské náměstí",
+                "Emplinova",
+                "U nádraží",
+                "Nové nádraží",
+                "Hlavní nádraží",
+                "Sovec",
+                "Sminov, u lávky"
+            ]
+        }
+    },
+
+    "002": {
+        "number": "2",
+
+        "01": {
+            "name": "Kolombus",
+            "stops": [
+                "Anské náměstí",
+                "Kostelní",
+                "Ondrova",
+                "U řeky",
+                "Ulice",
+                "Šerifova",
+                "Osmákova",
+                "Zoo",
+                "Pralesní",
+                "U pumpy",
+                "Malířka",
+                "Slovanské náměstí",
+                "Emplinova",
+                "U nádraží",
+                "Nové nádraží",
+                "Hlavní nádraží",
+                "Svatého Martina",
+                "Kolombus"
+            ]
+        },
+
+        "02": {
+            "name": "Anské náměstí",
+            "stops": [
+                "Kolombus",
+                "Svatého Martina",
+                "Hlavní nádraží",
+                "Nové nádraží",
+                "U nádraží",
+                "Emplinova",
+                "Slovanské náměstí",
+                "Malířka",
+                "U pumpy",
+                "Pralesní",
+                "Zoo",
+                "Osmákova",
+                "Šerifova",
+                "Ulice",
+                "U řeky",
+                "Ondrova",
+                "Kostelní",
+                "Anské náměstí"
+            ]
+        }
+    },
+
     "022": {
         "number": "22",
+
         "01": {
             "name": "Strnadova",
             "stops": [
@@ -14,6 +157,7 @@
                 "Strnadova"
             ]
         },
+
         "02": {
             "name": "Nové nádraží",
             "stops": [
@@ -31,11 +175,14 @@
 
     "023": {
         "number": "23",
+
         "01": {
             "name": "Okružní",
             "stops": [
                 "Avion",
                 "Food-court",
+                "Laciná",
+                "Na mostě",
                 "Halasova",
                 "K náměstí",
                 "Lamovská",
@@ -43,6 +190,7 @@
                 "Okružní"
             ]
         },
+
         "02": {
             "name": "Avion",
             "stops": [
@@ -51,9 +199,153 @@
                 "Lamovská",
                 "K náměstí",
                 "Halasova",
+                "Na mostě",
+                "Laciná",
                 "Food-court",
                 "Avion"
             ]
         }
+    },
+
+    "063": {
+        "number": "63",
+
+        "01": {
+            "name": "Lázně",
+            "stops": [
+                "Sminov, smyčka",
+                "Lázně",
+                "Svatého Martina",
+                "Kolombus",
+                "U nádraží",
+                "Nové nádraží",
+                "Arturova",
+                "Lamovská",
+                "Kašparova",
+                "Laciná",
+                "Na mostě",
+                "Okružní"
+            ]
+        },
+
+        "02": {
+            "name": "Sminov, smyčka",
+            "stops": [
+                "Okružní",
+                "Na mostě",
+                "Laciná",
+                "Kašparova",
+                "Lamovská",
+                "Arturova",
+                "Nové nádraží",
+                "U nádraží",
+                "Kolombus",
+                "Svatého Martina",
+                "Lázně",
+                "Sminov, smyčka"
+            ]
+        }
+    },
+
+    "077": {
+        "number": "77",
+
+        "01": {
+            "name": "Přístav",
+            "stops": [
+                "U lesa",
+                "Hrad",
+                "Molo",
+                "Most",
+                "Zlkovská",
+                "Arnošta Policha",
+                "Knihovna",
+                "Pivovar",
+                "Údržbářská",
+                "ÚMČ Anec",
+                "Přístav"
+            ]
+        },
+
+        "02": {
+            "name": "U lesa",
+            "stops": [
+                "Přístav",
+                "ÚMČ Anec",
+                "Údržbářská",
+                "Pivovar",
+                "Knihovna",
+                "Arnošta Policha",
+                "Zlkovská",
+                "Most",
+                "Molo",
+                "Hrad",
+                "U lesa"
+            ]
+        }
+    },
+
+    "112": {
+        "number": "112",
+
+        "01": {
+            "name": "Nové nádraží",
+            "stops": [
+                "Zoo",
+                "Malířka",
+                "Nové nádraží"
+            ]
+        },
+
+        "02": {
+            "name": "Zoo",
+            "stops": [
+                "Nové nádraží",
+                "Malířka",
+                "Zoo"
+            ]
+        }
+    },
+
+    "113": {
+        "number": "113",
+
+        "01": {
+            "name": "Letiště Ana",
+            "stops": [
+                "Nové nádraží",
+                "Lázně",
+                "Letiště Ana"
+            ]
+        },
+
+        "02": {
+            "name": "Nové nádraží",
+            "stops": [
+                "Letiště Ana",
+                "Lázně",
+                "Nové nádraží"
+            ]
+        },
+
+        "03": {
+            "name": "Univerzita",
+            "stops": [
+                "Nové nádraží",
+                "Lázně",
+                "Letiště Ana",
+                "Univerzita"
+            ]
+        },
+
+        "04": {
+            "name": "Nové nádraží",
+            "stops": [
+                "Univerzita",
+                "Letiště Ana",
+                "Lázně",
+                "Nové nádraží"
+            ]
+        }
     }
-}
+                }
