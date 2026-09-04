@@ -4,81 +4,59 @@ let currentLine = null;
 let currentDirection = null;
 let currentStop = 0;
 
+
 // ========================================
 // HTML PRVKY
 // ========================================
 
-const lineInput =
-document.getElementById("lineInput");
+const lineInput = document.getElementById("lineInput");
 
-const lineInfo =
-document.getElementById("lineInfo");
+const lineInfo = document.getElementById("lineInfo");
+const lineNumber = document.getElementById("lineNumber");
+const directionName = document.getElementById("directionName");
 
-const lineNumber =
-document.getElementById("lineNumber");
+const stopPanel = document.getElementById("stopPanel");
+const stopCounter = document.getElementById("stopCounter");
+const stopName = document.getElementById("stopName");
 
-const directionName =
-document.getElementById("directionName");
+const message = document.getElementById("message");
 
-const stopPanel =
-document.getElementById("stopPanel");
+const nextStopButton = document.getElementById("nextStopButton");
 
-const stopCounter =
-document.getElementById("stopCounter");
-
-const stopName =
-document.getElementById("stopName");
-
-const message =
-document.getElementById("message");
-
-const nextStopButton =
-document.getElementById("nextStopButton");
 
 // ========================================
-// NAČTENÍ LINES.JSON
+// NAČTENÍ DATABÁZE
 // ========================================
 
 fetch("lines.json")
-.then(response => {
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Nelze načíst lines.json");
+        }
 
-```
-    if (!response.ok) {
-        throw new Error(
-            "Nelze načíst lines.json"
-        );
-    }
+        return response.json();
+    })
+    .then(data => {
+        linesData = data;
 
-    return response.json();
-})
-.then(data => {
+        console.log("Databáze linek načtena.");
 
-    linesData = data;
+        lineInput.focus();
+    })
+    .catch(error => {
+        console.error(error);
 
-    console.log(
-        "Databáze linek načtena."
-    );
+        message.textContent =
+            "Chyba: nepodařilo se načíst databázi linek.";
+    });
 
-    lineInput.focus();
-})
-.catch(error => {
-
-    console.error(error);
-
-    message.textContent =
-        "Chyba: nepodařilo se načíst databázi linek.";
-});
-```
 
 // ========================================
-// ENTER = POTVRDIT KÓD
+// ENTER = POTVRDIT LINKU
 // ========================================
 
-lineInput.addEventListener(
-"keydown",
-function(event) {
+lineInput.addEventListener("keydown", function(event) {
 
-```
     if (event.key === "Enter") {
 
         event.preventDefault();
@@ -86,23 +64,14 @@ function(event) {
         loadLine();
     }
 
-}
-```
+});
 
-);
 
 // ========================================
-// KLÁVESNICE
+// + NA KLÁVESNICI
 // ========================================
 
-document.addEventListener(
-"keydown",
-function(event) {
-
-```
-    // =================================
-    // + = DALŠÍ ZASTÁVKA
-    // =================================
+document.addEventListener("keydown", function(event) {
 
     if (
         event.key === "+" ||
@@ -114,26 +83,23 @@ function(event) {
         nextStop();
     }
 
-}
-```
+});
 
-);
 
 // ========================================
-// MOBILNÍ TLAČÍTKO +
+// + NA MOBILU
 // ========================================
 
-nextStopButton.addEventListener(
-"click",
-function() {
+if (nextStopButton) {
 
-```
-    nextStop();
+    nextStopButton.addEventListener("click", function() {
+
+        nextStop();
+
+    });
 
 }
-```
 
-);
 
 // ========================================
 // NAČTENÍ LINKY
@@ -141,186 +107,127 @@ function() {
 
 function loadLine() {
 
-```
-const code =
-    lineInput.value.trim();
+    const code = lineInput.value.trim();
+
+    message.textContent = "";
 
 
-message.textContent = "";
+    // ====================================
+    // SLUŽEBNÍ JÍZDA
+    // ====================================
+
+    if (code === "99901") {
+
+        currentLine = null;
+        currentDirection = null;
+        currentStop = 0;
+
+        lineInfo.classList.add("hidden");
+
+        stopPanel.classList.remove("hidden");
+
+        stopCounter.textContent = "";
+
+        stopName.textContent = "Služební jízda";
+
+        stopName.classList.remove("no-boarding");
+
+        return;
+    }
 
 
-// =================================
-// 99901 = SLUŽEBNÍ JÍZDA
-// =================================
+    // ====================================
+    // KONTROLA KÓDU
+    // ====================================
 
-if (code === "99901") {
+    if (!/^\d{5}$/.test(code)) {
 
-    currentLine = null;
+        message.textContent =
+            "Zadej kód ve formátu 02201.";
 
-    currentDirection = null;
+        return;
+    }
+
+
+    // ====================================
+    // ROZDĚLENÍ KÓDU
+    // ====================================
+
+    const lineCode = code.substring(0, 3);
+
+    const directionCode = code.substring(3, 5);
+
+
+    // ====================================
+    // KONTROLA LINKY
+    // ====================================
+
+    if (!linesData[lineCode]) {
+
+        message.textContent =
+            "Tato linka není v databázi.";
+
+        return;
+    }
+
+
+    // ====================================
+    // KONTROLA SMĚRU
+    // ====================================
+
+    if (!linesData[lineCode][directionCode]) {
+
+        message.textContent =
+            "Tento směr není u linky veden.";
+
+        return;
+    }
+
+
+    // ====================================
+    // NASTAVENÍ
+    // ====================================
+
+    currentLine = lineCode;
+
+    currentDirection = directionCode;
 
     currentStop = 0;
 
 
-    // Skrytí informací o lince
+    const line = linesData[lineCode];
 
-    lineInfo.classList.add(
-        "hidden"
-    );
+    const direction = line[directionCode];
 
 
-    // Zobrazení panelu
+    // ====================================
+    // RESET NENASTUPUJTE
+    // ====================================
 
-    stopPanel.classList.remove(
-        "hidden"
-    );
-
-
-    // Žádné číslo zastávky
-
-    stopCounter.textContent = "";
+    stopName.classList.remove("no-boarding");
 
 
-    // Služební jízda
+    // ====================================
+    // INFORMACE O LINCE
+    // ====================================
 
-    stopName.textContent =
-        "Služební jízda";
+    lineNumber.textContent = line.number;
 
-
-    stopName.classList.remove(
-        "no-boarding"
-    );
+    directionName.textContent = direction.name;
 
 
-    return;
+    lineInfo.classList.remove("hidden");
+
+    stopPanel.classList.remove("hidden");
+
+
+    // ====================================
+    // PRVNÍ ZASTÁVKA
+    // ====================================
+
+    showStop();
 }
 
-
-// =================================
-// KONTROLA FORMÁTU
-// =================================
-
-if (!/^\d{5}$/.test(code)) {
-
-    message.textContent =
-        "Zadej kód ve formátu 02201.";
-
-    return;
-}
-
-
-// =================================
-// ROZDĚLENÍ KÓDU
-// =================================
-
-// 3 číslice = linka
-
-const lineCode =
-    code.substring(0, 3);
-
-
-// 2 číslice = směr
-
-const directionCode =
-    code.substring(3, 5);
-
-
-// =================================
-// KONTROLA LINKY
-// =================================
-
-if (!linesData[lineCode]) {
-
-    message.textContent =
-        "Tato linka není v databázi.";
-
-    return;
-}
-
-
-// =================================
-// KONTROLA SMĚRU
-// =================================
-
-if (
-    !linesData[lineCode][directionCode]
-) {
-
-    message.textContent =
-        "Tento směr není u linky veden.";
-
-    return;
-}
-
-
-// =================================
-// NASTAVENÍ LINKY
-// =================================
-
-currentLine =
-    lineCode;
-
-
-currentDirection =
-    directionCode;
-
-
-// Začít od první zastávky
-
-currentStop = 0;
-
-
-const line =
-    linesData[lineCode];
-
-
-const direction =
-    line[directionCode];
-
-
-// =================================
-// RESET NENASTUPUJTE
-// =================================
-
-stopName.classList.remove(
-    "no-boarding"
-);
-
-
-// =================================
-// ZOBRAZENÍ LINKY
-// =================================
-
-lineNumber.textContent =
-    line.number;
-
-
-directionName.textContent =
-    direction.name;
-
-
-// =================================
-// ZOBRAZENÍ PANELŮ
-// =================================
-
-lineInfo.classList.remove(
-    "hidden"
-);
-
-
-stopPanel.classList.remove(
-    "hidden"
-);
-
-
-// =================================
-// PRVNÍ ZASTÁVKA
-// =================================
-
-showStop();
-```
-
-}
 
 // ========================================
 // ZOBRAZENÍ ZASTÁVKY
@@ -328,56 +235,41 @@ showStop();
 
 function showStop() {
 
-```
-// Kontrola vybrané linky
+    if (
+        currentLine === null ||
+        currentDirection === null
+    ) {
 
-if (
-    currentLine === null ||
-    currentDirection === null
-) {
+        return;
+    }
 
-    return;
+
+    const direction =
+        linesData[currentLine][currentDirection];
+
+    const stops = direction.stops;
+
+
+    if (
+        !stops ||
+        stops.length === 0
+    ) {
+
+        return;
+    }
+
+
+    stopName.classList.remove("no-boarding");
+
+
+    stopName.textContent =
+        stops[currentStop];
+
+
+    stopCounter.textContent =
+        `ZASTÁVKA ${currentStop + 1} / ${stops.length}`;
 }
 
-
-const direction =
-    linesData[currentLine]
-    [currentDirection];
-
-
-const stops =
-    direction.stops;
-
-
-if (
-    !stops ||
-    stops.length === 0
-) {
-
-    return;
-}
-
-
-// Odstranění NENASTUPUJTE
-
-stopName.classList.remove(
-    "no-boarding"
-);
-
-
-// Zobrazení názvu
-
-stopName.textContent =
-    stops[currentStop];
-
-
-// Zobrazení pořadí
-
-stopCounter.textContent =
-    `ZASTÁVKA ${currentStop + 1} / ${stops.length}`;
-```
-
-}
 
 // ========================================
 // DALŠÍ ZASTÁVKA
@@ -385,98 +277,78 @@ stopCounter.textContent =
 
 function nextStop() {
 
-```
-// =================================
-// SLUŽEBNÍ JÍZDA
-// =================================
+    // Služební jízda
+    if (
+        currentLine === null &&
+        currentDirection === null
+    ) {
 
-if (
-    currentLine === null &&
-    currentDirection === null
-) {
-
-    return;
-}
+        return;
+    }
 
 
-// =================================
-// KONTROLA
-// =================================
+    // Není vybraná linka
+    if (
+        !currentLine ||
+        !currentDirection
+    ) {
 
-if (
-    !currentLine ||
-    !currentDirection
-) {
-
-    return;
-}
+        return;
+    }
 
 
-const stops =
-    linesData[currentLine]
-    [currentDirection].stops;
+    const direction =
+        linesData[currentLine][currentDirection];
+
+    const stops = direction.stops;
 
 
-if (
-    !stops ||
-    stops.length === 0
-) {
+    if (
+        !stops ||
+        stops.length === 0
+    ) {
 
-    return;
-}
-
-
-// =================================
-// NENASTUPUJTE
-// =================================
-
-// Pokud už je NENASTUPUJTE,
-// dál se nepokračuje.
-
-if (
-    stopName.classList.contains(
-        "no-boarding"
-    )
-) {
-
-    return;
-}
+        return;
+    }
 
 
-// =================================
-// KONEČNÁ
-// =================================
+    // Už je NENASTUPUJTE
+    if (
+        stopName.classList.contains("no-boarding")
+    ) {
 
-if (
-    currentStop === stops.length - 1
-) {
-
-    stopName.textContent =
-        "NENASTUPUJTE";
+        return;
+    }
 
 
-    stopName.classList.add(
-        "no-boarding"
-    );
+    // ====================================
+    // POSLEDNÍ ZASTÁVKA
+    // ====================================
+
+    if (
+        currentStop >= stops.length - 1
+    ) {
+
+        stopName.textContent =
+            "NENASTUPUJTE";
+
+        stopName.classList.add(
+            "no-boarding"
+        );
+
+        stopCounter.textContent =
+            "KONEČNÁ ZASTÁVKA";
+
+        return;
+    }
 
 
-    stopCounter.textContent =
-        "KONEČNÁ ZASTÁVKA";
+    // ====================================
+    // DALŠÍ ZASTÁVKA
+    // ====================================
 
+    currentStop++;
 
-    return;
-}
-
-
-// =================================
-// DALŠÍ ZASTÁVKA
-// =================================
-
-currentStop++;
-
-
-showStop();
-```
-
+    showStop();
 }
 
