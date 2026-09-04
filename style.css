@@ -1,369 +1,562 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  }
 
 body {
-    min-height: 100vh;
-    background: #101216;
-    color: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
+min-height: 100vh;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+```
+background: #101216;
+color: #ffffff;
+
+font-family: Arial, Helvetica, sans-serif;
+
+display: flex;
+justify-content: center;
+align-items: center;
+```
+
 }
 
 .container {
-    width: 100%;
-    max-width: 1100px;
-    padding: 25px;
+width: 100%;
+max-width: 1100px;
+
+```
+padding: 25px;
+```
+
 }
 
-
 /* ===============================
-   HLAVIČKA
-   =============================== */
+HLAVIČKA
+=============================== */
 
 header {
-    text-align: center;
-    margin-bottom: 25px;
+text-align: center;
+
+```
+margin-bottom: 25px;
+```
+
 }
 
 header h1 {
-    font-size: 48px;
-    letter-spacing: 5px;
+font-size: 48px;
+
+```
+letter-spacing: 5px;
+```
+
 }
 
 header p {
-    color: #9da3ad;
-    margin-top: 5px;
-    font-size: 16px;
+color: #9da3ad;
+
+```
+margin-top: 5px;
+
+font-size: 16px;
+```
+
 }
 
-
 /* ===============================
-   HLAVNÍ PANEL
-   =============================== */
+HLAVNÍ PANEL
+=============================== */
 
 .panel {
-    background: #191c22;
-    border: 1px solid #30343d;
-    border-radius: 16px;
+background: #191c22;
 
-    padding: 30px;
+```
+border: 1px solid #30343d;
 
-    box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.35);
+border-radius: 16px;
+
+padding: 30px;
+
+box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.35);
+```
+
 }
 
-
 /* ===============================
-   VSTUP
-   =============================== */
+VSTUP
+=============================== */
 
 .input-area label {
-    display: block;
+display: block;
 
-    color: #b9bec8;
+```
+color: #b9bec8;
 
-    margin-bottom: 10px;
+margin-bottom: 10px;
 
-    font-size: 15px;
+font-size: 15px;
+```
+
 }
 
 #lineInput {
-    width: 100%;
-    height: 70px;
+width: 100%;
+height: 70px;
 
-    background: #0e1014;
+```
+background: #0e1014;
 
-    border: 2px solid #383d47;
-    border-radius: 10px;
+border: 2px solid #383d47;
 
-    color: white;
+border-radius: 10px;
 
-    font-size: 34px;
+color: white;
 
-    text-align: center;
+font-size: 34px;
 
-    letter-spacing: 8px;
+text-align: center;
 
-    outline: none;
+letter-spacing: 8px;
+
+outline: none;
+```
+
 }
 
 #lineInput:focus {
-    border-color: #ffffff;
+border-color: #ffffff;
 }
 
 .hint {
-    text-align: center;
+text-align: center;
 
-    color: #777e89;
+```
+color: #777e89;
 
-    margin-top: 10px;
+margin-top: 10px;
 
-    font-size: 13px;
+font-size: 13px;
+```
+
 }
-
 
 /* ===============================
-   INFORMACE O LINCE
-   =============================== */
+INFORMACE O LINCE
+=============================== */
 
 .line-info {
-    display: flex;
+display: flex;
 
-    align-items: center;
+```
+align-items: center;
 
-    gap: 25px;
+gap: 25px;
 
-    margin-top: 30px;
+margin-top: 30px;
 
-    padding: 22px;
+padding: 22px;
 
-    background: #22262e;
+background: #22262e;
 
-    border-radius: 12px;
+border-radius: 12px;
+```
+
 }
-
-
-/* Číslo linky */
 
 .line-number {
-    width: 100px;
-    height: 75px;
+width: 100px;
+height: 75px;
 
-    display: flex;
+```
+display: flex;
 
-    justify-content: center;
-    align-items: center;
+justify-content: center;
+align-items: center;
 
-    background: white;
+background: white;
 
-    color: #111;
+color: #111;
 
-    border-radius: 8px;
+border-radius: 8px;
 
-    font-size: 40px;
+font-size: 40px;
 
-    font-weight: bold;
+font-weight: bold;
+```
+
 }
 
-
-/* Směr */
-
 .direction {
-    display: flex;
+display: flex;
 
-    flex-direction: column;
+```
+flex-direction: column;
 
-    gap: 5px;
+gap: 5px;
+```
+
 }
 
 .direction span {
-    color: #858b96;
+color: #858b96;
 
-    font-size: 13px;
+```
+font-size: 13px;
 
-    letter-spacing: 2px;
+letter-spacing: 2px;
+```
+
 }
 
 .direction strong {
+font-size: 30px;
+}
+
+/* ===============================
+PANEL ZASTÁVKY
+=============================== */
+
+.stop-panel {
+margin-top: 25px;
+
+```
+text-align: center;
+
+background: #0e1014;
+
+border-radius: 14px;
+
+padding: 45px 25px;
+```
+
+}
+
+/* ===============================
+ČÍSLO ZASTÁVKY
+=============================== */
+
+.stop-counter {
+color: #777e89;
+
+```
+font-size: 18px;
+
+letter-spacing: 3px;
+```
+
+}
+
+/* ===============================
+OBROVSKÝ NÁZEV ZASTÁVKY
+=============================== */
+
+.stop-name {
+font-size: clamp(55px, 8vw, 110px);
+
+```
+line-height: 1.05;
+
+font-weight: bold;
+
+margin: 35px 0 50px;
+
+letter-spacing: 1px;
+
+word-break: break-word;
+
+transition:
+    font-size 0.2s ease,
+    letter-spacing 0.2s ease;
+```
+
+}
+
+/* ===============================
+NENASTUPUJTE
+=============================== */
+
+.stop-name.no-boarding {
+font-size: clamp(55px, 9vw, 125px);
+
+```
+font-weight: bold;
+
+letter-spacing: 3px;
+
+margin: 35px 0 50px;
+```
+
+}
+
+/* ===============================
+OVLÁDÁNÍ
+=============================== */
+
+.controls {
+display: flex;
+
+```
+justify-content: center;
+
+gap: 40px;
+
+flex-wrap: wrap;
+```
+
+}
+
+.control {
+display: flex;
+
+```
+align-items: center;
+
+gap: 12px;
+
+color: #969ca7;
+
+font-size: 16px;
+```
+
+}
+
+kbd {
+background: #292e37;
+
+```
+border: 1px solid #444a55;
+
+border-bottom-width: 3px;
+
+border-radius: 7px;
+
+padding: 9px 15px;
+
+color: white;
+
+font-family: inherit;
+
+font-size: 16px;
+
+font-weight: bold;
+```
+
+}
+
+/* ===============================
+MOBILNÍ TLAČÍTKO +
+=============================== */
+
+.mobile-next {
+display: none;
+
+```
+width: 100%;
+height: 80px;
+
+margin-top: 30px;
+
+background: #292e37;
+
+border: 2px solid #444a55;
+
+border-radius: 12px;
+
+color: white;
+
+font-size: 42px;
+
+font-weight: bold;
+
+cursor: pointer;
+
+-webkit-tap-highlight-color: transparent;
+
+touch-action: manipulation;
+
+transition:
+    transform 0.1s ease,
+    background 0.1s ease;
+```
+
+}
+
+.mobile-next:active {
+transform: scale(0.96);
+
+```
+background: #383e49;
+```
+
+}
+
+/* ===============================
+CHYBOVÁ ZPRÁVA
+=============================== */
+
+.message {
+text-align: center;
+
+```
+min-height: 20px;
+
+margin-top: 20px;
+
+color: #ff7070;
+
+font-size: 15px;
+```
+
+}
+
+/* ===============================
+SKRYTÉ PRVKY
+=============================== */
+
+.hidden {
+display: none;
+}
+
+/* ===============================
+MOBIL
+=============================== */
+
+@media (max-width: 700px) {
+
+```
+body {
+    align-items: flex-start;
+}
+
+
+.container {
+    padding: 15px;
+}
+
+
+header {
+    margin-bottom: 15px;
+}
+
+
+header h1 {
+    font-size: 38px;
+}
+
+
+.panel {
+    padding: 20px;
+}
+
+
+#lineInput {
+    height: 60px;
+
+    font-size: 27px;
+
+    letter-spacing: 5px;
+}
+
+
+.line-info {
+    padding: 15px;
+
+    gap: 15px;
+}
+
+
+.line-number {
+    width: 75px;
+    height: 60px;
+
     font-size: 30px;
 }
 
 
-/* ===============================
-   PANEL ZASTÁVKY
-   =============================== */
+.direction strong {
+    font-size: 22px;
+}
+
 
 .stop-panel {
-    margin-top: 25px;
-
-    text-align: center;
-
-    background: #0e1014;
-
-    border-radius: 14px;
-
-    padding: 45px 25px;
+    padding: 35px 15px;
 }
 
-
-/* Počet zastávek */
 
 .stop-counter {
-    color: #777e89;
+    font-size: 14px;
 
-    font-size: 18px;
-
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 }
 
-
-/* ===============================
-   OBROVSKÝ NÁZEV ZASTÁVKY
-   =============================== */
 
 .stop-name {
-    font-size: clamp(55px, 8vw, 110px);
+    font-size: clamp(45px, 12vw, 75px);
 
-    line-height: 1.05;
-
-    font-weight: bold;
-
-    margin: 35px 0 50px;
-
-    letter-spacing: 1px;
-
-    word-break: break-word;
-
-    transition:
-        font-size 0.2s ease,
-        letter-spacing 0.2s ease;
+    margin: 30px 0 40px;
 }
 
-
-/* ===============================
-   NENASTUPUJTE
-   =============================== */
 
 .stop-name.no-boarding {
-    font-size: clamp(45px, 5vw, 105px);
+    font-size: clamp(45px, 13vw, 80px);
 
-    font-weight: bold;
-
-    letter-spacing: 3px;
-
-    margin: 35px 0 50px;
+    margin: 30px 0 40px;
 }
 
-
-/* ===============================
-   OVLÁDÁNÍ
-   =============================== */
 
 .controls {
-    display: flex;
-
-    justify-content: center;
-
-    gap: 40px;
-
-    flex-wrap: wrap;
-}
-
-.control {
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    color: #969ca7;
-
-    font-size: 16px;
+    gap: 20px;
 }
 
 
-/* Klávesy */
+/* Na mobilu zobrazit tlačítko */
 
-kbd {
-    background: #292e37;
-
-    border: 1px solid #444a55;
-
-    border-bottom-width: 3px;
-
-    border-radius: 7px;
-
-    padding: 9px 15px;
-
-    color: white;
-
-    font-family: inherit;
-
-    font-size: 16px;
-
-    font-weight: bold;
+.mobile-next {
+    display: block;
 }
+```
 
+}
 
 /* ===============================
-   CHYBOVÁ ZPRÁVA
-   =============================== */
+MALÝ MOBIL
+=============================== */
 
-.message {
-    text-align: center;
+@media (max-width: 400px) {
 
-    min-height: 20px;
-
-    margin-top: 20px;
-
-    color: #ff7070;
-
-    font-size: 15px;
+```
+.container {
+    padding: 10px;
 }
 
 
-/* ===============================
-   SKRYTÉ PRVKY
-   =============================== */
-
-.hidden {
-    display: none;
+.panel {
+    padding: 15px;
 }
 
 
-/* ===============================
-   MENŠÍ OBRAZOVKA
-   =============================== */
-
-@media (max-width: 700px) {
-
-    .container {
-        padding: 15px;
-    }
-
-    .panel {
-        padding: 20px;
-    }
-
-    header h1 {
-        font-size: 38px;
-    }
-
-    .line-info {
-        padding: 15px;
-        gap: 15px;
-    }
-
-    .line-number {
-        width: 75px;
-        height: 60px;
-        font-size: 30px;
-    }
-
-    .direction strong {
-        font-size: 22px;
-    }
-
-    .stop-panel {
-        padding: 35px 15px;
-    }
-
-    .stop-name {
-        font-size: clamp(45px, 12vw, 75px);
-        margin: 30px 0 40px;
-    }
-
-    .stop-name.no-boarding {
-        font-size: clamp(45px, 13vw, 80px);
-    }
-
-    .controls {
-        gap: 20px;
-    }
+header h1 {
+    font-size: 32px;
 }
+
+
+.stop-name {
+    font-size: 45px;
+}
+
+
+.stop-name.no-boarding {
+    font-size: 50px;
+}
+
+
+.mobile-next {
+    height: 70px;
+
+    font-size: 36px;
+}
+```
+
+}
+
