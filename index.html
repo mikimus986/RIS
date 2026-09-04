@@ -1,59 +1,24 @@
 <!DOCTYPE html>
 <html lang="cs">
-
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DPMA – Systém linek</title>
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+    <link rel="stylesheet" href="style.css">
 </head>
-
-
 <body>
 
     <main class="container">
 
-        <!-- =========================
-             HLAVIČKA
-             ========================= -->
-
         <header>
-
             <h1>DPMA</h1>
-
-            <p>
-                Systém linek a zastávek
-            </p>
-
+            <p>Systém linek a zastávek</p>
         </header>
-
-
-        <!-- =========================
-             HLAVNÍ PANEL
-             ========================= -->
 
         <section class="panel">
 
-
-            <!-- =========================
-                 ZADÁNÍ KÓDU
-                 ========================= -->
-
             <div class="input-area">
-
-                <label for="lineInput">
-                    Kód linky a směru
-                </label>
-
+                <label for="lineInput">Kód linky a směru</label>
 
                 <input
                     id="lineInput"
@@ -65,155 +30,50 @@
                     autofocus
                 >
 
-
                 <div class="hint">
-                    Zadej 3 číslice linky + 2 číslice směru
-                    a stiskni Enter
+                    Zadej 3 číslice linky + 2 číslice směru a stiskni Enter
                 </div>
-
             </div>
 
-
-            <!-- =========================
-                 INFORMACE O LINCE
-                 ========================= -->
-
-            <div
-                id="lineInfo"
-                class="line-info hidden"
-            >
-
-                <div
-                    class="line-number"
-                    id="lineNumber"
-                >
-                    22
-                </div>
-
+            <div id="lineInfo" class="line-info hidden">
+                <div class="line-number" id="lineNumber">22</div>
 
                 <div class="direction">
-
-                    <span>
-                        SMĚR
-                    </span>
-
-
-                    <strong id="directionName">
-                        Strnadova
-                    </strong>
-
+                    <span>SMĚR</span>
+                    <strong id="directionName">Strnadova</strong>
                 </div>
-
             </div>
 
+            <div id="stopPanel" class="stop-panel hidden">
 
-            <!-- =========================
-                 PANEL ZASTÁVKY
-                 ========================= -->
-
-            <div
-                id="stopPanel"
-                class="stop-panel hidden"
-            >
-
-
-                <!-- POČET ZASTÁVEK -->
-
-                <div
-                    class="stop-counter"
-                    id="stopCounter"
-                >
+                <div class="stop-counter" id="stopCounter">
                     ZASTÁVKA 1 / 8
                 </div>
 
-
-                <!-- NÁZEV ZASTÁVKY -->
-
-                <div
-                    class="stop-name"
-                    id="stopName"
-                >
+                <div class="stop-name" id="stopName">
                     Hlavní nádraží
                 </div>
 
-
-                <!-- =========================
-                     OVLÁDÁNÍ
-                     ========================= -->
-
                 <div class="controls">
-
-
-                    <!-- KLÁVESA + -->
-
                     <div class="control">
-
-                        <kbd>
-                            +
-                        </kbd>
-
-                        <span>
-                            Další zastávka
-                        </span>
-
+                        <kbd>+</kbd>
+                        <span>Další zastávka</span>
                     </div>
 
-
-                    <!-- ENTER -->
-
                     <div class="control">
-
-                        <kbd>
-                            Enter
-                        </kbd>
-
-                        <span>
-                            Potvrdit
-                        </span>
-
+                        <kbd>Enter</kbd>
+                        <span>Potvrdit</span>
                     </div>
-
-
                 </div>
-
-
-                <!-- =========================
-                     TLAČÍTKO + PRO MOBIL
-                     ========================= -->
-
-                <button
-                    id="nextStopButton"
-                    class="mobile-next"
-                    type="button"
-                >
-                    +
-                </button>
-
 
             </div>
 
-
-            <!-- =========================
-                 CHYBOVÁ ZPRÁVA
-                 ========================= -->
-
-            <div
-                id="message"
-                class="message"
-            ></div>
-
+            <div id="message" class="message"></div>
 
         </section>
 
     </main>
 
-
-    <!-- =========================
-         JAVASCRIPT
-         ========================= -->
-
     <script src="script.js"></script>
-
 </body>
-
 </html>
