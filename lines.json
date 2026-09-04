@@ -347,5 +347,44 @@
                 "Nové nádraží"
             ]
         }
+    },
+    "076": {
+    "number": "76",
+
+    "01": {
+        "name": "Starý Lízátkov, nádraží",
+        "stops": [
+            "Nový Lízátkov, sídliště",
+            "Kanceláře",
+            "Sídlištní",
+            "Anyjská",
+            "Obchodní",
+            "Nemocniční",
+            "Datard",
+            "Zoopark Nový Lízátkov",
+            "Dubová alej",
+            "Starý Lízátkov, P+R",
+            "Starý Lízátkov, náměstí",
+            "Starý Lízátkov, nádraží"
+        ]
+    },
+
+    "02": {
+        "name": "Nový Lízátkov, sídliště",
+        "stops": [
+            "Starý Lízátkov, nádraží",
+            "Starý Lízátkov, náměstí",
+            "Starý Lízátkov, P+R",
+            "Dubová alej",
+            "Zoopark Nový Lízátkov",
+            "Datard",
+            "Nemocniční",
+            "Obchodní",
+            "Anyjská",
+            "Sídlištní",
+            "Kanceláře",
+            "Nový Lízátkov, sídliště"
+        ]
     }
+}
                 }
