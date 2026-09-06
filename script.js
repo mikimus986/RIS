@@ -7,6 +7,7 @@ let currentStop = 0;
 const lineInput = document.getElementById("lineInput");
 
 const loginScreen = document.getElementById("loginScreen");
+
 const lineInfo = document.getElementById("lineInfo");
 const lineNumber = document.getElementById("lineNumber");
 const directionName = document.getElementById("directionName");
@@ -18,26 +19,42 @@ const nextStopName = document.getElementById("nextStopName");
 
 const message = document.getElementById("message");
 
+
+// =========================
+// NAČTENÍ DATABÁZE
+// =========================
+
 fetch("lines.json")
     .then(response => {
+
         if (!response.ok) {
             throw new Error("Nelze načíst lines.json");
         }
 
         return response.json();
     })
+
     .then(data => {
+
         linesData = data;
+
         console.log("Databáze linek načtena.");
+
         lineInput.focus();
     })
+
     .catch(error => {
+
         console.error(error);
 
         message.textContent =
             "CHYBA: nepodařilo se načíst databázi linek.";
     });
 
+
+// =========================
+// ENTER
+// =========================
 
 lineInput.addEventListener("keydown", function(event) {
 
@@ -49,6 +66,10 @@ lineInput.addEventListener("keydown", function(event) {
     }
 });
 
+
+// =========================
+// +
+// =========================
 
 document.addEventListener("keydown", function(event) {
 
@@ -63,6 +84,10 @@ document.addEventListener("keydown", function(event) {
     }
 });
 
+
+// =========================
+// NAČTENÍ LINKY
+// =========================
 
 function loadLine() {
 
@@ -101,6 +126,8 @@ function loadLine() {
             "no-boarding"
         );
 
+        lineInput.value = "";
+
         return;
     }
 
@@ -125,6 +152,10 @@ function loadLine() {
         code.substring(3, 5);
 
 
+    // =========================
+    // KONTROLA LINKY
+    // =========================
+
     if (!linesData[lineCode]) {
 
         message.textContent =
@@ -134,6 +165,10 @@ function loadLine() {
     }
 
 
+    // =========================
+    // KONTROLA SMĚRU
+    // =========================
+
     if (!linesData[lineCode][directionCode]) {
 
         message.textContent =
@@ -142,6 +177,10 @@ function loadLine() {
         return;
     }
 
+
+    // =========================
+    // NOVÁ JÍZDA
+    // =========================
 
     currentLine = lineCode;
 
@@ -183,8 +222,16 @@ function loadLine() {
 
 
     showStop();
+
+
+    // Vyčistit vstup
+    lineInput.value = "";
 }
 
+
+// =========================
+// ZOBRAZENÍ ZASTÁVKY
+// =========================
 
 function showStop() {
 
@@ -192,6 +239,7 @@ function showStop() {
         currentLine === null ||
         currentDirection === null
     ) {
+
         return;
     }
 
@@ -207,6 +255,7 @@ function showStop() {
         !stops ||
         stops.length === 0
     ) {
+
         return;
     }
 
@@ -216,13 +265,21 @@ function showStop() {
     );
 
 
+    // Aktuální zastávka
+
     stopName.textContent =
         stops[currentStop];
 
 
+    // Počet zastávek
+
     stopCounter.textContent =
         `ZASTÁVKA ${currentStop + 1} / ${stops.length}`;
 
+
+    // =========================
+    // DALŠÍ ZASTÁVKA
+    // =========================
 
     if (
         currentStop <
@@ -240,12 +297,17 @@ function showStop() {
 }
 
 
+// =========================
+// DALŠÍ ZASTÁVKA
+// =========================
+
 function nextStop() {
 
     if (
         currentLine === null ||
         currentDirection === null
     ) {
+
         return;
     }
 
@@ -261,23 +323,28 @@ function nextStop() {
         !stops ||
         stops.length === 0
     ) {
+
         return;
     }
 
 
-    // Po zobrazení NENASTUPUJTE
-    // už další + nic nedělá.
+    // =========================
+    // NENASTUPUJTE
+    // =========================
 
     if (
         stopName.classList.contains(
             "no-boarding"
         )
     ) {
+
         return;
     }
 
 
-    // Poslední zastávka
+    // =========================
+    // KONEČNÁ
+    // =========================
 
     if (
         currentStop ===
@@ -301,7 +368,29 @@ function nextStop() {
     }
 
 
+    // =========================
+    // POSUN NA DALŠÍ ZASTÁVKU
+    // =========================
+
     currentStop++;
 
     showStop();
 }
+
+
+// =========================
+// KLIKNUTÍ DO TERMINÁLU
+// =========================
+
+// Po načtení jízdy můžeš kdykoliv
+// kliknout do políčka a zadat nový kód.
+
+document.addEventListener("click", function(event) {
+
+    if (
+        event.target === lineInput
+    ) {
+
+        lineInput.select();
+    }
+});
