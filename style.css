@@ -6,364 +6,435 @@
 
 body {
     min-height: 100vh;
-    background: #101216;
-    color: #ffffff;
+    background:
+        radial-gradient(circle at center, #20252c 0%, #0d1014 70%);
+    color: #e8ebee;
     font-family: Arial, Helvetica, sans-serif;
-
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.container {
-    width: 100%;
-    max-width: 1100px;
     padding: 25px;
 }
 
-
-/* ===============================
-   HLAVIČKA
-   =============================== */
-
-header {
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-header h1 {
-    font-size: 48px;
-    letter-spacing: 5px;
-}
-
-header p {
-    color: #9da3ad;
-    margin-top: 5px;
-    font-size: 16px;
-}
-
-
-/* ===============================
-   HLAVNÍ PANEL
-   =============================== */
-
-.panel {
-    background: #191c22;
-    border: 1px solid #30343d;
-    border-radius: 16px;
-
-    padding: 30px;
-
-    box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.35);
-}
-
-
-/* ===============================
-   VSTUP
-   =============================== */
-
-.input-area label {
-    display: block;
-
-    color: #b9bec8;
-
-    margin-bottom: 10px;
-
-    font-size: 15px;
-}
-
-#lineInput {
+.terminal {
     width: 100%;
-    height: 70px;
-
-    background: #0e1014;
-
-    border: 2px solid #383d47;
-    border-radius: 10px;
-
-    color: white;
-
-    font-size: 34px;
-
-    text-align: center;
-
-    letter-spacing: 8px;
-
-    outline: none;
-}
-
-#lineInput:focus {
-    border-color: #ffffff;
-}
-
-.hint {
-    text-align: center;
-
-    color: #777e89;
-
-    margin-top: 10px;
-
-    font-size: 13px;
-}
-
-
-/* ===============================
-   INFORMACE O LINCE
-   =============================== */
-
-.line-info {
-    display: flex;
-
-    align-items: center;
-
-    gap: 25px;
-
-    margin-top: 30px;
-
-    padding: 22px;
-
-    background: #22262e;
-
+    max-width: 1150px;
+    min-height: 700px;
+    background: #111419;
+    border: 2px solid #353a42;
     border-radius: 12px;
-}
-
-
-/* Číslo linky */
-
-.line-number {
-    width: 100px;
-    height: 75px;
-
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
     display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    background: white;
-
-    color: #111;
-
-    border-radius: 8px;
-
-    font-size: 40px;
-
-    font-weight: bold;
-}
-
-
-/* Směr */
-
-.direction {
-    display: flex;
-
     flex-direction: column;
-
-    gap: 5px;
 }
 
-.direction span {
-    color: #858b96;
+.topbar {
+    height: 75px;
+    background: #181c21;
+    border-bottom: 1px solid #353a42;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 28px;
+}
 
-    font-size: 13px;
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
 
+.brand-main {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #ffffff;
+}
+
+.brand-sub {
+    color: #7e8792;
+    font-size: 12px;
     letter-spacing: 2px;
 }
 
-.direction strong {
-    font-size: 30px;
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    color: #aeb5bd;
 }
 
-
-/* ===============================
-   PANEL ZASTÁVKY
-   =============================== */
-
-.stop-panel {
-    margin-top: 25px;
-
-    text-align: center;
-
-    background: #0e1014;
-
-    border-radius: 14px;
-
-    padding: 45px 25px;
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
+.status-dot,
+.green-dot {
+    width: 8px;
+    height: 8px;
+    background: #55d66b;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px rgba(85, 214, 107, 0.6);
+}
 
-/* Počet zastávek */
+main {
+    flex: 1;
+    padding: 28px;
+}
 
-.stop-counter {
-    color: #777e89;
+.login-screen {
+    min-height: 330px;
+    border: 1px solid #30353d;
+    background: #15191e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+}
 
-    font-size: 18px;
-
+.login-title {
+    font-size: 22px;
+    font-weight: bold;
     letter-spacing: 3px;
+    margin-bottom: 10px;
 }
 
+.login-description {
+    color: #808994;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
 
-/* ===============================
-   OBROVSKÝ NÁZEV ZASTÁVKY
-   =============================== */
+.code-input-wrapper {
+    display: flex;
+    align-items: center;
+    background: #0b0e12;
+    border: 2px solid #3b414a;
+    border-radius: 5px;
+    height: 80px;
+    width: min(500px, 90%);
+}
+
+.code-prefix {
+    padding-left: 22px;
+    color: #69717c;
+    font-size: 13px;
+    letter-spacing: 2px;
+    border-right: 1px solid #343941;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    padding-right: 20px;
+}
+
+#lineInput {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-family: "Courier New", monospace;
+    font-size: 38px;
+    font-weight: bold;
+    letter-spacing: 8px;
+    text-align: center;
+}
+
+#lineInput::placeholder {
+    color: #333941;
+}
+
+.code-input-wrapper:focus-within {
+    border-color: #7e8792;
+    box-shadow: 0 0 0 1px #7e8792;
+}
+
+.login-hint {
+    color: #5f6771;
+    font-size: 12px;
+    margin-top: 12px;
+    letter-spacing: 1px;
+}
+
+.enter-hint {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #747d87;
+    font-size: 13px;
+}
+
+.route-screen {
+    margin-top: 20px;
+}
+
+.route-header {
+    display: grid;
+    grid-template-columns: 150px 1fr 190px;
+    gap: 10px;
+}
+
+.line-box,
+.direction-box,
+.service-box {
+    background: #191d22;
+    border: 1px solid #343941;
+    min-height: 105px;
+    padding: 17px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.line-box {
+    align-items: center;
+    background: #20252b;
+}
+
+.small-label {
+    color: #69727d;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 7px;
+}
+
+.line-box strong {
+    font-size: 42px;
+    line-height: 1;
+}
+
+.direction-box strong {
+    font-size: 24px;
+    color: #f2f3f4;
+}
+
+.service-box strong {
+    font-size: 13px;
+    color: #65d47a;
+    letter-spacing: 1px;
+}
+
+.stop-screen {
+    margin-top: 10px;
+    border: 1px solid #343941;
+    background: #0f1216;
+}
+
+.stop-top {
+    height: 48px;
+    background: #191d22;
+    border-bottom: 1px solid #343941;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    font-family: "Courier New", monospace;
+    color: #7f8892;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.current-stop {
+    padding: 35px 30px 30px;
+    border-bottom: 1px solid #292e35;
+}
+
+.stop-label {
+    color: #65707b;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+}
 
 .stop-name {
-    font-size: clamp(55px, 8vw, 110px);
-
+    font-size: clamp(45px, 6vw, 78px);
+    font-weight: bold;
     line-height: 1.05;
-
-    font-weight: bold;
-
-    margin: 35px 0 50px;
-
-    letter-spacing: 1px;
-
+    color: #ffffff;
     word-break: break-word;
-
-    transition:
-        font-size 0.2s ease,
-        letter-spacing 0.2s ease;
 }
 
-
-/* ===============================
-   NENASTUPUJTE
-   =============================== */
-
-.stop-name.no-boarding {
-    font-size: clamp(45px, 5vw, 105px);
-
-    font-weight: bold;
-
-    letter-spacing: 3px;
-
-    margin: 35px 0 50px;
-}
-
-
-/* ===============================
-   OVLÁDÁNÍ
-   =============================== */
-
-.controls {
+.next-stop {
+    padding: 22px 30px;
+    background: #15191e;
     display: flex;
-
-    justify-content: center;
-
-    gap: 40px;
-
-    flex-wrap: wrap;
-}
-
-.control {
-    display: flex;
-
     align-items: center;
-
-    gap: 12px;
-
-    color: #969ca7;
-
-    font-size: 16px;
+    gap: 35px;
 }
 
+.next-label {
+    color: #68717c;
+    font-size: 11px;
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
 
-/* Klávesy */
+.next-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #c5cad0;
+}
+
+.terminal-controls {
+    min-height: 65px;
+    border-top: 1px solid #292e35;
+    background: #181c21;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    padding: 10px;
+}
+
+.control-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #747d87;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
 
 kbd {
-    background: #292e37;
-
-    border: 1px solid #444a55;
-
-    border-bottom-width: 3px;
-
-    border-radius: 7px;
-
-    padding: 9px 15px;
-
-    color: white;
-
-    font-family: inherit;
-
-    font-size: 16px;
-
+    background: #282d34;
+    border: 1px solid #454c55;
+    border-bottom: 3px solid #454c55;
+    border-radius: 4px;
+    padding: 7px 12px;
+    color: #e7e9eb;
+    font-family: "Courier New", monospace;
     font-weight: bold;
+    font-size: 13px;
 }
-
-
-/* ===============================
-   CHYBOVÁ ZPRÁVA
-   =============================== */
 
 .message {
+    min-height: 25px;
+    margin-top: 12px;
     text-align: center;
-
-    min-height: 20px;
-
-    margin-top: 20px;
-
-    color: #ff7070;
-
-    font-size: 15px;
+    color: #e06a6a;
+    font-family: "Courier New", monospace;
+    font-size: 13px;
 }
 
+.stop-name.no-boarding {
+    color: #ff6262;
+    font-size: clamp(50px, 7vw, 90px);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
 
-/* ===============================
-   SKRYTÉ PRVKY
-   =============================== */
+footer {
+    height: 42px;
+    background: #0c0f13;
+    border-top: 1px solid #30353d;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 22px;
+    color: #555e68;
+    font-family: "Courier New", monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+footer div:last-child {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
-
-/* ===============================
-   MENŠÍ OBRAZOVKA
-   =============================== */
-
-@media (max-width: 700px) {
-
-    .container {
-        padding: 15px;
+@media (max-width: 750px) {
+    body {
+        padding: 0;
+        align-items: stretch;
     }
 
-    .panel {
-        padding: 20px;
+    .terminal {
+        min-height: 100vh;
+        border-radius: 0;
+        border: none;
     }
 
-    header h1 {
-        font-size: 38px;
+    .topbar {
+        height: 65px;
+        padding: 0 15px;
     }
 
-    .line-info {
-        padding: 15px;
-        gap: 15px;
+    .brand-main {
+        font-size: 23px;
     }
 
-    .line-number {
-        width: 75px;
-        height: 60px;
-        font-size: 30px;
+    .brand-sub {
+        display: none;
     }
 
-    .direction strong {
-        font-size: 22px;
+    .system-status {
+        gap: 10px;
+        font-size: 11px;
     }
 
-    .stop-panel {
-        padding: 35px 15px;
+    main {
+        padding: 12px;
+    }
+
+    .route-header {
+        grid-template-columns: 90px 1fr;
+    }
+
+    .service-box {
+        display: none;
+    }
+
+    .line-box {
+        min-height: 90px;
+    }
+
+    .line-box strong {
+        font-size: 32px;
+    }
+
+    .direction-box strong {
+        font-size: 18px;
+    }
+
+    .current-stop {
+        padding: 28px 18px;
     }
 
     .stop-name {
-        font-size: clamp(45px, 12vw, 75px);
-        margin: 30px 0 40px;
+        font-size: clamp(40px, 10vw, 65px);
     }
 
-    .stop-name.no-boarding {
-        font-size: clamp(45px, 13vw, 80px);
+    .next-stop {
+        padding: 18px;
+        display: block;
     }
 
-    .controls {
-        gap: 20px;
+    .next-name {
+        margin-top: 7px;
+        font-size: 21px;
+    }
+
+    .terminal-controls {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    footer {
+        display: none;
     }
 }
