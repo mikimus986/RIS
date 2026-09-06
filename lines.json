@@ -254,14 +254,14 @@
             "name": "Přístav",
             "stops": [
                 "U lesa",
-                "Hrad",
-                "Molo",
-                "Most",
-                "Zlkovská",
-                "Arnošta Policha",
-                "Knihovna",
-                "Pivovar",
                 "Údržbářská",
+                "Pivovar",
+                "Molo",
+                "Hrad",
+                "Knihovna",
+                "Arnošta Policha",
+                "Zlkovská",
+                "Most",
                 "ÚMČ Anec",
                 "Přístav"
             ]
@@ -272,14 +272,14 @@
             "stops": [
                 "Přístav",
                 "ÚMČ Anec",
-                "Údržbářská",
-                "Pivovar",
-                "Knihovna",
-                "Arnošta Policha",
-                "Zlkovská",
                 "Most",
-                "Molo",
+                "Zlkovská",
+                "Arnošta Policha",
+                "Knihovna",
                 "Hrad",
+                "Molo",
+                "Pivovar",
+                "Údržbářská",
                 "U lesa"
             ]
         }
