@@ -33,7 +33,6 @@ fetch("lines.json")
 
         return response.json();
     })
-
     .then(data => {
 
         linesData = data;
@@ -42,7 +41,6 @@ fetch("lines.json")
 
         lineInput.focus();
     })
-
     .catch(error => {
 
         console.error(error);
@@ -53,7 +51,7 @@ fetch("lines.json")
 
 
 // =========================
-// ENTER
+// ENTER – NOVÝ KÓD
 // =========================
 
 lineInput.addEventListener("keydown", function(event) {
@@ -91,8 +89,7 @@ document.addEventListener("keydown", function(event) {
 
 function loadLine() {
 
-    const code =
-        lineInput.value.trim();
+    const code = lineInput.value.trim();
 
     message.textContent = "";
 
@@ -106,8 +103,6 @@ function loadLine() {
         currentLine = null;
         currentDirection = null;
         currentStop = 0;
-
-        loginScreen.classList.add("hidden");
 
         lineInfo.classList.add("hidden");
 
@@ -208,7 +203,10 @@ function loadLine() {
         direction.name;
 
 
-    loginScreen.classList.add(
+    // NIKDY NESKRÝVÁME LOGIN SCREEN
+    // INPUT ZŮSTÁVÁ DOSTUPNÝ
+
+    loginScreen.classList.remove(
         "hidden"
     );
 
@@ -224,8 +222,13 @@ function loadLine() {
     showStop();
 
 
-    // Vyčistit vstup
+    // Vyčistit input
+
     lineInput.value = "";
+
+    // Vrátit kurzor do inputu
+
+    lineInput.focus();
 }
 
 
@@ -265,21 +268,13 @@ function showStop() {
     );
 
 
-    // Aktuální zastávka
-
     stopName.textContent =
         stops[currentStop];
 
 
-    // Počet zastávek
-
     stopCounter.textContent =
         `ZASTÁVKA ${currentStop + 1} / ${stops.length}`;
 
-
-    // =========================
-    // DALŠÍ ZASTÁVKA
-    // =========================
 
     if (
         currentStop <
@@ -328,9 +323,8 @@ function nextStop() {
     }
 
 
-    // =========================
-    // NENASTUPUJTE
-    // =========================
+    // Pokud už je NENASTUPUJTE,
+    // další + nic neudělá.
 
     if (
         stopName.classList.contains(
@@ -368,29 +362,7 @@ function nextStop() {
     }
 
 
-    // =========================
-    // POSUN NA DALŠÍ ZASTÁVKU
-    // =========================
-
     currentStop++;
 
     showStop();
 }
-
-
-// =========================
-// KLIKNUTÍ DO TERMINÁLU
-// =========================
-
-// Po načtení jízdy můžeš kdykoliv
-// kliknout do políčka a zadat nový kód.
-
-document.addEventListener("click", function(event) {
-
-    if (
-        event.target === lineInput
-    ) {
-
-        lineInput.select();
-    }
-});
