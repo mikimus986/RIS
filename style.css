@@ -6,16 +6,13 @@
 
 body {
     min-height: 100vh;
-
     background:
         radial-gradient(
             circle at center,
             #20252c 0%,
             #0d1014 70%
         );
-
     color: #e8ebee;
-
     font-family:
         Arial,
         Helvetica,
@@ -28,23 +25,14 @@ body {
     padding: 25px;
 }
 
-
-/* =========================
-   TERMINÁL
-========================= */
-
 .terminal {
-
     width: 100%;
-
     max-width: 1150px;
-
     min-height: 700px;
 
     background: #111419;
 
     border: 2px solid #353a42;
-
     border-radius: 12px;
 
     box-shadow:
@@ -53,47 +41,34 @@ body {
     overflow: hidden;
 
     display: flex;
-
     flex-direction: column;
 }
-
 
 /* =========================
    HORNÍ LIŠTA
 ========================= */
 
 .topbar {
-
     height: 75px;
 
     background: #181c21;
-
     border-bottom: 1px solid #353a42;
 
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
 
     padding: 0 28px;
 }
 
-
 .brand {
-
     display: flex;
-
     align-items: center;
-
     gap: 18px;
 }
 
-
 .brand-main {
-
     font-size: 30px;
-
     font-weight: 800;
 
     letter-spacing: 3px;
@@ -101,21 +76,15 @@ body {
     color: #ffffff;
 }
 
-
 .brand-sub {
-
     color: #7e8792;
 
     font-size: 12px;
-
     letter-spacing: 2px;
 }
 
-
 .system-status {
-
     display: flex;
-
     align-items: center;
 
     gap: 30px;
@@ -129,22 +98,15 @@ body {
     color: #aeb5bd;
 }
 
-
 .status-item {
-
     display: flex;
-
     align-items: center;
-
     gap: 8px;
 }
 
-
 .status-dot,
 .green-dot {
-
     width: 8px;
-
     height: 8px;
 
     background: #55d66b;
@@ -162,25 +124,20 @@ body {
         );
 }
 
-
 /* =========================
-   HLAVNÍ ČÁST
+   HLAVNÍ OBSAH
 ========================= */
 
 main {
-
     flex: 1;
-
     padding: 28px;
 }
 
-
 /* =========================
-   PŘIHLÁŠENÍ
+   PŘIHLÁŠENÍ / KÓD
 ========================= */
 
 .login-screen {
-
     min-height: 330px;
 
     border: 1px solid #30353d;
@@ -188,19 +145,15 @@ main {
     background: #15191e;
 
     display: flex;
-
     flex-direction: column;
 
     align-items: center;
-
     justify-content: center;
 
     border-radius: 7px;
 }
 
-
 .login-title {
-
     font-size: 22px;
 
     font-weight: bold;
@@ -210,9 +163,7 @@ main {
     margin-bottom: 10px;
 }
 
-
 .login-description {
-
     color: #808994;
 
     font-size: 14px;
@@ -220,11 +171,8 @@ main {
     margin-bottom: 30px;
 }
 
-
 .code-input-wrapper {
-
     display: flex;
-
     align-items: center;
 
     background: #0b0e12;
@@ -238,9 +186,7 @@ main {
     width: min(500px, 90%);
 }
 
-
 .code-prefix {
-
     padding-left: 22px;
 
     color: #69717c;
@@ -254,25 +200,20 @@ main {
     height: 50%;
 
     display: flex;
-
     align-items: center;
 
     padding-right: 20px;
 }
 
-
 #lineInput {
-
     flex: 1;
 
     width: 100%;
-
     height: 100%;
 
     background: transparent;
 
     border: none;
-
     outline: none;
 
     color: white;
@@ -290,24 +231,18 @@ main {
     text-align: center;
 }
 
-
 #lineInput::placeholder {
-
     color: #333941;
 }
 
-
 .code-input-wrapper:focus-within {
-
     border-color: #7e8792;
 
     box-shadow:
         0 0 0 1px #7e8792;
 }
 
-
 .login-hint {
-
     color: #5f6771;
 
     font-size: 12px;
@@ -317,13 +252,10 @@ main {
     letter-spacing: 1px;
 }
 
-
 .enter-hint {
-
     margin-top: 25px;
 
     display: flex;
-
     align-items: center;
 
     gap: 10px;
@@ -333,274 +265,11 @@ main {
     font-size: 13px;
 }
 
-
 /* =========================
-   INFORMACE O LINCE
+   KLÁVESY
 ========================= */
-
-.route-screen {
-
-    margin-top: 20px;
-}
-
-
-.route-header {
-
-    display: grid;
-
-    grid-template-columns:
-        150px
-        1fr
-        190px;
-
-    gap: 10px;
-}
-
-
-.line-box,
-.direction-box,
-.service-box {
-
-    background: #191d22;
-
-    border: 1px solid #343941;
-
-    min-height: 105px;
-
-    padding: 17px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-}
-
-
-.line-box {
-
-    align-items: center;
-
-    background: #20252b;
-}
-
-
-.small-label {
-
-    color: #69727d;
-
-    font-size: 11px;
-
-    letter-spacing: 2px;
-
-    margin-bottom: 7px;
-}
-
-
-.line-box strong {
-
-    font-size: 42px;
-
-    line-height: 1;
-}
-
-
-.direction-box strong {
-
-    font-size: 24px;
-
-    color: #f2f3f4;
-}
-
-
-.service-box strong {
-
-    font-size: 13px;
-
-    color: #65d47a;
-
-    letter-spacing: 1px;
-}
-
-
-/* =========================
-   ZASTÁVKY
-========================= */
-
-.stop-screen {
-
-    margin-top: 10px;
-
-    border: 1px solid #343941;
-
-    background: #0f1216;
-}
-
-
-.stop-top {
-
-    height: 48px;
-
-    background: #191d22;
-
-    border-bottom: 1px solid #343941;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    padding: 0 20px;
-
-    font-family:
-        "Courier New",
-        monospace;
-
-    color: #7f8892;
-
-    font-size: 13px;
-
-    letter-spacing: 1px;
-}
-
-
-/* =========================
-   AKTUÁLNÍ ZASTÁVKA
-========================= */
-
-.current-stop {
-
-    padding:
-        45px
-        35px
-        40px;
-
-    border-bottom:
-        1px solid #292e35;
-}
-
-
-.stop-label {
-
-    color: #65707b;
-
-    font-size: 13px;
-
-    letter-spacing: 4px;
-
-    margin-bottom: 18px;
-}
-
-
-/* VĚTŠÍ NÁZEV ZASTÁVKY */
-
-.stop-name {
-
-    font-size:
-        clamp(
-            65px,
-            9vw,
-            120px
-        );
-
-    font-weight: bold;
-
-    line-height: 0.98;
-
-    color: #ffffff;
-
-    word-break: break-word;
-
-    letter-spacing: -2px;
-}
-
-
-/* =========================
-   DALŠÍ ZASTÁVKA
-========================= */
-
-.next-stop {
-
-    padding:
-        25px
-        35px;
-
-    background: #15191e;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 40px;
-}
-
-
-.next-label {
-
-    color: #68717c;
-
-    font-size: 12px;
-
-    letter-spacing: 3px;
-
-    white-space: nowrap;
-}
-
-
-.next-name {
-
-    font-size: 30px;
-
-    font-weight: bold;
-
-    color: #c5cad0;
-}
-
-
-/* =========================
-   OVLÁDÁNÍ
-========================= */
-
-.terminal-controls {
-
-    min-height: 70px;
-
-    border-top:
-        1px solid #292e35;
-
-    background: #181c21;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 70px;
-
-    padding: 10px;
-}
-
-
-.control-info {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    color: #747d87;
-
-    font-size: 11px;
-
-    letter-spacing: 1px;
-}
-
 
 kbd {
-
     background: #282d34;
 
     border: 1px solid #454c55;
@@ -625,13 +294,231 @@ kbd {
     font-size: 13px;
 }
 
+/* =========================
+   INFORMACE O LINCE
+========================= */
+
+.route-screen {
+    margin-top: 20px;
+}
+
+.route-header {
+    display: grid;
+
+    grid-template-columns:
+        150px
+        1fr
+        190px;
+
+    gap: 10px;
+}
+
+.line-box,
+.direction-box,
+.service-box {
+    background: #191d22;
+
+    border: 1px solid #343941;
+
+    min-height: 105px;
+
+    padding: 17px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.line-box {
+    align-items: center;
+
+    background: #20252b;
+}
+
+.small-label {
+    color: #69727d;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 7px;
+}
+
+.line-box strong {
+    font-size: 42px;
+
+    line-height: 1;
+}
+
+.direction-box strong {
+    font-size: 24px;
+
+    color: #f2f3f4;
+}
+
+.service-box strong {
+    font-size: 13px;
+
+    color: #65d47a;
+
+    letter-spacing: 1px;
+}
 
 /* =========================
-   CHYBA
+   ZASTÁVKA
+========================= */
+
+.stop-screen {
+    margin-top: 10px;
+
+    border: 1px solid #343941;
+
+    background: #0f1216;
+}
+
+.stop-top {
+    height: 48px;
+
+    background: #191d22;
+
+    border-bottom:
+        1px solid #343941;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 20px;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    color: #7f8892;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+}
+
+.current-stop {
+    padding:
+        45px
+        35px
+        40px;
+
+    border-bottom:
+        1px solid #292e35;
+}
+
+.stop-label {
+    color: #65707b;
+
+    font-size: 13px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 18px;
+}
+
+.stop-name {
+    font-size:
+        clamp(
+            65px,
+            9vw,
+            120px
+        );
+
+    font-weight: bold;
+
+    line-height: 0.98;
+
+    color: #ffffff;
+
+    word-break: break-word;
+
+    letter-spacing: -2px;
+}
+
+/* =========================
+   DALŠÍ ZASTÁVKA
+========================= */
+
+.next-stop {
+    padding:
+        25px
+        35px;
+
+    background: #15191e;
+
+    display: flex;
+    align-items: center;
+
+    gap: 40px;
+}
+
+.next-label {
+    color: #68717c;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    white-space: nowrap;
+}
+
+.next-name {
+    font-size: 30px;
+
+    font-weight: bold;
+
+    color: #c5cad0;
+}
+
+/* =========================
+   OVLÁDÁNÍ
+========================= */
+
+.terminal-controls {
+    min-height: 70px;
+
+    border-top:
+        1px solid #292e35;
+
+    background: #181c21;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 70px;
+
+    padding: 10px;
+}
+
+.control-info {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    color: #747d87;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+/* =========================
+   CHYBOVÉ HLÁŠKY
 ========================= */
 
 .message {
-
     min-height: 25px;
 
     margin-top: 12px;
@@ -647,13 +534,11 @@ kbd {
     font-size: 13px;
 }
 
-
 /* =========================
    NENASTUPUJTE
 ========================= */
 
 .stop-name.no-boarding {
-
     color: #ff6262;
 
     font-size:
@@ -668,13 +553,11 @@ kbd {
     text-transform: uppercase;
 }
 
-
 /* =========================
-   SPODNÍ LIŠTA
+   PATIČKA
 ========================= */
 
 footer {
-
     height: 42px;
 
     background: #0c0f13;
@@ -701,26 +584,20 @@ footer {
     letter-spacing: 1px;
 }
 
-
 footer div:last-child {
-
     display: flex;
-
     align-items: center;
 
     gap: 7px;
 }
 
-
 /* =========================
-   SKRYTÉ
+   HIDDEN
 ========================= */
 
 .hidden {
-
     display: none !important;
 }
-
 
 /* =========================
    MOBIL
@@ -729,15 +606,12 @@ footer div:last-child {
 @media (max-width: 750px) {
 
     body {
-
         padding: 0;
 
         align-items: stretch;
     }
 
-
     .terminal {
-
         min-height: 100vh;
 
         border-radius: 0;
@@ -745,83 +619,63 @@ footer div:last-child {
         border: none;
     }
 
-
     .topbar {
-
         height: 65px;
 
         padding: 0 15px;
     }
 
-
     .brand-main {
-
         font-size: 23px;
     }
 
-
     .brand-sub {
-
         display: none;
     }
 
-
     .system-status {
-
         gap: 10px;
 
         font-size: 11px;
     }
 
-
     main {
-
         padding: 12px;
     }
 
+    /* Informace o lince */
 
     .route-header {
-
         grid-template-columns:
             90px
             1fr;
     }
 
-
     .service-box {
-
         display: none;
     }
 
-
     .line-box {
-
         min-height: 90px;
     }
 
-
     .line-box strong {
-
         font-size: 32px;
     }
 
-
     .direction-box strong {
-
         font-size: 18px;
     }
 
+    /* Aktuální zastávka */
 
     .current-stop {
-
         padding:
             35px
             18px;
     }
 
-
     .stop-name {
-
         font-size:
             clamp(
                 50px,
@@ -832,25 +686,23 @@ footer div:last-child {
         letter-spacing: -1px;
     }
 
+    /* Další zastávka */
 
     .next-stop {
-
         padding: 18px;
 
         display: block;
     }
 
-
     .next-name {
-
         margin-top: 7px;
 
         font-size: 23px;
     }
 
+    /* Ovládání */
 
     .terminal-controls {
-
         gap: 15px;
 
         flex-wrap: wrap;
@@ -860,9 +712,9 @@ footer div:last-child {
         padding: 15px;
     }
 
+    /* Paticka */
 
     footer {
-
         display: none;
     }
 }
