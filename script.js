@@ -6,51 +6,30 @@ let currentStop = 0;
 
 
 // =========================
-// ELEMENTY
+// ELEMENTY Z TVÉHO INDEX.HTML
 // =========================
 
-const menuScreen = document.getElementById("menuScreen");
-const codeScreen = document.getElementById("codeScreen");
-const routeScreen = document.getElementById("routeScreen");
+const menuScreen = document.getElementById("menu");
+const codeScreen = document.getElementById("code");
+const routeScreen = document.getElementById("route");
 
-const selectLineButton =
-    document.getElementById("selectLineButton");
+const selectLineButton = document.getElementById("choose");
+const confirmCodeButton = document.getElementById("enter");
+const backToMenuButton = document.getElementById("back");
+const newLineButton = document.getElementById("new");
+const nextStopButton = document.getElementById("plus");
 
-const confirmCodeButton =
-    document.getElementById("confirmCodeButton");
+const lineInput = document.getElementById("input");
 
-const backToMenuButton =
-    document.getElementById("backToMenuButton");
+const lineNumber = document.getElementById("line");
+const directionName = document.getElementById("direction");
+const stopCounter = document.getElementById("counter");
+const stopName = document.getElementById("stop");
+const nextStopName = document.getElementById("next");
 
-const newLineButton =
-    document.getElementById("newLineButton");
+const message = document.getElementById("error");
 
-const nextStopButton =
-    document.getElementById("nextStopButton");
-
-const lineInput =
-    document.getElementById("lineInput");
-
-const lineNumber =
-    document.getElementById("lineNumber");
-
-const directionName =
-    document.getElementById("directionName");
-
-const stopCounter =
-    document.getElementById("stopCounter");
-
-const stopName =
-    document.getElementById("stopName");
-
-const nextStopName =
-    document.getElementById("nextStopName");
-
-const message =
-    document.getElementById("codeMessage");
-
-const clock =
-    document.getElementById("clock");
+const clock = document.getElementById("clock");
 
 
 // =========================
@@ -61,88 +40,95 @@ function updateClock() {
 
     const now = new Date();
 
-    clock.textContent =
-        now.toLocaleTimeString(
-            "cs-CZ",
-            {
-                hour: "2-digit",
-                minute: "2-digit",
-                second: "2-digit"
-            }
-        );
+    clock.textContent = now.toLocaleTimeString(
+        "cs-CZ",
+        {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        }
+    );
 }
 
 updateClock();
 
-setInterval(
-    updateClock,
-    1000
-);
+setInterval(updateClock, 1000);
 
 
 // =========================
-// NAČTENÍ LINIÍ
+// NAČTENÍ LINES.JSON
 // =========================
 
 fetch("lines.json")
     .then(response => {
 
         if (!response.ok) {
-            throw new Error(
-                "Nelze načíst lines.json"
-            );
+            throw new Error("Nelze načíst lines.json");
         }
 
         return response.json();
     })
-
     .then(data => {
 
         linesData = data;
 
-        console.log(
-            "Databáze linek načtena."
-        );
-    })
+        console.log("Databáze linek načtena.");
 
+    })
     .catch(error => {
 
         console.error(error);
 
         message.textContent =
-            "CHYBA: nepodařilo se načíst databázi linek.";
+            "CHYBA: Nepodařilo se načíst lines.json.";
+
     });
 
 
 // =========================
-// TLAČÍTKA
+// VYBRAT LINKU – HLAVNÍ MENU
 // =========================
 
-// Hlavní tlačítko VYBRAT LINKU
 selectLineButton.addEventListener(
     "click",
     openCodeScreen
 );
 
+
+// =========================
 // ENTER
+// =========================
+
 confirmCodeButton.addEventListener(
     "click",
     loadLine
 );
 
+
+// =========================
 // ZPĚT DO MENU
+// =========================
+
 backToMenuButton.addEventListener(
     "click",
     openMenu
 );
 
-// VYBRAT LINKU během jízdy
+
+// =========================
+// VYBRAT LINKU BĚHEM JÍZDY
+// =========================
+
 newLineButton.addEventListener(
     "click",
     openCodeScreen
 );
 
+
+// =========================
 // DALŠÍ ZASTÁVKA
+// =========================
+
 nextStopButton.addEventListener(
     "click",
     nextStop
@@ -150,24 +136,23 @@ nextStopButton.addEventListener(
 
 
 // =========================
-// ZADÁVÁNÍ KÓDU
+// VSTUP – POUZE ČÍSLA
 // =========================
 
 lineInput.addEventListener(
     "input",
     function () {
 
-        // Povolit pouze čísla
         lineInput.value =
-            lineInput.value.replace(
-                /\D/g,
-                ""
-            );
+            lineInput.value.replace(/\D/g, "");
+
     }
 );
 
 
+// =========================
 // ENTER V INPUTU
+// =========================
 
 lineInput.addEventListener(
     "keydown",
@@ -179,6 +164,7 @@ lineInput.addEventListener(
 
             loadLine();
         }
+
     }
 );
 
@@ -214,11 +200,8 @@ document.addEventListener(
             event.code === "NumpadAdd"
         ) {
 
-            // Funguje pouze během jízdy
             if (
-                !routeScreen.classList.contains(
-                    "hidden"
-                )
+                !routeScreen.classList.contains("hidden")
             ) {
 
                 event.preventDefault();
@@ -226,6 +209,7 @@ document.addEventListener(
                 nextStop();
             }
         }
+
     }
 );
 
@@ -236,23 +220,16 @@ document.addEventListener(
 
 function openCodeScreen() {
 
-    menuScreen.classList.add(
-        "hidden"
-    );
+    menuScreen.classList.add("hidden");
 
-    routeScreen.classList.add(
-        "hidden"
-    );
+    routeScreen.classList.add("hidden");
 
-    codeScreen.classList.remove(
-        "hidden"
-    );
+    codeScreen.classList.remove("hidden");
 
     message.textContent = "";
 
     lineInput.value = "";
 
-    // Automaticky aktivovat input
     setTimeout(
         function () {
 
@@ -270,18 +247,11 @@ function openCodeScreen() {
 
 function openMenu() {
 
-    menuScreen.classList.remove(
-        "hidden"
-    );
+    menuScreen.classList.remove("hidden");
 
-    codeScreen.classList.add(
-        "hidden"
-    );
+    codeScreen.classList.add("hidden");
 
-    routeScreen.classList.add(
-        "hidden"
-    );
-
+    routeScreen.classList.add("hidden");
 
     currentLine = null;
 
@@ -296,19 +266,19 @@ function openMenu() {
 
 
 // =========================
-// NAČTENÍ LINKY
+// NAČÍST LINKU
 // =========================
 
 function loadLine() {
 
-    const code =
-        lineInput.value.trim();
+    const code = lineInput.value.trim();
 
     message.textContent = "";
 
 
     // =====================
     // SLUŽEBNÍ JÍZDA
+    // 99901
     // =====================
 
     if (code === "99901") {
@@ -319,26 +289,16 @@ function loadLine() {
 
         currentStop = 0;
 
+        menuScreen.classList.add("hidden");
 
-        menuScreen.classList.add(
-            "hidden"
-        );
+        codeScreen.classList.add("hidden");
 
-        codeScreen.classList.add(
-            "hidden"
-        );
+        routeScreen.classList.remove("hidden");
 
-        routeScreen.classList.remove(
-            "hidden"
-        );
-
-
-        lineNumber.textContent =
-            "—";
+        lineNumber.textContent = "—";
 
         directionName.textContent =
             "SLUŽEBNÍ JÍZDA";
-
 
         stopCounter.textContent =
             "SLUŽEBNÍ JÍZDA";
@@ -349,7 +309,6 @@ function loadLine() {
         nextStopName.textContent =
             "—";
 
-
         stopName.classList.remove(
             "no-boarding"
         );
@@ -359,12 +318,10 @@ function loadLine() {
 
 
     // =====================
-    // KONTROLA KÓDU
+    // KONTROLA 5 ČÍSLIC
     // =====================
 
-    if (
-        !/^\d{5}$/.test(code)
-    ) {
+    if (!/^\d{5}$/.test(code)) {
 
         message.textContent =
             "Zadejte 5místný kód, například 02201.";
@@ -375,23 +332,22 @@ function loadLine() {
     }
 
 
-    // První 3 číslice = linka
-    const lineCode =
-        code.substring(0, 3);
+    // =====================
+    // ROZDĚLENÍ KÓDU
+    // =====================
 
+    // první 3 čísla = linka
+    const lineCode = code.substring(0, 3);
 
-    // Poslední 2 číslice = směr
-    const directionCode =
-        code.substring(3, 5);
+    // poslední 2 čísla = směr
+    const directionCode = code.substring(3, 5);
 
 
     // =====================
     // KONTROLA LINKY
     // =====================
 
-    if (
-        !linesData[lineCode]
-    ) {
+    if (!linesData[lineCode]) {
 
         message.textContent =
             "Tato linka není v databázi.";
@@ -423,11 +379,9 @@ function loadLine() {
     // NASTAVENÍ JÍZDY
     // =====================
 
-    currentLine =
-        lineCode;
+    currentLine = lineCode;
 
-    currentDirection =
-        directionCode;
+    currentDirection = directionCode;
 
     currentStop = 0;
 
@@ -451,27 +405,27 @@ function loadLine() {
     );
 
 
-    // Přepnout na obrazovku jízdy
-    menuScreen.classList.add(
-        "hidden"
-    );
+    // =====================
+    // PŘEPNUTÍ NA JÍZDU
+    // =====================
 
-    codeScreen.classList.add(
-        "hidden"
-    );
+    menuScreen.classList.add("hidden");
 
-    routeScreen.classList.remove(
-        "hidden"
-    );
+    codeScreen.classList.add("hidden");
+
+    routeScreen.classList.remove("hidden");
 
 
-    // Zobrazit první zastávku
+    // =====================
+    // PRVNÍ ZASTÁVKA
+    // =====================
+
     showStop();
 }
 
 
 // =========================
-// ZOBRAZENÍ ZASTÁVKY
+// ZOBRAZIT ZASTÁVKU
 // =========================
 
 function showStop() {
@@ -486,12 +440,7 @@ function showStop() {
 
 
     const direction =
-        linesData[
-            currentLine
-        ][
-            currentDirection
-        ];
-
+        linesData[currentLine][currentDirection];
 
     const stops =
         direction.stops;
@@ -511,20 +460,28 @@ function showStop() {
     );
 
 
-    // Aktuální zastávka
+    // =====================
+    // AKTUÁLNÍ ZASTÁVKA
+    // =====================
+
     stopName.textContent =
         stops[currentStop];
 
 
-    // Číslo zastávky
+    // =====================
+    // POČÍTADLO
+    // =====================
+
     stopCounter.textContent =
         `ZASTÁVKA ${currentStop + 1} / ${stops.length}`;
 
 
-    // Další zastávka
+    // =====================
+    // DALŠÍ ZASTÁVKA
+    // =====================
+
     if (
-        currentStop <
-        stops.length - 1
+        currentStop < stops.length - 1
     ) {
 
         nextStopName.textContent =
@@ -544,7 +501,6 @@ function showStop() {
 
 function nextStop() {
 
-    // Není aktivní žádná linka
     if (
         currentLine === null ||
         currentDirection === null
@@ -555,12 +511,7 @@ function nextStop() {
 
 
     const direction =
-        linesData[
-            currentLine
-        ][
-            currentDirection
-        ];
-
+        linesData[currentLine][currentDirection];
 
     const stops =
         direction.stops;
@@ -575,7 +526,10 @@ function nextStop() {
     }
 
 
-    // Už jsme na konečné
+    // =====================
+    // UŽ JE NENASTUPUJTE
+    // =====================
+
     if (
         stopName.classList.contains(
             "no-boarding"
@@ -591,33 +545,28 @@ function nextStop() {
     // =====================
 
     if (
-        currentStop ===
-        stops.length - 1
+        currentStop === stops.length - 1
     ) {
 
         stopName.textContent =
             "NENASTUPUJTE";
 
-
         stopName.classList.add(
             "no-boarding"
         );
 
-
         stopCounter.textContent =
             "KONEČNÁ ZASTÁVKA";
 
-
         nextStopName.textContent =
             "VOZIDLO KONČÍ JÍZDU";
-
 
         return;
     }
 
 
     // =====================
-    // DALŠÍ ZASTÁVKA
+    // POSUN O JEDNU ZASTÁVKU
     // =====================
 
     currentStop++;
