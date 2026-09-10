@@ -386,5 +386,44 @@
             "Nový Lízátkov, sídliště"
         ]
     }
+},
+    "074": {
+    "number": "74",
+    "01": {
+        "name": "Kolombus",
+        "stops": [
+            "Lamovská",
+            "K náměstí",
+            "Lamovské náměstí",
+            "Mlýnská",
+            "VŠ umění",
+            "Školní",
+            "Sídliště Lamovská",
+            "Bazén",
+            "Černínská",
+            "ZŠ Ana",
+            "Okružní",
+            "Svatého Martina",
+            "Kolombus"
+        ]
+    },
+    "02": {
+        "name": "Lamovská",
+        "stops": [
+            "Kolombus",
+            "Svatého Martina",
+            "Okružní",
+            "ZŠ Ana",
+            "Černínská",
+            "Bazén",
+            "Sídliště Lamovská",
+            "Školní",
+            "VŠ umění",
+            "Mlýnská",
+            "Lamovské náměstí",
+            "K náměstí",
+            "Lamovská"
+        ]
+    }
 }
                 }
