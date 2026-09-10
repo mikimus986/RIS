@@ -1,1 +1,771 @@
-*{box-sizing:border-box}body{margin:0;background:#0d1014;color:#eee;font-family:Arial;padding:25px}.terminal{max-width:1100px;min-height:700px;margin:auto;background:#111419;border:2px solid #353a42;border-radius:12px;overflow:hidden}header{height:75px;background:#181c21;padding:22px 28px;display:flex;gap:20px;align-items:center}header b{font-size:30px;letter-spacing:3px}header span:last-child{margin-left:auto}main{padding:28px}section{min-height:570px;background:#15191e;border:1px solid #30353d;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.hidden{display:none!important}h1{letter-spacing:4px}button{background:#20252b;border:1px solid #555;color:#fff;border-radius:6px;padding:20px 35px;margin:8px;font-weight:bold;cursor:pointer;font-size:15px}button:hover{background:#30363e}#choose{width:min(500px,90%);font-size:24px;padding:35px}input{width:min(500px,90%);background:#0b0e12;border:2px solid #3b414a;color:#fff;font: bold 38px "Courier New";letter-spacing:8px;text-align:center;padding:20px;margin:20px}.info{width:100%;display:grid;grid-template-columns:150px 1fr;gap:10px;text-align:left}.info div{background:#191d22;border:1px solid #343941;padding:25px;color:#88919b}.info strong{display:block;color:#fff;font-size:32px;margin-top:8px}.panel{width:100%;margin-top:10px;background:#0f1216;border:1px solid #343941;text-align:left;padding:30px}.panel p,small{color:#7f8892;letter-spacing:2px}.panel h2{font-size:clamp(60px,9vw,120px);margin:30px 0;word-break:break-word}.next{border-top:1px solid #343941;padding:25px 0;color:#89929c}.next b{display:block;color:#fff;font-size:30px;margin-top:10px}.no{color:#ff6262!important}#error{color:#e06a6a}@media(max-width:700px){body{padding:0}.terminal{border:0;border-radius:0;min-height:100vh}main{padding:12px}.info{grid-template-columns:90px 1fr}.panel h2{font-size:60px}}
+```css
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at center,
+            #20252c 0%,
+            #0d1014 70%
+        );
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+.terminal {
+    width: 100%;
+    max-width: 1150px;
+    min-height: 700px;
+
+    background: #111419;
+
+    border: 2px solid #353a42;
+    border-radius: 12px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.65);
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================
+   HORNÍ LIŠTA
+========================= */
+
+header {
+    height: 75px;
+
+    background: #181c21;
+
+    border-bottom: 1px solid #353a42;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 28px;
+
+    gap: 22px;
+}
+
+header b {
+    font-size: 30px;
+    font-weight: 800;
+
+    letter-spacing: 3px;
+}
+
+header span {
+    color: #7e8792;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+}
+
+#clock {
+    margin-left: auto;
+
+    color: #bfc5cb;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 14px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   HLAVNÍ OBSAH
+========================= */
+
+main {
+    flex: 1;
+
+    padding: 28px;
+}
+
+
+/* =========================
+   OBECNÉ SKRYTÍ
+========================= */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   HLAVNÍ MENU
+========================= */
+
+#menu {
+    min-height: 500px;
+
+    background: #15191e;
+
+    border: 1px solid #30353d;
+    border-radius: 7px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+}
+
+#menu h1 {
+    font-size: 30px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 35px;
+}
+
+#menu button {
+    min-width: 300px;
+
+    padding: 20px 30px;
+
+    background: #20252b;
+
+    border: 1px solid #4a515a;
+
+    color: #ffffff;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s,
+        border-color 0.15s,
+        transform 0.1s;
+}
+
+#menu button:hover {
+    background: #2a3037;
+    border-color: #707984;
+}
+
+#menu button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================
+   ZADÁNÍ LINKY
+========================= */
+
+#code {
+    min-height: 500px;
+
+    background: #15191e;
+
+    border: 1px solid #30353d;
+    border-radius: 7px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+#code h1 {
+    font-size: 26px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 30px;
+}
+
+#input {
+    width: min(420px, 90%);
+
+    height: 75px;
+
+    background: #0b0e12;
+
+    border: 2px solid #3b414a;
+
+    border-radius: 5px;
+
+    outline: none;
+
+    color: #ffffff;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 38px;
+
+    font-weight: bold;
+
+    letter-spacing: 8px;
+
+    text-align: center;
+
+    margin-bottom: 20px;
+}
+
+#input::placeholder {
+    color: #343a42;
+}
+
+#input:focus {
+    border-color: #8b949e;
+
+    box-shadow:
+        0 0 0 1px #8b949e;
+}
+
+#code > div {
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+}
+
+#code button {
+    min-width: 140px;
+
+    padding: 14px 20px;
+
+    background: #20252b;
+
+    border: 1px solid #454c55;
+
+    color: #ffffff;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+#code button:hover {
+    background: #2b3037;
+}
+
+#error {
+    min-height: 25px;
+
+    margin-top: 15px;
+
+    color: #e06a6a;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   OBRAZOVKA JÍZDY
+========================= */
+
+#route {
+    margin-top: 0;
+}
+
+
+/* =========================
+   INFORMACE O LINCE
+========================= */
+
+.info {
+    display: grid;
+
+    grid-template-columns:
+        180px
+        1fr;
+
+    gap: 10px;
+
+    margin-bottom: 10px;
+}
+
+.info > div {
+    min-height: 105px;
+
+    background: #191d22;
+
+    border: 1px solid #343941;
+
+    padding: 18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.info > div:first-child {
+    align-items: center;
+
+    background: #20252b;
+}
+
+.info > div {
+    color: #69727d;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+.info strong {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #ffffff;
+
+    font-size: 28px;
+
+    letter-spacing: 0;
+}
+
+.info > div:first-child strong {
+    font-size: 44px;
+}
+
+
+/* =========================
+   HLAVNÍ PANEL
+========================= */
+
+.panel {
+    background: #0f1216;
+
+    border: 1px solid #343941;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   ČÍSLO ZASTÁVKY
+========================= */
+
+#counter {
+    display: block;
+
+    height: 48px;
+
+    background: #191d22;
+
+    border-bottom: 1px solid #343941;
+
+    padding: 16px 20px;
+
+    color: #7f8892;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   AKTUÁLNÍ ZASTÁVKA
+========================= */
+
+.panel > p {
+    padding:
+        30px
+        35px
+        10px;
+
+    color: #65707b;
+
+    font-size: 13px;
+
+    letter-spacing: 4px;
+}
+
+#stop {
+    min-height: 150px;
+
+    padding:
+        10px
+        35px
+        35px;
+
+    display: flex;
+
+    align-items: center;
+
+    color: #ffffff;
+
+    font-size:
+        clamp(
+            75px,
+            10vw,
+            135px
+        );
+
+    font-weight: 800;
+
+    line-height: 0.95;
+
+    letter-spacing: -3px;
+
+    word-break: break-word;
+}
+
+
+/* =========================
+   NENASTUPUJTE
+========================= */
+
+#stop.no-boarding {
+    color: #ff3030 !important;
+
+    font-size:
+        clamp(
+            70px,
+            9vw,
+            125px
+        );
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 0 12px rgba(255, 48, 48, 0.35),
+        0 0 30px rgba(255, 48, 48, 0.15);
+}
+
+
+/* =========================
+   DALŠÍ ZASTÁVKA
+========================= */
+
+.next {
+    min-height: 80px;
+
+    background: #15191e;
+
+    border-top: 1px solid #292e35;
+
+    padding:
+        20px
+        35px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+    color: #68717c;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+}
+
+.next b {
+    color: #d0d4d8;
+
+    font-size: 28px;
+
+    letter-spacing: 0;
+
+    line-height: 1.1;
+}
+
+
+/* =========================
+   TLAČÍTKA
+========================= */
+
+#plus,
+#new {
+    min-height: 65px;
+
+    border: none;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s,
+        transform 0.1s;
+}
+
+#plus {
+    width: 50%;
+
+    background: #252b31;
+
+    border-right: 1px solid #3a4149;
+}
+
+#new {
+    width: 50%;
+
+    background: #1b2025;
+}
+
+#plus:hover {
+    background: #30373e;
+}
+
+#new:hover {
+    background: #272d33;
+}
+
+#plus:active,
+#new:active {
+    transform: scale(0.99);
+}
+
+
+/* =========================
+   RESPONSIVE – MOBIL
+========================= */
+
+@media (max-width: 750px) {
+
+    body {
+        padding: 0;
+
+        align-items: stretch;
+    }
+
+    .terminal {
+        min-height: 100vh;
+
+        border: none;
+
+        border-radius: 0;
+    }
+
+    header {
+        height: 65px;
+
+        padding: 0 15px;
+
+        gap: 12px;
+    }
+
+    header b {
+        font-size: 23px;
+    }
+
+    header span:not(#clock) {
+        display: none;
+    }
+
+    #clock {
+        font-size: 11px;
+    }
+
+    main {
+        padding: 12px;
+    }
+
+
+    /* MENU */
+
+    #menu {
+        min-height: calc(100vh - 90px);
+    }
+
+    #menu h1 {
+        font-size: 23px;
+
+        margin-bottom: 28px;
+    }
+
+    #menu button {
+        width: 90%;
+
+        min-width: 0;
+
+        font-size: 15px;
+    }
+
+
+    /* CODE */
+
+    #code {
+        min-height: calc(100vh - 90px);
+    }
+
+    #code h1 {
+        font-size: 22px;
+    }
+
+    #input {
+        width: 90%;
+
+        height: 70px;
+
+        font-size: 32px;
+
+        letter-spacing: 6px;
+    }
+
+
+    /* INFO */
+
+    .info {
+        grid-template-columns:
+            90px
+            1fr;
+    }
+
+    .info > div {
+        min-height: 90px;
+
+        padding: 12px;
+    }
+
+    .info strong {
+        font-size: 18px;
+    }
+
+    .info > div:first-child strong {
+        font-size: 32px;
+    }
+
+
+    /* AKTUÁLNÍ ZASTÁVKA */
+
+    .panel > p {
+        padding:
+            25px
+            18px
+            8px;
+
+        font-size: 11px;
+
+        letter-spacing: 3px;
+    }
+
+    #stop {
+        min-height: 150px;
+
+        padding:
+            10px
+            18px
+            30px;
+
+        font-size:
+            clamp(
+                60px,
+                15vw,
+                95px
+            );
+
+        letter-spacing: -2px;
+    }
+
+
+    /* NENASTUPUJTE NA MOBILU */
+
+    #stop.no-boarding {
+        font-size:
+            clamp(
+                55px,
+                13vw,
+                85px
+            );
+
+        letter-spacing: 1px;
+    }
+
+
+    /* DALŠÍ ZASTÁVKA */
+
+    .next {
+        display: block;
+
+        padding: 18px;
+    }
+
+    .next b {
+        display: block;
+
+        margin-top: 8px;
+
+        font-size: 24px;
+    }
+
+
+    /* TLAČÍTKA */
+
+    #plus,
+    #new {
+        width: 100%;
+
+        border-right: none;
+
+        border-top: 1px solid #343941;
+    }
+
+    #plus {
+        min-height: 60px;
+    }
+
+    #new {
+        min-height: 55px;
+    }
+}
+```
+
+Tohle je kompatibilní **přímo s tvým současným `index.html`**, takže nemusíš měnit ID ani HTML.
