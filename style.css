@@ -465,9 +465,9 @@ main {
 
     font-size:
         clamp(
-            70px,
-            9vw,
-            125px
+            60px,
+            5vw,
+            105px
         );
 
     font-weight: 900;
