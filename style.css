@@ -345,4 +345,461 @@ main {
 }
 
 .info > div:first-child {
+    align-items: center;
+
+    background: #20252b;
+}
+
+.info strong {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #ffffff;
+
+    font-size: 28px;
+
+    letter-spacing: 0;
+}
+
+.info > div:first-child strong {
+    font-size: 44px;
+}
+
+
+/* =========================
+   HLAVNÍ PANEL
+========================= */
+
+.panel {
+    background: #0f1216;
+
+    border: 1px solid #343941;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   ČÍSLO ZASTÁVKY
+========================= */
+
+#counter {
+    display: block;
+
+    height: 48px;
+
+    background: #191d22;
+
+    border-bottom: 1px solid #343941;
+
+    padding: 16px 20px;
+
+    color: #7f8892;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   AKTUÁLNÍ ZASTÁVKA
+========================= */
+
+.panel > p {
+    padding:
+        22px
+        35px
+        5px;
+
+    color: #65707b;
+
+    font-size: 13px;
+
+    letter-spacing: 4px;
+}
+
+#stop {
+    min-height: 0;
+
+    padding:
+        5px
+        35px
+        25px;
+
+    display: flex;
+
+    align-items: center;
+
+    color: #ffffff;
+
+    /*
+       Velikost textu zůstává velká,
+       ale panel kolem něj je menší.
+    */
+    font-size:
+        clamp(
+            75px,
+            10vw,
+            135px
+        );
+
+    font-weight: 800;
+
+    line-height: 0.95;
+
+    letter-spacing: -3px;
+
+    word-break: break-word;
+}
+
+
+/* =========================
+   NENASTUPUJTE
+========================= */
+
+#stop.no-boarding {
+    min-height: 0;
+
+    padding:
+        5px
+        35px
+        25px;
+
+    color: #ff3030 !important;
+
+    font-size:
+        clamp(
+            60px,
+            5vw,
+            105px
+        );
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 0 12px rgba(255, 48, 48, 0.35),
+        0 0 30px rgba(255, 48, 48, 0.15);
+}
+
+
+/* =========================
+   DALŠÍ ZASTÁVKA
+========================= */
+
+.next {
+    min-height: 80px;
+
+    background: #15191e;
+
+    border-top: 1px solid #292e35;
+
+    padding:
+        20px
+        35px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+    color: #68717c;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+}
+
+.next b {
+    color: #d0d4d8;
+
+    font-size: 28px;
+
+    letter-spacing: 0;
+
+    line-height: 1.1;
+}
+
+
+/* =========================
+   TLAČÍTKA
+========================= */
+
+#plus,
+#new {
+    min-height: 65px;
+
+    border: none;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s,
+        transform 0.1s;
+}
+
+#plus {
+    width: 50%;
+
+    background: #252b31;
+
+    border-right: 1px solid #3a4149;
+}
+
+#new {
+    width: 50%;
+
+    background: #1b2025;
+}
+
+#plus:hover {
+    background: #30373e;
+}
+
+#new:hover {
+    background: #272d33;
+}
+
+#plus:active,
+#new:active {
+    transform: scale(0.99);
+}
+
+
+/* =========================
+   MOBIL
+========================= */
+
+@media (max-width: 750px) {
+
+    body {
+        padding: 0;
+
+        align-items: stretch;
+    }
+
+    .terminal {
+        min-height: 100vh;
+
+        border: none;
+
+        border-radius: 0;
+    }
+
+
+    /* HORNÍ LIŠTA */
+
+    header {
+        height: 65px;
+
+        padding: 0 15px;
+
+        gap: 12px;
+    }
+
+    header b {
+        font-size: 23px;
+    }
+
+    header span:not(#clock) {
+        display: none;
+    }
+
+    #clock {
+        font-size: 11px;
+    }
+
+
+    main {
+        padding: 12px;
+    }
+
+
+    /* MENU */
+
+    #menu {
+        min-height:
+            calc(100vh - 90px);
+    }
+
+    #menu h1 {
+        font-size: 23px;
+
+        margin-bottom: 28px;
+    }
+
+    #menu button {
+        width: 90%;
+
+        min-width: 0;
+
+        font-size: 15px;
+    }
+
+
+    /* ZADÁNÍ KÓDU */
+
+    #code {
+        min-height:
+            calc(100vh - 90px);
+    }
+
+    #code h1 {
+        font-size: 22px;
+    }
+
+    #input {
+        width: 90%;
+
+        height: 70px;
+
+        font-size: 32px;
+
+        letter-spacing: 6px;
+    }
+
+
+    /* INFORMACE */
+
+    .info {
+        grid-template-columns:
+            90px
+            1fr;
+    }
+
+    .info > div {
+        min-height: 90px;
+
+        padding: 12px;
+    }
+
+    .info strong {
+        font-size: 18px;
+    }
+
+    .info > div:first-child strong {
+        font-size: 32px;
+    }
+
+
+    /* ČÍSLO ZASTÁVKY */
+
+    #counter {
+        height: 42px;
+
+        padding: 13px 18px;
+
+        font-size: 11px;
+    }
+
+
+    /* AKTUÁLNÍ ZASTÁVKA */
+
+    .panel > p {
+        padding:
+            18px
+            18px
+            4px;
+
+        font-size: 11px;
+
+        letter-spacing: 3px;
+    }
+
+    #stop {
+        min-height: 0;
+
+        padding:
+            5px
+            18px
+            22px;
+
+        font-size:
+            clamp(
+                60px,
+                15vw,
+                95px
+            );
+
+        letter-spacing: -2px;
+    }
+
+
+    /* NENASTUPUJTE */
+
+    #stop.no-boarding {
+        min-height: 0;
+
+        padding:
+            5px
+            18px
+            22px;
+
+        font-size:
+            clamp(
+                55px,
+                13vw,
+                85px
+            );
+
+        letter-spacing: 1px;
+    }
+
+
+    /* DALŠÍ ZASTÁVKA */
+
+    .next {
+        display: block;
+
+        padding: 18px;
+    }
+
+    .next b {
+        display: block;
+
+        margin-top: 8px;
+
+        font-size: 24px;
+    }
+
+
+    /* TLAČÍTKA */
+
+    #plus,
+    #new {
+        width: 100%;
+
+        border-right: none;
+
+        border-top: 1px solid #343941;
+    }
+
+    #plus {
+        min-height: 60px;
+    }
+
+    #new {
+        min-height: 55px;
+    }
+}
 ```
+
+Tahle verze tedy zachovává **velikost názvu aktuální zastávky**, ale zmenšuje prázdný prostor nad a pod ním.
