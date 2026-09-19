@@ -109,20 +109,18 @@
                 "Slovanské náměstí",
                 "Emplinova",
                 "U nádraží",
-                "Nové nádraží",
-                "Hlavní nádraží",
+                "Kolombus",
                 "Svatého Martina",
-                "Kolombus"
+                "Hlavní nádraží"
             ]
         },
 
         "02": {
             "name": "Anské náměstí",
             "stops": [
-                "Kolombus",
-                "Svatého Martina",
                 "Hlavní nádraží",
-                "Nové nádraží",
+                "Svatého Martina",
+                "Kolombus",
                 "U nádraží",
                 "Emplinova",
                 "Slovanské náměstí",
