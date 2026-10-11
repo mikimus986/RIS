@@ -1,3 +1,4 @@
+```javascript
 let D = {};
 let L = null;
 let Dir = null;
@@ -60,6 +61,8 @@ const dataReady = fetch("lines.json")
         if (msg) {
             msg.textContent = "Nepodařilo se načíst lines.json.";
         }
+
+        throw error;
     });
 
 // ==================================================
@@ -70,18 +73,13 @@ function lineColor(number) {
     const colors = {
         "1": "#A8D88A",
         "22": "#A8D88A",
-
         "2": "#F19AC2",
-
         "23": "#D6B58A",
         "76": "#D6B58A",
-
         "74": "#96613D",
         "77": "#96613D",
-
         "111": "#D92336",
         "112": "#D92336",
-
         "113": "#D6F0B0"
     };
 
@@ -108,8 +106,7 @@ function pairStart() {
     } else if (value === "dpma2") {
         board();
     } else {
-        $("pairStatus").textContent =
-            "Zadej dpma1 nebo dpma2.";
+        $("pairStatus").textContent = "Zadej dpma1 nebo dpma2.";
     }
 }
 
@@ -151,8 +148,7 @@ function driver() {
     pair.classList.add("hidden");
     menu.classList.remove("hidden");
 
-    $("driverStatus").textContent =
-        "Čekám na vnitřní tabuli…";
+    $("driverStatus").textContent = "Čekám na vnitřní tabuli…";
 
     createPeer("dpma1", () => {
         $("driverStatus").textContent =
@@ -166,20 +162,16 @@ function driver() {
             C = connection;
 
             C.on("open", () => {
-                $("driverStatus").textContent =
-                    "TABULE PŘIPOJENA";
-
+                $("driverStatus").textContent = "TABULE PŘIPOJENA";
                 send();
             });
 
             C.on("close", () => {
-                $("driverStatus").textContent =
-                    "TABULE ODPOJENA";
+                $("driverStatus").textContent = "TABULE ODPOJENA";
             });
 
             C.on("error", () => {
-                $("driverStatus").textContent =
-                    "CHYBA SPOJENÍ S TABULÍ";
+                $("driverStatus").textContent = "CHYBA SPOJENÍ S TABULÍ";
             });
         });
     });
@@ -195,16 +187,13 @@ function board() {
     pair.classList.add("hidden");
     display.classList.remove("hidden");
 
-    $("displayConnection").textContent =
-        "HLEDÁM DPMA1…";
+    $("displayConnection").textContent = "HLEDÁM DPMA1…";
 
     createPeer("dpma2", connect);
 }
 
 function connect() {
-    if (!P || !P.open) {
-        return;
-    }
+    if (!P || !P.open) return;
 
     if (C) {
         try {
@@ -214,14 +203,10 @@ function connect() {
         }
     }
 
-    C = P.connect("dpma1", {
-        reliable: true
-    });
+    C = P.connect("dpma1", { reliable: true });
 
     C.on("open", () => {
-        $("displayConnection").textContent =
-            "TABULE PŘIPOJENA";
-
+        $("displayConnection").textContent = "TABULE PŘIPOJENA";
         $("displayConnection").classList.add("ok");
     });
 
@@ -265,9 +250,7 @@ function state() {
     }
 
     if (!L || !Dir || !D[L] || !D[L][Dir]) {
-        return {
-            active: false
-        };
+        return { active: false };
     }
 
     const direction = D[L][Dir];
@@ -290,9 +273,7 @@ function state() {
 // ==================================================
 
 function send() {
-    if (R !== "driver" || !C || !C.open) {
-        return;
-    }
+    if (R !== "driver" || !C || !C.open) return;
 
     C.send({
         type: "state",
@@ -302,9 +283,9 @@ function send() {
 
 // ==================================================
 // VYKRESLENÍ DPMA2
-// Aktuální zastávka nahoře.
-// Projeté zastávky se vůbec nezobrazují.
-// Bez fajfek.
+// MAXIMÁLNĚ 5 ZASTÁVEK
+// AKTUÁLNÍ ZASTÁVKA JE VŽDY PRVNÍ
+// PROJETÉ ZASTÁVKY A FAJKY SE NEZOBRAZUJÍ
 // ==================================================
 
 function paint(s) {
@@ -328,13 +309,11 @@ function paint(s) {
         return;
     }
 
-    lineEl.textContent = s.line;
-    lineEl.style.backgroundColor = s.color || "#A8D88A";
+    const color = s.color || "#A8D88A";
 
-    display.style.setProperty(
-        "--line-color",
-        s.color || "#A8D88A"
-    );
+    lineEl.textContent = s.line;
+    lineEl.style.backgroundColor = color;
+    display.style.setProperty("--line-color", color);
 
     destinationEl.textContent = s.dest;
 
@@ -351,7 +330,7 @@ function paint(s) {
     if (s.service) {
         stopsEl.innerHTML =
             '<div class="dstop current">' +
-            '<span class="arrow">●</span>' +
+            '<span class="arrow"></span>' +
             '<span class="stoptext">Služební jízda</span>' +
             '</div>';
 
@@ -359,22 +338,29 @@ function paint(s) {
     }
 
     const stops = Array.isArray(s.stops) ? s.stops : [];
+
+    if (stops.length === 0) {
+        stopsEl.innerHTML = '<div class="waiting">ŽÁDNÉ ZASTÁVKY</div>';
+        return;
+    }
+
     const current = Math.max(
         0,
         Math.min(Number(s.index) || 0, stops.length - 1)
     );
 
+    // Vykreslí se pouze aktuální zastávka a maximálně 4 následující.
+    // Po stisknutí + přijde nový index a seznam se posune.
+    const end = Math.min(current + 5, stops.length);
     let html = "";
 
-    // První vykreslená zastávka je vždy aktuální.
-    // Předchozí zastávky se nevykreslují.
-    for (let i = current; i < stops.length; i++) {
+    for (let i = current; i < end; i++) {
         const isCurrent = i === current;
         const className = isCurrent ? "dstop current" : "dstop";
 
         html +=
             '<div class="' + className + '">' +
-            '<span class="arrow">●</span>' +
+            '<span class="arrow">' + (isCurrent ? "→" : "") + '</span>' +
             '<span class="stoptext">' +
             esc(stops[i]) +
             '</span>' +
@@ -416,7 +402,6 @@ $("disconnectDriver").onclick = () => {
     $("driverStatus").textContent = "TABULE ODPOJENA";
 };
 
-// Pouze číslice, maximálně 5 znaků.
 $("input").oninput = () => {
     $("input").value = $("input").value
         .replace(/\D/g, "")
@@ -431,9 +416,7 @@ $("input").onkeydown = event => {
 
 // Klávesové zkratky
 document.addEventListener("keydown", event => {
-    if (R !== "driver") {
-        return;
-    }
+    if (R !== "driver") return;
 
     if (event.key === "*" && !code.classList.contains("hidden")) {
         return;
@@ -482,15 +465,17 @@ function back() {
 
 // ==================================================
 // POTVRZENÍ KÓDU
-// Formát: první 3 číslice = linka,
-// poslední 2 číslice = směr.
 // ==================================================
 
 async function load() {
-    await dataReady;
+    try {
+        await dataReady;
+    } catch {
+        msg.textContent = "Nepodařilo se načíst lines.json.";
+        return;
+    }
 
     const c = $("input").value.trim();
-
     msg.textContent = "";
 
     if (c === "99901") {
@@ -531,8 +516,7 @@ async function load() {
         !Array.isArray(D[lineCode][directionCode].stops) ||
         D[lineCode][directionCode].stops.length === 0
     ) {
-        msg.textContent =
-            "Linka nebo směr není v databázi.";
+        msg.textContent = "Linka nebo směr není v databázi.";
         return;
     }
 
@@ -556,17 +540,14 @@ async function load() {
 // ==================================================
 
 function show() {
-    if (serviceTrip || !L || !Dir) {
-        return;
-    }
+    if (serviceTrip || !L || !Dir) return;
 
     const stops = D[L][Dir].stops;
 
     stop.classList.remove("no-boarding");
     stop.textContent = stops[I];
 
-    counter.textContent =
-        `ZASTÁVKA ${I + 1} / ${stops.length}`;
+    counter.textContent = `ZASTÁVKA ${I + 1} / ${stops.length}`;
 
     next.textContent =
         I < stops.length - 1
@@ -581,13 +562,9 @@ function show() {
 // ==================================================
 
 function advance() {
-    if (serviceTrip || !L || !Dir) {
-        return;
-    }
+    if (serviceTrip || !L || !Dir) return;
 
-    if (stop.classList.contains("no-boarding")) {
-        return;
-    }
+    if (stop.classList.contains("no-boarding")) return;
 
     const stops = D[L][Dir].stops;
 
@@ -640,3 +617,4 @@ document.addEventListener("fullscreenchange", () => {
             : "⛶ CELÁ OBRAZOVKA";
     }
 });
+```
