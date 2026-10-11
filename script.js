@@ -498,4 +498,3 @@ function advance() {
     I++;
     show();
 }
-```
