@@ -81,19 +81,17 @@
         "Slovanské náměstí",
         "Emplinova",
         "U nádraží",
-        "Nové nádraží",
-        "Hlavní nádraží",
+        "Kolombus",
         "Svatého Martina",
-        "Kolombus"
+        "Hlavní nádraží"
       ]
     },
     "02": {
       "name": "Anské náměstí",
       "stops": [
-        "Kolombus",
-        "Svatého Martina",
         "Hlavní nádraží",
-        "Nové nádraží",
+        "Svatého Martina",
+        "Kolombus",
         "U nádraží",
         "Emplinova",
         "Slovanské náměstí",
@@ -143,68 +141,44 @@
   "023": {
     "number": "23",
     "01": {
-      "name": "Okružní",
+      "name": "Lázně",
       "stops": [
         "Avion",
         "Food-court",
-        "Laciná",
-        "Na mostě",
         "Halasova",
         "K náměstí",
         "Lamovská",
         "Kašparova",
-        "Okružní"
+        "Laciná",
+        "Na mostě",
+        "Okružní",
+        "Svatého Martina",
+        "Kolombus",
+        "U nádraží",
+        "Nové nádraží",
+        "Arturova",
+        "Sminov, smyčka",
+        "Lázně"
       ]
     },
     "02": {
       "name": "Avion",
       "stops": [
+        "Lázně",
+        "Sminov, smyčka",
+        "Arturova",
+        "Nové nádraží",
+        "U nádraží",
+        "Kolombus",
+        "Svatého Martina",
         "Okružní",
+        "Laciná",
         "Kašparova",
         "Lamovská",
         "K náměstí",
         "Halasova",
-        "Na mostě",
-        "Laciná",
         "Food-court",
         "Avion"
-      ]
-    }
-  },
-  "063": {
-    "number": "63",
-    "01": {
-      "name": "Lázně",
-      "stops": [
-        "Sminov, smyčka",
-        "Lázně",
-        "Svatého Martina",
-        "Kolombus",
-        "U nádraží",
-        "Nové nádraží",
-        "Arturova",
-        "Lamovská",
-        "Kašparova",
-        "Laciná",
-        "Na mostě",
-        "Okružní"
-      ]
-    },
-    "02": {
-      "name": "Sminov, smyčka",
-      "stops": [
-        "Okružní",
-        "Na mostě",
-        "Laciná",
-        "Kašparova",
-        "Lamovská",
-        "Arturova",
-        "Nové nádraží",
-        "U nádraží",
-        "Kolombus",
-        "Svatého Martina",
-        "Lázně",
-        "Sminov, smyčka"
       ]
     }
   },
@@ -257,11 +231,11 @@
         "Sídlištní",
         "Anyjská",
         "Obchodní",
-        "Starý Lízátkov, P+R",
-        "Dubová alej",
-        "Zoopark Nový Lízátkov",
-        "Datard",
         "Nemocniční",
+        "Datard",
+        "Zoopark Nový Lízátkov",
+        "Dubová alej",
+        "Starý Lízátkov, P+R",
         "Starý Lízátkov, náměstí",
         "Starý Lízátkov, nádraží"
       ]
@@ -271,11 +245,11 @@
       "stops": [
         "Starý Lízátkov, nádraží",
         "Starý Lízátkov, náměstí",
-        "Nemocniční",
-        "Datard",
-        "Zoopark Nový Lízátkov",
-        "Dubová alej",
         "Starý Lízátkov, P+R",
+        "Dubová alej",
+        "Zoopark Nový Lízátkov",
+        "Datard",
+        "Nemocniční",
         "Obchodní",
         "Anyjská",
         "Sídlištní",
@@ -290,14 +264,14 @@
       "name": "Přístav",
       "stops": [
         "U lesa",
-        "Hrad",
-        "Molo",
-        "Most",
-        "Zlkovská",
-        "Arnošta Policha",
-        "Knihovna",
-        "Pivovar",
         "Údržbářská",
+        "Pivovar",
+        "Molo",
+        "Hrad",
+        "Knihovna",
+        "Arnošta Policha",
+        "Zlkovská",
+        "Most",
         "ÚMČ Anec",
         "Přístav"
       ]
@@ -307,15 +281,34 @@
       "stops": [
         "Přístav",
         "ÚMČ Anec",
-        "Údržbářská",
-        "Pivovar",
-        "Knihovna",
-        "Arnošta Policha",
-        "Zlkovská",
         "Most",
-        "Molo",
+        "Zlkovská",
+        "Arnošta Policha",
+        "Knihovna",
         "Hrad",
+        "Molo",
+        "Pivovar",
+        "Údržbářská",
         "U lesa"
+      ]
+    }
+  },
+    "111": {
+    "number": "111",
+    "01": {
+      "name": "Avion",
+      "stops": [
+        "Anské náměstí",
+        "Food-court",
+        "Avion"
+      ]
+    },
+    "02": {
+      "name": "Anské náměstí",
+      "stops": [
+        "Avion",
+        "Food-court",
+        "Anské náměstí"
       ]
     }
   },
