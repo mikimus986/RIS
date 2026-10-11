@@ -60,6 +60,29 @@
         "IC Ana",
         "Anské náměstí"
       ]
+    },
+    "03": {
+      "name": "Sminov, u lávky",
+      "stops": [
+        "Anské náměstí",
+        "IC Ana",
+        "Poliklinika Ansko",
+        "U řeky",
+        "Ulice",
+        "Šerifova",
+        "Nádraží Pralesov",
+        "Zoo",
+        "Pralesní",
+        "U pumpy",
+        "Malířka",
+        "Slovanské náměstí",
+        "Emplinova",
+        "U nádraží",
+        "Nové nádraží",
+        "Hlavní nádraží",
+        "Sovec",
+        "Sminov, u lávky"
+      ]
     }
   },
   "002": {
