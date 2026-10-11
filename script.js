@@ -1,4 +1,3 @@
-```javascript
 let D = {};
 let L = null;
 let Dir = null;
@@ -641,4 +640,3 @@ document.addEventListener("fullscreenchange", () => {
             : "⛶ CELÁ OBRAZOVKA";
     }
 });
-```
