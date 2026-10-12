@@ -350,7 +350,7 @@ function paint(s) {
 
     // Vykreslí se pouze aktuální zastávka a maximálně 4 následující.
     // Po stisknutí + přijde nový index a seznam se posune.
-    const end = Math.min(current + 5, stops.length);
+    const end = Math.min(current + 6, stops.length);
     let html = "";
 
     for (let i = current; i < end; i++) {
