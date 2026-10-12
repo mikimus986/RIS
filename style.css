@@ -1,192 +1,719 @@
-*{box-sizing:border-box;margin:0;padding:0}body{min-height:100vh;background:radial-gradient(circle,#20252c,#0d1014 70%);color:#fff;font-family:Arial,sans-serif;display:flex;justify-content:center;align-items:center;padding:20px}.terminal{width:100%;max-width:1150px;min-height:700px;background:#111419;border:2px solid #353a42;border-radius:12px;overflow:hidden;display:flex;flex-direction:column}header{height:75px;background:#181c21;display:flex;align-items:center;padding:0 28px;gap:22px;border-bottom:1px solid #353a42}header b{font-size:30px;letter-spacing:3px}header span{color:#87909a;font-size:12px;letter-spacing:2px}#clock{margin-left:auto;font:14px monospace}main{padding:28px;flex:1}.hidden{display:none!important}.screen{min-height:500px;background:#15191e;border:1px solid #30353d;border-radius:7px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}.screen h1{font-size:clamp(21px,3vw,30px);letter-spacing:3px;margin-bottom:25px}.screen p{color:#8b949e;line-height:1.7;margin:12px}input{width:min(420px,90%);height:72px;background:#0b0e12;border:2px solid #3b414a;border-radius:5px;color:#fff;font:30px monospace;font-weight:bold;letter-spacing:4px;text-align:center;margin:10px 0 18px}#input{font-size:38px;letter-spacing:8px}button{padding:15px 20px;background:#20252b;border:1px solid #454c55;color:#fff;font-weight:bold;letter-spacing:1px;border-radius:5px;cursor:pointer}button:hover{background:#30373e}#menu button{min-width:300px;padding:20px;margin-bottom:12px}#menu h1{margin-bottom:30px}#code>div{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}#error{color:#e06a6a;min-height:25px;margin-top:15px;font:13px monospace}.info{display:grid;grid-template-columns:180px 1fr;gap:10px;margin-bottom:10px}.info>div{min-height:105px;background:#191d22;border:1px solid #343941;padding:18px;display:flex;flex-direction:column;justify-content:center;color:#69727d;font-size:11px;letter-spacing:2px}.info>div:first-child{align-items:center;background:#20252b}.info strong{margin-top:8px;color:#fff;font-size:28px}.info>div:first-child strong{font-size:44px}.panel{background:#0f1216;border:1px solid #343941;overflow:hidden}#counter{display:block;background:#191d22;border-bottom:1px solid #343941;padding:16px 20px;color:#7f8892;font:13px monospace}.panel>p{padding:22px 35px 5px;color:#65707b;font-size:13px;letter-spacing:4px}#stop{padding:5px 35px 25px;color:#fff;font-size:clamp(75px,10vw,135px);font-weight:800;line-height:.95;letter-spacing:-3px;word-break:break-word}#stop.no-boarding{color:#ff3030!important;font-size:clamp(60px,5vw,105px);font-weight:900;letter-spacing:2px}.next{min-height:80px;background:#15191e;border-top:1px solid #292e35;padding:20px 35px;display:flex;align-items:center;gap:30px;color:#68717c;font-size:12px;letter-spacing:3px}.next b{color:#d0d4d8;font-size:28px;letter-spacing:0}.buttons{display:flex}.buttons button{width:50%;min-height:65px;border:0}#plus{background:#252b31}#new{background:#1b2025}#display{background:#090b0d;border:1px solid #343941;min-height:590px;overflow:hidden}.dtop{height:58px;padding:0 24px;display:flex;align-items:center;background:#111419}.dtop b{font-size:22px;letter-spacing:3px}.dtop span{margin-left:auto;font:15px monospace;color:#9aa2aa}.dhead{display:grid;grid-template-columns:125px 1fr;align-items:center;min-height:90px;background:#15191e;border-bottom:2px solid #3d444c}#displayLine{min-height:90px;display:flex;align-items:center;justify-content:center;font-size:52px;background:#20252b}#displayDestination{padding:18px 28px;font-size:clamp(20px,3vw,32px);font-weight:800}#displayStops{padding:24px 30px}.dstop{display:grid;grid-template-columns:62px 1fr;min-height:50px;align-items:center;font-size:24px;color:#b9c0c7}.arrow{text-align:center;color:#69737d}.dstop.current{font-size:31px;font-weight:900;color:#fff}.dstop.current .stoptext{background:#30373e;border-left:6px solid #fff;padding:7px 14px}.dstop.passed{color:#59626b}.waiting{text-align:center;padding:80px 20px;color:#68717c;font:15px monospace}#displayConnection{padding:12px 20px;border-top:1px solid #242a30;text-align:right;color:#69737d;font:11px monospace}#displayConnection.ok{color:#8fae91}@media(max-width:750px){body{padding:0}.terminal{min-height:100vh;border:0;border-radius:0}header{height:65px;padding:0 15px}header b{font-size:23px}header span:not(#clock){display:none}main{padding:12px}.screen{min-height:calc(100vh - 90px)}#menu button{width:90%;min-width:0}.info{grid-template-columns:90px 1fr}.info>div{min-height:90px;padding:12px}.info strong{font-size:18px}.info>div:first-child strong{font-size:32px}.panel>p{padding:18px 18px 5px;font-size:11px}#stop{padding:5px 18px 22px;font-size:clamp(60px,15vw,95px)}.next{display:block;padding:18px}.next b{display:block;margin-top:8px;font-size:24px}.buttons{display:block}.buttons button{width:100%}.dhead{grid-template-columns:82px 1fr}#displayLine{min-height:75px;font-size:38px}#displayDestination{padding:12px 16px}.dstop{grid-template-columns:42px 1fr;min-height:45px;font-size:19px}.dstop.current{font-size:23px}#displayStops{padding:18px 12px}} /* ===== DPMA2 – informační tabule ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --line-color: #A8D88A;
+}
+
+body {
+    min-height: 100vh;
+    background: radial-gradient(circle, #20252c, #0d1014 70%);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.terminal {
+    width: 100%;
+    max-width: 1150px;
+    min-height: 700px;
+    background: #111419;
+    border: 2px solid #353a42;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    height: 75px;
+    background: #181c21;
+    display: flex;
+    align-items: center;
+    padding: 0 28px;
+    gap: 22px;
+    border-bottom: 1px solid #353a42;
+    flex-shrink: 0;
+}
+
+header b {
+    font-size: 30px;
+    letter-spacing: 3px;
+}
+
+header span {
+    color: #87909a;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+#clock {
+    margin-left: auto;
+    font: 14px monospace;
+}
+
+main {
+    padding: 28px;
+    flex: 1;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* =========================================
+   OBECNÉ OBRAZOVKY
+========================================= */
+
+.screen {
+    min-height: 500px;
+    background: #15191e;
+    border: 1px solid #30353d;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.screen h1 {
+    font-size: clamp(21px, 3vw, 30px);
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+}
+
+.screen p {
+    color: #8b949e;
+    line-height: 1.7;
+    margin: 12px;
+}
+
+input {
+    width: min(420px, 90%);
+    height: 72px;
+    background: #0b0e12;
+    border: 2px solid #3b414a;
+    border-radius: 5px;
+    color: #fff;
+    font: 30px monospace;
+    font-weight: bold;
+    letter-spacing: 4px;
+    text-align: center;
+    margin: 10px 0 18px;
+}
+
+#input {
+    font-size: 38px;
+    letter-spacing: 8px;
+}
+
+button {
+    padding: 15px 20px;
+    background: #20252b;
+    border: 1px solid #454c55;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #30373e;
+}
+
+button:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+}
+
+#menu button {
+    min-width: 300px;
+    padding: 20px;
+    margin-bottom: 12px;
+}
+
+#menu h1 {
+    margin-bottom: 30px;
+}
+
+#code > div {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#error {
+    color: #e06a6a;
+    min-height: 25px;
+    margin-top: 15px;
+    font: 13px monospace;
+}
+
+/* =========================================
+   ŘIDIČSKÝ POČÍTAČ DPMA1
+========================================= */
+
+.info {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.info > div {
+    min-height: 105px;
+    background: #191d22;
+    border: 1px solid #343941;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #69727d;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.info > div:first-child {
+    align-items: center;
+    background: #20252b;
+}
+
+.info strong {
+    margin-top: 8px;
+    color: #fff;
+    font-size: 28px;
+}
+
+.info > div:first-child strong {
+    font-size: 44px;
+}
+
+.panel {
+    background: #0f1216;
+    border: 1px solid #343941;
+    overflow: hidden;
+}
+
+#counter {
+    display: block;
+    background: #191d22;
+    border-bottom: 1px solid #343941;
+    padding: 16px 20px;
+    color: #7f8892;
+    font: 13px monospace;
+}
+
+.panel > p {
+    padding: 22px 35px 5px;
+    color: #65707b;
+    font-size: 13px;
+    letter-spacing: 4px;
+}
+
+#stop {
+    padding: 5px 35px 25px;
+    color: #fff;
+    font-size: clamp(75px, 10vw, 135px);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -3px;
+    overflow-wrap: anywhere;
+}
+
+#stop.no-boarding {
+    color: #ff3030 !important;
+    font-size: clamp(60px, 5vw, 105px);
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.next {
+    min-height: 80px;
+    background: #15191e;
+    border-top: 1px solid #292e35;
+    padding: 20px 35px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    color: #68717c;
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+.next b {
+    color: #d0d4d8;
+    font-size: 28px;
+    letter-spacing: 0;
+}
+
+.buttons {
+    display: flex;
+}
+
+.buttons button {
+    width: 50%;
+    min-height: 65px;
+    border: 0;
+}
+
+#plus {
+    background: #252b31;
+}
+
+#new {
+    background: #1b2025;
+}
+
+/* =========================================
+   VNITŘNÍ TABULE DPMA2
+========================================= */
 
 #display {
---line-color: #a8d88a;
-width: 100%;
-min-height: 590px;
-background: #101010;
-color: #fff;
-border: 0;
-border-radius: 0;
+    --line-color: #A8D88A;
+
+    background: #090b0d;
+    border: 1px solid #343941;
+    min-height: 590px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
-#display .dtop {
-min-height: 58px;
-height: auto;
-padding: 10px 16px;
-gap: 18px;
-flex-wrap: wrap;
-background: #101010;
+.dtop {
+    min-height: 58px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    background: #111419;
+    flex-shrink: 0;
 }
 
-#display .dtop b {
-font-size: 22px;
-letter-spacing: 3px;
+.dtop b {
+    font-size: 25px;
+    letter-spacing: 3px;
 }
 
-#display #fullscreenButton {
-margin-left: 12px;
-padding: 10px 14px;
-background: #242424;
-border: 1px solid #555;
-font-size: 12px;
+.dtop span {
+    margin-left: auto;
+    font: 17px monospace;
+    color: #c0c7ce;
 }
 
-#display .dhead {
-grid-template-columns: 138px minmax(0, 1fr);
-min-height: 90px;
-background: #101010;
-border-bottom: 2px solid #414141;
+.dhead {
+    display: grid;
+    grid-template-columns: 145px 1fr;
+    align-items: stretch;
+    min-height: 100px;
+    background: #15191e;
+    border-bottom: 3px solid var(--line-color);
+    flex-shrink: 0;
 }
 
-#display #displayLine {
-min-height: 72px;
-margin: 10px;
-border-radius: 9px;
-background: var(--line-color);
-color: #fff;
-font-size: clamp(30px, 4vw, 52px);
+#displayLine {
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    font-size: 64px;
+    font-weight: 900;
+    color: #111419;
+    background: var(--line-color);
+    overflow-wrap: anywhere;
 }
 
-#display #displayDestination {
-padding: 18px 22px;
-font-size: clamp(22px, 3vw, 34px);
-font-weight: 800;
+#displayDestination {
+    padding: 18px 25px;
+    display: flex;
+    align-items: center;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 900;
+    line-height: 1.1;
+    overflow-wrap: anywhere;
 }
 
-#display #displayStops {
-padding: 18px 16px;
+#displayStops {
+    padding: 24px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
 }
 
-#display .dstop {
-display: grid;
-grid-template-columns: 44px minmax(0, 1fr);
-align-items: stretch;
-gap: 12px;
-min-height: 56px;
-margin-bottom: 6px;
-color: #ddd;
-font-size: clamp(20px, 2.3vw, 29px);
+/* Jedna zastávka na řádek */
+
+.dstop {
+    display: grid;
+    grid-template-columns: 55px minmax(0, 1fr);
+    min-height: 68px;
+    align-items: center;
+    font-size: clamp(25px, 3vw, 36px);
+    font-weight: 700;
+    color: #e0e4e8;
+    line-height: 1.15;
 }
 
-#display .arrow {
-display: flex;
-justify-content: center;
-align-items: center;
-color: #aaa;
-font-size: 28px;
+/* Značka u zastávky */
+
+.dstop .arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 900;
 }
 
-#display .dstop.current {
-color: #fff;
-font-size: clamp(25px, 2.8vw, 34px);
-font-weight: 900;
+/* Aktuální zastávka */
+
+.dstop.current {
+    font-size: clamp(32px, 3.8vw, 46px);
+    font-weight: 900;
+    color: #fff;
 }
 
-#display .dstop.current .arrow {
-color: #ffd34f;
+.dstop.current .arrow {
+    color: var(--line-color);
+    font-size: 32px;
 }
 
-#display .dstop.current .stoptext {
-display: flex;
-align-items: center;
-min-height: 48px;
-padding: 8px 14px;
-background: #101010;
-border-left: 6px solid #ffd34f;
+/* Barevný pruh podle linky */
+
+.dstop.current .stoptext {
+    display: block;
+    padding: 12px 16px;
+    background: #30373e;
+    border-left: 7px solid var(--line-color);
+    overflow-wrap: anywhere;
 }
 
-#display .stoptext {
-display: flex;
-align-items: center;
-padding: 8px 14px;
-overflow-wrap: anywhere;
+/* Čekací obrazovka */
+
+.waiting {
+    text-align: center;
+    padding: 65px 20px;
+    color: #a2abb5;
+    font: bold 20px monospace;
+    line-height: 1.5;
 }
 
-#display #displayConnection {
-padding: 10px 16px;
-background: #101010;
+/* Stav spojení */
+
+#displayConnection {
+    padding: 12px 20px;
+    border-top: 1px solid #242a30;
+    text-align: right;
+    color: #69737d;
+    font: 12px monospace;
+    flex-shrink: 0;
 }
 
-/* Celá obrazovka */
-#display:fullscreen {
-width: 100%;
-height: 100%;
-min-height: 100%;
-overflow-y: auto;
-background: #101010;
+#displayConnection.ok {
+    color: #8fae91;
+}
+
+/* =========================================
+   REŽIM CELÉ OBRAZOVKY
+========================================= */
+
+#fullscreenButton {
+    margin: 12px;
+    padding: 14px 20px;
+    font-size: 16px;
 }
 
 body.display-fullscreen {
-padding: 0;
-display: block;
-background: #101010;
+    padding: 0;
+    min-height: 100vh;
+    background: #090b0d;
+    align-items: stretch;
 }
 
 body.display-fullscreen .terminal {
-width: 100%;
-max-width: none;
-min-height: 100vh;
-border: 0;
-border-radius: 0;
+    width: 100%;
+    max-width: none;
+    min-height: 100vh;
+    border: 0;
+    border-radius: 0;
 }
 
 body.display-fullscreen header {
-display: none;
+    display: none;
 }
 
 body.display-fullscreen main {
-padding: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    flex: 1;
 }
 
 body.display-fullscreen #display {
-min-height: 100vh;
+    width: 100%;
+    flex: 1;
+    min-height: 100vh;
+    border: 0;
 }
+
+body.display-fullscreen .dtop {
+    min-height: 65px;
+}
+
+body.display-fullscreen .dhead {
+    grid-template-columns: 170px 1fr;
+    min-height: 115px;
+}
+
+body.display-fullscreen #displayLine {
+    min-height: 115px;
+    font-size: 76px;
+}
+
+body.display-fullscreen #displayDestination {
+    font-size: clamp(34px, 4vw, 52px);
+}
+
+body.display-fullscreen #displayStops {
+    padding: 28px 36px;
+    gap: 10px;
+}
+
+body.display-fullscreen .dstop {
+    min-height: 78px;
+    font-size: clamp(30px, 3vw, 42px);
+}
+
+body.display-fullscreen .dstop.current {
+    font-size: clamp(38px, 4vw, 52px);
+}
+
+body.display-fullscreen .dstop.current .stoptext {
+    padding: 14px 18px;
+}
+
+/* =========================================
+   MOBIL
+========================================= */
 
 @media (max-width: 750px) {
-#display {
-min-height: 100vh;
+    body {
+        padding: 0;
+    }
+
+    .terminal {
+        min-height: 100vh;
+        border: 0;
+        border-radius: 0;
+    }
+
+    header {
+        height: 65px;
+        padding: 0 15px;
+    }
+
+    header b {
+        font-size: 23px;
+    }
+
+    header span:not(#clock) {
+        display: none;
+    }
+
+    main {
+        padding: 12px;
+    }
+
+    .screen {
+        min-height: calc(100vh - 90px);
+    }
+
+    #menu button {
+        width: 90%;
+        min-width: 0;
+    }
+
+    .info {
+        grid-template-columns: 90px 1fr;
+    }
+
+    .info > div {
+        min-height: 90px;
+        padding: 12px;
+    }
+
+    .info strong {
+        font-size: 18px;
+    }
+
+    .info > div:first-child strong {
+        font-size: 32px;
+    }
+
+    .panel > p {
+        padding: 18px 18px 5px;
+        font-size: 11px;
+    }
+
+    #stop {
+        padding: 5px 18px 22px;
+        font-size: clamp(60px, 15vw, 95px);
+    }
+
+    .next {
+        display: block;
+        padding: 18px;
+    }
+
+    .next b {
+        display: block;
+        margin-top: 8px;
+        font-size: 24px;
+    }
+
+    .buttons {
+        display: block;
+    }
+
+    .buttons button {
+        width: 100%;
+    }
+
+    /* Tabule DPMA2 na mobilu */
+
+    #display {
+        min-height: calc(100vh - 24px);
+    }
+
+    .dtop {
+        min-height: 50px;
+        padding: 0 14px;
+    }
+
+    .dtop b {
+        font-size: 21px;
+    }
+
+    .dtop span {
+        font-size: 15px;
+    }
+
+    .dhead {
+        grid-template-columns: 90px minmax(0, 1fr);
+        min-height: 80px;
+    }
+
+    #displayLine {
+        min-height: 80px;
+        font-size: 44px;
+    }
+
+    #displayDestination {
+        padding: 12px 14px;
+        font-size: clamp(23px, 6vw, 34px);
+    }
+
+    #displayStops {
+        padding: 16px 12px;
+        gap: 6px;
+    }
+
+    .dstop {
+        grid-template-columns: 40px minmax(0, 1fr);
+        min-height: 58px;
+        font-size: clamp(21px, 5vw, 27px);
+    }
+
+    .dstop .arrow {
+        font-size: 25px;
+    }
+
+    .dstop.current {
+        font-size: clamp(27px, 6vw, 34px);
+    }
+
+    .dstop.current .arrow {
+        font-size: 27px;
+    }
+
+    .dstop.current .stoptext {
+        padding: 10px 12px;
+        border-left-width: 6px;
+    }
+
+    .waiting {
+        padding: 40px 12px;
+        font-size: 17px;
+    }
+
+    #displayConnection {
+        padding: 10px 12px;
+        font-size: 10px;
+    }
+
+    /* Celá obrazovka na mobilu */
+
+    body.display-fullscreen #displayStops {
+        padding: 12px;
+        gap: 5px;
+    }
+
+    body.display-fullscreen .dhead {
+        grid-template-columns: 95px minmax(0, 1fr);
+        min-height: 80px;
+    }
+
+    body.display-fullscreen #displayLine {
+        min-height: 80px;
+        font-size: 46px;
+    }
+
+    body.display-fullscreen #displayDestination {
+        font-size: clamp(24px, 6vw, 34px);
+    }
+
+    body.display-fullscreen .dstop {
+        min-height: 58px;
+        font-size: clamp(22px, 5vw, 28px);
+    }
+
+    body.display-fullscreen .dstop.current {
+        font-size: clamp(28px, 6vw, 35px);
+    }
 }
 
-#display .dtop {
-padding: 10px 12px;
-gap: 10px;
-}
+/* =========================================
+   MALÉ DISPLEJE NA VÝŠKU
+========================================= */
 
-#display .dhead {
-grid-template-columns: 88px minmax(0, 1fr);
-min-height: 75px;
-}
+@media (max-height: 650px) {
+    #displayStops {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        gap: 3px;
+    }
 
-#display #displayLine {
-min-height: 58px;
-margin: 7px;
-font-size: 32px;
-}
+    .dstop {
+        min-height: 48px;
+    }
 
-#display #displayDestination {
-padding: 12px;
-font-size: clamp(19px, 5vw, 27px);
-}
+    .dstop.current {
+        font-size: clamp(27px, 3vw, 36px);
+    }
 
-#display #displayStops {
-padding: 14px 8px;
-}
+    .dstop.current .stoptext {
+        padding: 7px 12px;
+    }
 
-#display .dstop {
-grid-template-columns: 30px minmax(0, 1fr);
-gap: 6px;
-min-height: 48px;
-font-size: 19px;
-}
-
-#display .dstop.current {
-font-size: 24px;
-}
-
-#display #fullscreenButton {
-margin-left: auto;
-padding: 10px;
-font-size: 10px;
-}
+    .waiting {
+        padding: 25px 12px;
+    }
 }
