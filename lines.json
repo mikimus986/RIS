@@ -392,11 +392,9 @@
     }
   },
   "051": {
-  "number": 51,
-  "color": "#D92336",
-  "directions": {
+    "number": "51",
     "01": {
-      "destination": "Dobrovany, kruh. objezd",
+      "name": "Dobrovany, kruh. objezd",
       "stops": [
         "Anské náměstí",
         "Zimní",
@@ -411,7 +409,7 @@
       ]
     },
     "02": {
-      "destination": "Anské náměstí",
+      "name": "Anské náměstí",
       "stops": [
         "Dobrovany, kruhový objezd",
         "Dobrovany, hasičská zbroj.",
@@ -425,14 +423,11 @@
         "Anské náměstí"
       ]
     }
-  }
-},
-"054": {
-  "number": 54,
-  "color": "#96613D",
-  "directions": {
+  },
+  "054": {
+    "number": "54",
     "01": {
-      "destination": "Snovín, náměstí svobody",
+      "name": "Snovín, náměstí svobody",
       "stops": [
         "Nové nádraží",
         "Hlavní nádraží",
@@ -451,7 +446,7 @@
       ]
     },
     "02": {
-      "destination": "Nové nádraží",
+      "name": "Nové nádraží",
       "stops": [
         "Snovín, náměstí svobody",
         "Snovín, hradní",
@@ -470,7 +465,7 @@
       ]
     },
     "03": {
-      "destination": "Snovín, náměstí svobody",
+      "name": "Snovín, náměstí svobody",
       "stops": [
         "Rozvodna",
         "Lesní",
@@ -486,7 +481,7 @@
       ]
     },
     "04": {
-      "destination": "Rozvodna",
+      "name": "Rozvodna",
       "stops": [
         "Snovín, náměstí svobody",
         "Snovín, hradní",
