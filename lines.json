@@ -390,5 +390,116 @@
         "Nové nádraží"
       ]
     }
+  },
+  "051": {
+  "number": 51,
+  "color": "#D92336",
+  "directions": {
+    "01": {
+      "destination": "Dobrovany, kruh. objezd",
+      "stops": [
+        "Anské náměstí",
+        "Zimní",
+        "Nové domy",
+        "Na náměstí",
+        "Zlkov, obchod",
+        "Svatý kopeček",
+        "Dobrovany, příjezdová",
+        "Dobrovany, kaple",
+        "Dobrovany, hasičská zbroj.",
+        "Dobrovany, kruhový objezd"
+      ]
+    },
+    "02": {
+      "destination": "Anské náměstí",
+      "stops": [
+        "Dobrovany, kruhový objezd",
+        "Dobrovany, hasičská zbroj.",
+        "Dobrovany, kaple",
+        "Dobrovany, příjezdová",
+        "Svatý kopeček",
+        "Zlkov, obchod",
+        "Na náměstí",
+        "Nové domy",
+        "Zimní",
+        "Anské náměstí"
+      ]
+    }
+  }
+},
+"054": {
+  "number": 54,
+  "color": "#96613D",
+  "directions": {
+    "01": {
+      "destination": "Snovín, náměstí svobody",
+      "stops": [
+        "Nové nádraží",
+        "Hlavní nádraží",
+        "Sovec",
+        "Rozvodna",
+        "Lesní",
+        "NC Ana-podjezd",
+        "Maloměstská",
+        "Snovín, jižní sídliště",
+        "Snovín, brněnská",
+        "Snovín, hlavní",
+        "Snovín, Fryčajova",
+        "Snovín, úzká",
+        "Snovín, hradní",
+        "Snovín, náměstí svobody"
+      ]
+    },
+    "02": {
+      "destination": "Nové nádraží",
+      "stops": [
+        "Snovín, náměstí svobody",
+        "Snovín, hradní",
+        "Snovín, úzká",
+        "Snovín, Fryčajova",
+        "Snovín, hlavní",
+        "Snovín, brněnská",
+        "Snovín, jižní sídliště",
+        "Maloměstská",
+        "NC Ana-podjezd",
+        "Lesní",
+        "Rozvodna",
+        "Sovec",
+        "Hlavní nádraží",
+        "Nové nádraží"
+      ]
+    },
+    "03": {
+      "destination": "Snovín, náměstí svobody",
+      "stops": [
+        "Rozvodna",
+        "Lesní",
+        "NC Ana-podjezd",
+        "Maloměstská",
+        "Snovín, jižní sídliště",
+        "Snovín, brněnská",
+        "Snovín, hlavní",
+        "Snovín, Fryčajova",
+        "Snovín, úzká",
+        "Snovín, hradní",
+        "Snovín, náměstí svobody"
+      ]
+    },
+    "04": {
+      "destination": "Rozvodna",
+      "stops": [
+        "Snovín, náměstí svobody",
+        "Snovín, hradní",
+        "Snovín, úzká",
+        "Snovín, Fryčajova",
+        "Snovín, hlavní",
+        "Snovín, brněnská",
+        "Snovín, jižní sídliště",
+        "Maloměstská",
+        "NC Ana-podjezd",
+        "Lesní",
+        "Rozvodna"
+      ]
+    }
   }
 }
