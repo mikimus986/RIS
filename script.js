@@ -79,7 +79,9 @@ function lineColor(number) {
         "77": "#96613D",
         "111": "#D92336",
         "112": "#D92336",
-        "113": "#D6F0B0"
+        "113": "#D6F0B0",
+        "51": "#D6F0B0",
+        "54": "#96613D"
     };
 
     return colors[String(number)] || "#A8D88A";
