@@ -394,7 +394,7 @@
   "051": {
     "number": "51",
     "01": {
-      "name": "Dobrovany, kruh. objezd",
+      "name": "Dobrovany, kruhový objezd",
       "stops": [
         "Anské náměstí",
         "Zimní",
@@ -404,7 +404,7 @@
         "Svatý kopeček",
         "Dobrovany, příjezdová",
         "Dobrovany, kaple",
-        "Dobrovany, hasičská zbroj.",
+        "Dobrovany, hasičská zbrojnice",
         "Dobrovany, kruhový objezd"
       ]
     },
@@ -412,7 +412,7 @@
       "name": "Anské náměstí",
       "stops": [
         "Dobrovany, kruhový objezd",
-        "Dobrovany, hasičská zbroj.",
+        "Dobrovany, hasičská zbrojnice",
         "Dobrovany, kaple",
         "Dobrovany, příjezdová",
         "Svatý kopeček",
