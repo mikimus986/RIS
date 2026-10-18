@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -349,20 +350,26 @@ button:focus-visible {
     flex: 1;
 }
 
-/* Jedna zastávka na řádek */
+/* =========================================
+   SEZNAM ZASTÁVEK A ZÓNY
+========================================= */
 
 .dstop {
     display: grid;
-    grid-template-columns: 55px minmax(0, 1fr);
+
+    /* Šipka | Název zastávky | Zóna */
+    grid-template-columns: 55px minmax(0, 1fr) 48px;
+
     min-height: 68px;
     align-items: center;
     font-size: clamp(25px, 3vw, 36px);
     font-weight: 700;
     color: #e0e4e8;
     line-height: 1.15;
+    column-gap: 10px;
 }
 
-/* Značka u zastávky */
+/* Šipka u aktuální zastávky */
 
 .dstop .arrow {
     display: flex;
@@ -371,6 +378,34 @@ button:focus-visible {
     color: #fff;
     font-size: 30px;
     font-weight: 900;
+}
+
+/* Název zastávky */
+
+.dstop .stoptext {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+/* Zóna zastávky – zarovnaná vpravo */
+
+.dstop .zone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: stretch;
+    min-width: 40px;
+    min-height: 44px;
+    color: #aeb7c0;
+    font-size: 25px;
+    font-weight: 900;
+    text-align: center;
+}
+
+/* Zóna A se v JavaScriptu nechává prázdná */
+
+.dstop .zone:empty {
+    visibility: hidden;
 }
 
 /* Aktuální zastávka */
@@ -386,7 +421,7 @@ button:focus-visible {
     font-size: 32px;
 }
 
-/* Barevný pruh podle linky */
+/* Barevný pruh aktuální zastávky */
 
 .dstop.current .stoptext {
     display: block;
@@ -394,6 +429,13 @@ button:focus-visible {
     background: #30373e;
     border-left: 7px solid var(--line-color);
     overflow-wrap: anywhere;
+}
+
+/* Zóna u aktuální zastávky */
+
+.dstop.current .zone {
+    color: #fff;
+    font-size: 30px;
 }
 
 /* Čekací obrazovka */
@@ -498,6 +540,14 @@ body.display-fullscreen .dstop.current {
 
 body.display-fullscreen .dstop.current .stoptext {
     padding: 14px 18px;
+}
+
+body.display-fullscreen .dstop .zone {
+    font-size: 30px;
+}
+
+body.display-fullscreen .dstop.current .zone {
+    font-size: 36px;
 }
 
 /* =========================================
@@ -606,6 +656,13 @@ body.display-fullscreen .dstop.current .stoptext {
         font-size: 15px;
     }
 
+    #fullscreenButton {
+        margin: 6px;
+        padding: 10px;
+        font-size: 11px;
+        letter-spacing: 0;
+    }
+
     .dhead {
         grid-template-columns: 90px minmax(0, 1fr);
         min-height: 80px;
@@ -627,13 +684,20 @@ body.display-fullscreen .dstop.current .stoptext {
     }
 
     .dstop {
-        grid-template-columns: 40px minmax(0, 1fr);
+        grid-template-columns: 32px minmax(0, 1fr) 34px;
+        column-gap: 5px;
         min-height: 58px;
         font-size: clamp(21px, 5vw, 27px);
     }
 
     .dstop .arrow {
         font-size: 25px;
+    }
+
+    .dstop .zone {
+        min-width: 30px;
+        min-height: 36px;
+        font-size: 20px;
     }
 
     .dstop.current {
@@ -647,6 +711,10 @@ body.display-fullscreen .dstop.current .stoptext {
     .dstop.current .stoptext {
         padding: 10px 12px;
         border-left-width: 6px;
+    }
+
+    .dstop.current .zone {
+        font-size: 24px;
     }
 
     .waiting {
@@ -681,12 +749,21 @@ body.display-fullscreen .dstop.current .stoptext {
     }
 
     body.display-fullscreen .dstop {
+        grid-template-columns: 32px minmax(0, 1fr) 34px;
         min-height: 58px;
         font-size: clamp(22px, 5vw, 28px);
     }
 
     body.display-fullscreen .dstop.current {
         font-size: clamp(28px, 6vw, 35px);
+    }
+
+    body.display-fullscreen .dstop .zone {
+        font-size: 20px;
+    }
+
+    body.display-fullscreen .dstop.current .zone {
+        font-size: 24px;
     }
 }
 
@@ -713,7 +790,13 @@ body.display-fullscreen .dstop.current .stoptext {
         padding: 7px 12px;
     }
 
+    .dstop .zone {
+        min-height: 34px;
+        font-size: 21px;
+    }
+
     .waiting {
         padding: 25px 12px;
     }
 }
+
