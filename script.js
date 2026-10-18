@@ -26,14 +26,14 @@ const next = $("next");
 // ==================================================
 
 function time() {
-    const t = new Date().toLocaleTimeString("cs-CZ", {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit"
-    });
+  const t = new Date().toLocaleTimeString("cs-CZ", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  });
 
-    if ($("clock")) $("clock").textContent = t;
-    if ($("displayClock")) $("displayClock").textContent = t;
+  if ($("clock")) $("clock").textContent = t;
+  if ($("displayClock")) $("displayClock").textContent = t;
 }
 
 time();
@@ -44,47 +44,71 @@ setInterval(time, 1000);
 // ==================================================
 
 const dataReady = fetch("lines.json")
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("Nepodařilo se načíst lines.json");
-        }
-
-        return response.json();
-    })
-    .then(data => {
-        D = data;
-    })
-    .catch(error => {
-        console.error(error);
-
-        if (msg) {
-            msg.textContent = "Nepodařilo se načíst lines.json.";
-        }
-
-        throw error;
-    });
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("Nepodařilo se načíst lines.json");
+    }
+    return response.json();
+  })
+  .then(data => {
+    D = data;
+  })
+  .catch(error => {
+    console.error(error);
+    if (msg) msg.textContent = "Nepodařilo se načíst lines.json.";
+    throw error;
+  });
 
 // ==================================================
 // BARVY LINEK
 // ==================================================
 
 function lineColor(number) {
-    const colors = {
-        "1": "#A8D88A",
-        "22": "#A8D88A",
-        "2": "#F19AC2",
-        "23": "#D6B58A",
-        "76": "#D6B58A",
-        "74": "#96613D",
-        "77": "#96613D",
-        "111": "#D92336",
-        "112": "#D92336",
-        "113": "#D6F0B0",
-        "51": "#D6F0B0",
-        "54": "#96613D"
-    };
+  const colors = {
+    "1": "#A8D88A",
+    "22": "#A8D88A",
+    "2": "#F19AC2",
+    "23": "#D6B58A",
+    "76": "#D6B58A",
+    "74": "#96613D",
+    "77": "#96613D",
+    "111": "#D92336",
+    "112": "#D92336",
+    "113": "#D6F0B0",
+    "51": "#D6F0B0",
+    "54": "#96613D"
+  };
 
-    return colors[String(number)] || "#A8D88A";
+  return colors[String(number)] || "#A8D88A";
+}
+
+// ==================================================
+// ZÓNY ZASTÁVEK
+// A = ostatní zastávky, bez písmena
+// B = Snovín a Lamov
+// C = Starý Lízátkov
+// D = Dobrovany
+// ==================================================
+
+function getZone(stopName) {
+  const name = String(stopName || "")
+    .trim()
+    .normalize("NFC")
+    .toLocaleLowerCase("cs-CZ");
+
+  if (name.startsWith("snovín") || name.startsWith("lamov")) {
+    return "B";
+  }
+
+  if (name.startsWith("starý lízátkov")) {
+    return "C";
+  }
+
+  if (name.startsWith("dobrovany")) {
+    return "D";
+  }
+
+  return "A";
 }
 
 // ==================================================
@@ -94,21 +118,19 @@ function lineColor(number) {
 $("pairButton").onclick = pairStart;
 
 $("pairInput").onkeydown = event => {
-    if (event.key === "Enter") {
-        pairStart();
-    }
+  if (event.key === "Enter") pairStart();
 };
 
 function pairStart() {
-    const value = $("pairInput").value.trim().toLowerCase();
+  const value = $("pairInput").value.trim().toLowerCase();
 
-    if (value === "dpma1") {
-        driver();
-    } else if (value === "dpma2") {
-        board();
-    } else {
-        $("pairStatus").textContent = "Zadej dpma1 nebo dpma2.";
-    }
+  if (value === "dpma1") {
+    driver();
+  } else if (value === "dpma2") {
+    board();
+  } else {
+    $("pairStatus").textContent = "Zadej dpma1 nebo dpma2.";
+  }
 }
 
 // ==================================================
@@ -116,27 +138,26 @@ function pairStart() {
 // ==================================================
 
 function createPeer(id, callback) {
-    if (!window.Peer) {
-        $("pairStatus").textContent =
-            "Nepodařilo se načíst PeerJS. Zkontroluj internet.";
-        return;
+  if (!window.Peer) {
+    $("pairStatus").textContent =
+      "Nepodařilo se načíst PeerJS. Zkontroluj internet.";
+    return;
+  }
+
+  P = new Peer(id);
+
+  P.on("open", callback);
+
+  P.on("error", event => {
+    console.error("PeerJS:", event);
+
+    if (event.type === "unavailable-id") {
+      $("pairStatus").textContent =
+        "Toto ID už používá jiné zařízení. Zavři duplicitní stránku.";
+    } else {
+      $("pairStatus").textContent = "Chyba spojení: " + event.type;
     }
-
-    P = new Peer(id);
-
-    P.on("open", callback);
-
-    P.on("error", event => {
-        console.error("PeerJS:", event);
-
-        if (event.type === "unavailable-id") {
-            $("pairStatus").textContent =
-                "Toto ID už používá jiné zařízení. Zavři duplicitní stránku.";
-        } else {
-            $("pairStatus").textContent =
-                "Chyba spojení: " + event.type;
-        }
-    });
+  });
 }
 
 // ==================================================
@@ -144,38 +165,35 @@ function createPeer(id, callback) {
 // ==================================================
 
 function driver() {
-    R = "driver";
+  R = "driver";
 
-    pair.classList.add("hidden");
-    menu.classList.remove("hidden");
+  pair.classList.add("hidden");
+  menu.classList.remove("hidden");
 
-    $("driverStatus").textContent = "Čekám na vnitřní tabuli…";
+  $("driverStatus").textContent = "Čekám na vnitřní tabuli…";
 
-    createPeer("dpma1", () => {
-        $("driverStatus").textContent =
-            "DPMA1 AKTIVNÍ – ČEKÁM NA TABULI";
+  createPeer("dpma1", () => {
+    $("driverStatus").textContent = "DPMA1 AKTIVNÍ – ČEKÁM NA TABULI";
 
-        P.on("connection", connection => {
-            if (C) {
-                C.close();
-            }
+    P.on("connection", connection => {
+      if (C) C.close();
 
-            C = connection;
+      C = connection;
 
-            C.on("open", () => {
-                $("driverStatus").textContent = "TABULE PŘIPOJENA";
-                send();
-            });
+      C.on("open", () => {
+        $("driverStatus").textContent = "TABULE PŘIPOJENA";
+        send();
+      });
 
-            C.on("close", () => {
-                $("driverStatus").textContent = "TABULE ODPOJENA";
-            });
+      C.on("close", () => {
+        $("driverStatus").textContent = "TABULE ODPOJENA";
+      });
 
-            C.on("error", () => {
-                $("driverStatus").textContent = "CHYBA SPOJENÍ S TABULÍ";
-            });
-        });
+      C.on("error", () => {
+        $("driverStatus").textContent = "CHYBA SPOJENÍ S TABULÍ";
+      });
     });
+  });
 }
 
 // ==================================================
@@ -183,53 +201,51 @@ function driver() {
 // ==================================================
 
 function board() {
-    R = "board";
+  R = "board";
 
-    pair.classList.add("hidden");
-    display.classList.remove("hidden");
+  pair.classList.add("hidden");
+  display.classList.remove("hidden");
 
-    $("displayConnection").textContent = "HLEDÁM DPMA1…";
+  $("displayConnection").textContent = "HLEDÁM DPMA1…";
 
-    createPeer("dpma2", connect);
+  createPeer("dpma2", connect);
 }
 
 function connect() {
-    if (!P || !P.open) return;
+  if (!P || !P.open) return;
 
-    if (C) {
-        try {
-            C.close();
-        } catch (error) {
-            console.warn(error);
-        }
+  if (C) {
+    try {
+      C.close();
+    } catch (error) {
+      console.warn(error);
     }
+  }
 
-    C = P.connect("dpma1", { reliable: true });
+  C = P.connect("dpma1", { reliable: true });
 
-    C.on("open", () => {
-        $("displayConnection").textContent = "TABULE PŘIPOJENA";
-        $("displayConnection").classList.add("ok");
-    });
+  C.on("open", () => {
+    $("displayConnection").textContent = "TABULE PŘIPOJENA";
+    $("displayConnection").classList.add("ok");
+  });
 
-    C.on("data", data => {
-        if (data && data.type === "state") {
-            paint(data.s);
-        }
-    });
+  C.on("data", data => {
+    if (data && data.type === "state") paint(data.s);
+  });
 
-    C.on("close", () => {
-        $("displayConnection").textContent =
-            "SPOJENÍ PŘERUŠENO – OBNOVUJI";
+  C.on("close", () => {
+    $("displayConnection").textContent =
+      "SPOJENÍ PŘERUŠENO – OBNOVUJI";
 
-        $("displayConnection").classList.remove("ok");
+    $("displayConnection").classList.remove("ok");
 
-        clearTimeout(rt);
-        rt = setTimeout(connect, 2500);
-    });
+    clearTimeout(rt);
+    rt = setTimeout(connect, 2500);
+  });
 
-    C.on("error", error => {
-        console.error("Chyba tabule:", error);
-    });
+  C.on("error", error => {
+    console.error("Chyba tabule:", error);
+  });
 }
 
 // ==================================================
@@ -237,36 +253,36 @@ function connect() {
 // ==================================================
 
 function state() {
-    if (serviceTrip) {
-        return {
-            active: true,
-            service: true,
-            line: "—",
-            color: "#555555",
-            dest: "SLUŽEBNÍ JÍZDA",
-            stops: ["Služební jízda"],
-            index: 0,
-            no: false
-        };
-    }
-
-    if (!L || !Dir || !D[L] || !D[L][Dir]) {
-        return { active: false };
-    }
-
-    const direction = D[L][Dir];
-    const number = direction.number || D[L].number;
-
+  if (serviceTrip) {
     return {
-        active: true,
-        service: false,
-        line: number,
-        color: lineColor(number),
-        dest: direction.name,
-        stops: direction.stops,
-        index: I,
-        no: stop.classList.contains("no-boarding")
+      active: true,
+      service: true,
+      line: "—",
+      color: "#555555",
+      dest: "SLUŽEBNÍ JÍZDA",
+      stops: ["Služební jízda"],
+      index: 0,
+      no: false
     };
+  }
+
+  if (!L || !Dir || !D[L] || !D[L][Dir]) {
+    return { active: false };
+  }
+
+  const direction = D[L][Dir];
+  const number = direction.number || D[L].number;
+
+  return {
+    active: true,
+    service: false,
+    line: number,
+    color: lineColor(number),
+    dest: direction.name,
+    stops: direction.stops,
+    index: I,
+    no: stop.classList.contains("no-boarding")
+  };
 }
 
 // ==================================================
@@ -274,101 +290,92 @@ function state() {
 // ==================================================
 
 function send() {
-    if (R !== "driver" || !C || !C.open) return;
+  if (R !== "driver" || !C || !C.open) return;
 
-    C.send({
-        type: "state",
-        s: state()
-    });
+  C.send({
+    type: "state",
+    s: state()
+  });
 }
 
 // ==================================================
 // VYKRESLENÍ DPMA2
-// MAXIMÁLNĚ 5 ZASTÁVEK
-// AKTUÁLNÍ ZASTÁVKA JE VŽDY PRVNÍ
-// PROJETÉ ZASTÁVKY A FAJKY SE NEZOBRAZUJÍ
+// Aktuální zastávka + 5 následujících
 // ==================================================
 
 function paint(s) {
-    const lineEl = $("displayLine");
-    const destinationEl = $("displayDestination");
-    const stopsEl = $("displayStops");
+  const lineEl = $("displayLine");
+  const destinationEl = $("displayDestination");
+  const stopsEl = $("displayStops");
 
-    if (!s || !s.active) {
-        lineEl.textContent = "--";
-        lineEl.style.backgroundColor = "#20252b";
+  if (!s || !s.active) {
+    lineEl.textContent = "--";
+    lineEl.style.backgroundColor = "#20252b";
+    display.style.setProperty("--line-color", "#A8D88A");
+    destinationEl.textContent = "ČEKÁNÍ NA JÍZDU";
+    stopsEl.innerHTML =
+      '<div class="waiting">ČEKÁNÍ NA DATA Z PALUBNÍHO POČÍTAČE</div>';
+    return;
+  }
 
-        display.style.setProperty("--line-color", "#A8D88A");
+  const color = s.color || "#A8D88A";
 
-        destinationEl.textContent = "ČEKÁNÍ NA JÍZDU";
+  lineEl.textContent = s.line;
+  lineEl.style.backgroundColor = color;
+  display.style.setProperty("--line-color", color);
 
-        stopsEl.innerHTML =
-            '<div class="waiting">' +
-            'ČEKÁNÍ NA DATA Z PALUBNÍHO POČÍTAČE' +
-            '</div>';
+  destinationEl.textContent = s.dest;
 
-        return;
-    }
+  if (s.no) {
+    stopsEl.innerHTML =
+      '<div class="waiting" ' +
+      'style="color:#ff3030;font-size:clamp(28px,5vw,52px);font-weight:900">' +
+      'NENASTUPUJTE</div>';
+    return;
+  }
 
-    const color = s.color || "#A8D88A";
+  if (s.service) {
+    stopsEl.innerHTML =
+      '<div class="dstop current">' +
+      '<span class="arrow"></span>' +
+      '<span class="stoptext">Služební jízda</span>' +
+      '<span class="zone"></span>' +
+      '</div>';
+    return;
+  }
 
-    lineEl.textContent = s.line;
-    lineEl.style.backgroundColor = color;
-    display.style.setProperty("--line-color", color);
+  const stops = Array.isArray(s.stops) ? s.stops : [];
 
-    destinationEl.textContent = s.dest;
+  if (stops.length === 0) {
+    stopsEl.innerHTML = '<div class="waiting">ŽÁDNÉ ZASTÁVKY</div>';
+    return;
+  }
 
-    if (s.no) {
-        stopsEl.innerHTML =
-            '<div class="waiting" ' +
-            'style="color:#ff3030;font-size:clamp(28px,5vw,52px);font-weight:900">' +
-            'NENASTUPUJTE' +
-            '</div>';
+  const current = Math.max(
+    0,
+    Math.min(Number(s.index) || 0, stops.length - 1)
+  );
 
-        return;
-    }
+  const end = Math.min(current + 6, stops.length);
+  let html = "";
 
-    if (s.service) {
-        stopsEl.innerHTML =
-            '<div class="dstop current">' +
-            '<span class="arrow"></span>' +
-            '<span class="stoptext">Služební jízda</span>' +
-            '</div>';
+  for (let i = current; i < end; i++) {
+    const isCurrent = i === current;
+    const className = isCurrent ? "dstop current" : "dstop";
+    const zone = getZone(stops[i]);
 
-        return;
-    }
+    // Zónu A nezobrazujeme.
+    const zoneText = zone === "A" ? "" : zone;
 
-    const stops = Array.isArray(s.stops) ? s.stops : [];
+    html +=
+      '<div class="' + className + '">' +
+        '<span class="arrow">' + (isCurrent ? "→" : "") + '</span>' +
+        '<span class="stoptext">' + esc(stops[i]) + '</span>' +
+        '<span class="zone">' + zoneText + '</span>' +
+      '</div>';
+  }
 
-    if (stops.length === 0) {
-        stopsEl.innerHTML = '<div class="waiting">ŽÁDNÉ ZASTÁVKY</div>';
-        return;
-    }
-
-    const current = Math.max(
-        0,
-        Math.min(Number(s.index) || 0, stops.length - 1)
-    );
-
-    // Vykreslí se pouze aktuální zastávka a maximálně 4 následující.
-    // Po stisknutí + přijde nový index a seznam se posune.
-    const end = Math.min(current + 6, stops.length);
-    let html = "";
-
-    for (let i = current; i < end; i++) {
-        const isCurrent = i === current;
-        const className = isCurrent ? "dstop current" : "dstop";
-
-        html +=
-            '<div class="' + className + '">' +
-            '<span class="arrow">' + (isCurrent ? "→" : "") + '</span>' +
-            '<span class="stoptext">' +
-            esc(stops[i]) +
-            '</span>' +
-            '</div>';
-    }
-
-    stopsEl.innerHTML = html;
+  stopsEl.innerHTML = html;
 }
 
 // ==================================================
@@ -376,12 +383,12 @@ function paint(s) {
 // ==================================================
 
 function esc(value) {
-    return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 
 // ==================================================
@@ -395,46 +402,39 @@ $("back").onclick = back;
 $("plus").onclick = advance;
 
 $("disconnectDriver").onclick = () => {
-    if (C) {
-        C.close();
-        C = null;
-    }
+  if (C) {
+    C.close();
+    C = null;
+  }
 
-    $("driverStatus").textContent = "TABULE ODPOJENA";
+  $("driverStatus").textContent = "TABULE ODPOJENA";
 };
 
 $("input").oninput = () => {
-    $("input").value = $("input").value
-        .replace(/\D/g, "")
-        .slice(0, 5);
+  $("input").value = $("input").value.replace(/\D/g, "").slice(0, 5);
 };
 
 $("input").onkeydown = event => {
-    if (event.key === "Enter") {
-        load();
-    }
+  if (event.key === "Enter") load();
 };
 
-// Klávesové zkratky
 document.addEventListener("keydown", event => {
-    if (R !== "driver") return;
+  if (R !== "driver") return;
 
-    if (event.key === "*" && !code.classList.contains("hidden")) {
-        return;
-    }
+  if (event.key === "*" && !code.classList.contains("hidden")) return;
 
-    if (event.key === "*") {
-        event.preventDefault();
-        openCode();
-    }
+  if (event.key === "*") {
+    event.preventDefault();
+    openCode();
+  }
 
-    if (
-        (event.key === "+" || event.code === "NumpadAdd") &&
-        !route.classList.contains("hidden")
-    ) {
-        event.preventDefault();
-        advance();
-    }
+  if (
+    (event.key === "+" || event.code === "NumpadAdd") &&
+    !route.classList.contains("hidden")
+  ) {
+    event.preventDefault();
+    advance();
+  }
 });
 
 // ==================================================
@@ -442,26 +442,26 @@ document.addEventListener("keydown", event => {
 // ==================================================
 
 function openCode() {
-    menu.classList.add("hidden");
-    route.classList.add("hidden");
-    code.classList.remove("hidden");
+  menu.classList.add("hidden");
+  route.classList.add("hidden");
+  code.classList.remove("hidden");
 
-    msg.textContent = "";
-    $("input").value = "";
-    $("input").focus();
+  msg.textContent = "";
+  $("input").value = "";
+  $("input").focus();
 }
 
 function back() {
-    menu.classList.remove("hidden");
-    code.classList.add("hidden");
-    route.classList.add("hidden");
+  menu.classList.remove("hidden");
+  code.classList.add("hidden");
+  route.classList.add("hidden");
 
-    L = null;
-    Dir = null;
-    I = 0;
-    serviceTrip = false;
+  L = null;
+  Dir = null;
+  I = 0;
+  serviceTrip = false;
 
-    send();
+  send();
 }
 
 // ==================================================
@@ -469,71 +469,70 @@ function back() {
 // ==================================================
 
 async function load() {
-    try {
-        await dataReady;
-    } catch {
-        msg.textContent = "Nepodařilo se načíst lines.json.";
-        return;
-    }
+  try {
+    await dataReady;
+  } catch {
+    msg.textContent = "Nepodařilo se načíst lines.json.";
+    return;
+  }
 
-    const c = $("input").value.trim();
-    msg.textContent = "";
+  const c = $("input").value.trim();
+  msg.textContent = "";
 
-    if (c === "99901") {
-        L = null;
-        Dir = null;
-        I = 0;
-        serviceTrip = true;
-
-        menu.classList.add("hidden");
-        code.classList.add("hidden");
-        route.classList.remove("hidden");
-
-        $("line").textContent = "—";
-        $("direction").textContent = "SLUŽEBNÍ JÍZDA";
-
-        counter.textContent = "SLUŽEBNÍ JÍZDA";
-
-        stop.classList.remove("no-boarding");
-        stop.textContent = "Služební jízda";
-
-        next.textContent = "—";
-
-        send();
-        return;
-    }
-
-    if (!/^\d{5}$/.test(c)) {
-        msg.textContent = "Zadej pětimístný kód.";
-        return;
-    }
-
-    const lineCode = c.slice(0, 3);
-    const directionCode = c.slice(3);
-
-    if (
-        !D[lineCode] ||
-        !D[lineCode][directionCode] ||
-        !Array.isArray(D[lineCode][directionCode].stops) ||
-        D[lineCode][directionCode].stops.length === 0
-    ) {
-        msg.textContent = "Linka nebo směr není v databázi.";
-        return;
-    }
-
-    L = lineCode;
-    Dir = directionCode;
+  if (c === "99901") {
+    L = null;
+    Dir = null;
     I = 0;
-    serviceTrip = false;
-
-    $("line").textContent = D[L].number || L;
-    $("direction").textContent = D[L][Dir].name;
+    serviceTrip = true;
 
     menu.classList.add("hidden");
     code.classList.add("hidden");
     route.classList.remove("hidden");
 
-    show();
+    $("line").textContent = "—";
+    $("direction").textContent = "SLUŽEBNÍ JÍZDA";
+
+    counter.textContent = "SLUŽEBNÍ JÍZDA";
+
+    stop.classList.remove("no-boarding");
+    stop.textContent = "Služební jízda";
+    next.textContent = "—";
+
+    send();
+    return;
+  }
+
+  if (!/^\d{5}$/.test(c)) {
+    msg.textContent = "Zadej pětimístný kód.";
+    return;
+  }
+
+  const lineCode = c.slice(0, 3);
+  const directionCode = c.slice(3);
+
+  if (
+    !D[lineCode] ||
+    !D[lineCode][directionCode] ||
+    !Array.isArray(D[lineCode][directionCode].stops) ||
+    D[lineCode][directionCode].stops.length === 0
+  ) {
+    msg.textContent = "Linka nebo směr není v databázi.";
+    return;
+  }
+
+  L = lineCode;
+  Dir = directionCode;
+  I = 0;
+  serviceTrip = false;
+
+  $("line").textContent = D[L].number || L;
+  $("direction").textContent = D[L][Dir].name;
+
+  menu.classList.add("hidden");
+  code.classList.add("hidden");
+  route.classList.remove("hidden");
+
+  show();
 }
 
 // ==================================================
@@ -541,21 +540,19 @@ async function load() {
 // ==================================================
 
 function show() {
-    if (serviceTrip || !L || !Dir) return;
+  if (serviceTrip || !L || !Dir) return;
 
-    const stops = D[L][Dir].stops;
+  const stops = D[L][Dir].stops;
 
-    stop.classList.remove("no-boarding");
-    stop.textContent = stops[I];
+  stop.classList.remove("no-boarding");
+  stop.textContent = stops[I];
 
-    counter.textContent = `ZASTÁVKA ${I + 1} / ${stops.length}`;
+  counter.textContent = `ZASTÁVKA ${I + 1} / ${stops.length}`;
 
-    next.textContent =
-        I < stops.length - 1
-            ? stops[I + 1]
-            : "KONEČNÁ ZASTÁVKA";
+  next.textContent =
+    I < stops.length - 1 ? stops[I + 1] : "KONEČNÁ ZASTÁVKA";
 
-    send();
+  send();
 }
 
 // ==================================================
@@ -563,25 +560,24 @@ function show() {
 // ==================================================
 
 function advance() {
-    if (serviceTrip || !L || !Dir) return;
+  if (serviceTrip || !L || !Dir) return;
+  if (stop.classList.contains("no-boarding")) return;
 
-    if (stop.classList.contains("no-boarding")) return;
+  const stops = D[L][Dir].stops;
 
-    const stops = D[L][Dir].stops;
+  if (I >= stops.length - 1) {
+    stop.textContent = "NENASTUPUJTE";
+    stop.classList.add("no-boarding");
 
-    if (I >= stops.length - 1) {
-        stop.textContent = "NENASTUPUJTE";
-        stop.classList.add("no-boarding");
+    counter.textContent = "KONEČNÁ ZASTÁVKA";
+    next.textContent = "VOZIDLO KONČÍ JÍZDU";
 
-        counter.textContent = "KONEČNÁ ZASTÁVKA";
-        next.textContent = "VOZIDLO KONČÍ JÍZDU";
+    send();
+    return;
+  }
 
-        send();
-        return;
-    }
-
-    I++;
-    show();
+  I++;
+  show();
 }
 
 // ==================================================
@@ -591,30 +587,30 @@ function advance() {
 const fullscreenButton = $("fullscreenButton");
 
 if (fullscreenButton) {
-    fullscreenButton.addEventListener("click", async () => {
-        try {
-            if (!document.fullscreenElement) {
-                await document.documentElement.requestFullscreen();
-            } else {
-                await document.exitFullscreen();
-            }
-        } catch (error) {
-            alert(
-                "Celou obrazovku se nepodařilo zapnout. " +
-                "Zkus to znovu nebo povol režim celé obrazovky."
-            );
-        }
-    });
+  fullscreenButton.addEventListener("click", async () => {
+    try {
+      if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen();
+      } else {
+        await document.exitFullscreen();
+      }
+    } catch (error) {
+      alert(
+        "Celou obrazovku se nepodařilo zapnout. " +
+        "Zkus to znovu nebo povol režim celé obrazovky."
+      );
+    }
+  });
 }
 
 document.addEventListener("fullscreenchange", () => {
-    const active = Boolean(document.fullscreenElement);
+  const active = Boolean(document.fullscreenElement);
 
-    document.body.classList.toggle("display-fullscreen", active);
+  document.body.classList.toggle("display-fullscreen", active);
 
-    if (fullscreenButton) {
-        fullscreenButton.textContent = active
-            ? "⛶ UKONČIT CELOU OBRAZOVKU"
-            : "⛶ CELÁ OBRAZOVKA";
-    }
+  if (fullscreenButton) {
+    fullscreenButton.textContent = active
+      ? "⛶ UKONČIT CELOU OBRAZOVKU"
+      : "⛶ CELÁ OBRAZOVKA";
+  }
 });
