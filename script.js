@@ -365,7 +365,7 @@ function paint(s) {
     const zone = getZone(stops[i]);
 
     // Zónu A nezobrazujeme.
-    const zoneText = zone === "A" ? "" : zone;
+    const zoneText = zone;
 
     html +=
       '<div class="' + className + '">' +
