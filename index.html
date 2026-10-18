@@ -1,80 +1,86 @@
-<!doctype html>
 
+<!doctype html>
 <html lang="cs">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DPMA</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DPMA</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="terminal">
-<header>
-<b>DPMA</b>
-<span>PALUBNÍ POČÍTAČ</span>
-<span id="clock"></span>
-</header>
-<main>
-<section id="pair" class="screen">
-<h1>SPÁROVÁNÍ ZAŘÍZENÍ</h1>
-<p>Řidičské zařízení: <b>dpma1</b><br>Vnitřní tabule: <b>dpma2</b></p>
-<input id="pairInput" placeholder="dpma1 / dpma2" maxlength="5" autocomplete="off">
-<button id="pairButton">POKRAČOVAT</button>
-<p id="pairStatus"></p>
-</section>
+  <div class="terminal">
+    <header>
+      <b>DPMA</b>
+      <span>PALUBNÍ POČÍTAČ</span>
+      <span id="clock"></span>
+    </header>
 
-<section id="menu" class="screen hidden">
-<h1>PALUBNÍ POČÍTAČ</h1>
-<button id="choose">VYBRAT LINKU</button>
-<button id="disconnectDriver">ODPOJIT TABULI</button>
-<p id="driverStatus"></p>
-</section>
+    <main>
+      <section id="pair" class="screen">
+        <h1>SPÁROVÁNÍ ZAŘÍZENÍ</h1>
+        <p>Řidičské zařízení: <b>dpma1</b><br>Vnitřní tabule: <b>dpma2</b></p>
+        <input id="pairInput" placeholder="dpma1 / dpma2" maxlength="5" autocomplete="off">
+        <button id="pairButton">POKRAČOVAT</button>
+        <p id="pairStatus"></p>
+      </section>
 
-<section id="code" class="screen hidden">
-<h1>ZADÁNÍ LINKY</h1>
-<input id="input" placeholder="00000" maxlength="5" inputmode="numeric">
-<div>
-<button id="enter">ENTER</button>
-<button id="back">ZPĚT DO MENU</button>
-</div>
-<p id="error"></p>
-</section>
+      <section id="menu" class="screen hidden">
+        <h1>PALUBNÍ POČÍTAČ</h1>
+        <button id="choose">VYBRAT LINKU</button>
+        <button id="disconnectDriver">ODPOJIT TABULI</button>
+        <p id="driverStatus"></p>
+      </section>
 
-<section id="route" class="hidden">
-<div class="info">
-<div>LINKA<strong id="line">--</strong></div>
-<div>SMĚR JÍZDY<strong id="direction">---</strong></div>
-</div>
-<div class="panel">
-<small id="counter">ZASTÁVKA -- / --</small>
-<p>AKTUÁLNÍ ZASTÁVKA</p>
-<h2 id="stop">---</h2>
-<div class="next">DALŠÍ ZASTÁVKA <b id="next">---</b></div>
-<div class="buttons">
-<button id="plus">＋ DALŠÍ ZASTÁVKA</button>
-<button id="new">VYBRAT LINKU</button>
-</div>
-</div>
-</section>
+      <section id="code" class="screen hidden">
+        <h1>ZADÁNÍ LINKY</h1>
+        <input id="input" placeholder="00000" maxlength="5" inputmode="numeric">
+        <div>
+          <button id="enter">ENTER</button>
+          <button id="back">ZPĚT DO MENU</button>
+        </div>
+        <p id="error"></p>
+      </section>
 
-<section id="display" class="hidden">
-<div class="dtop">
-<b>DPMA</b>
-<span id="displayClock"></span>
-<button id="fullscreenButton" type="button">⛶ CELÁ OBRAZOVKA</button>
-</div>
-<div class="dhead">
-<strong id="displayLine">--</strong>
-<span id="displayDestination">ČEKÁNÍ NA JÍZDU</span>
-</div>
-<div id="displayStops">
-<div class="waiting">ČEKÁNÍ NA DATA Z PALUBNÍHO POČÍTAČE</div>
-</div>
-<div id="displayConnection">ODPOJENO</div>
-</section>
-</main>
-</div>
-<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
-<script src="script.js"></script>
+      <section id="route" class="hidden">
+        <div class="info">
+          <div>LINKA<strong id="line">--</strong></div>
+          <div>SMĚR JÍZDY<strong id="direction">---</strong></div>
+        </div>
+
+        <div class="panel">
+          <small id="counter">ZASTÁVKA -- / --</small>
+          <p>AKTUÁLNÍ ZASTÁVKA</p>
+          <h2 id="stop">---</h2>
+          <div class="next">DALŠÍ ZASTÁVKA <b id="next">---</b></div>
+          <div class="buttons">
+            <button id="plus">＋ DALŠÍ ZASTÁVKA</button>
+            <button id="new">VYBRAT LINKU</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="display" class="hidden">
+        <div class="dtop">
+          <b>DPMA</b>
+          <span id="displayClock"></span>
+          <button id="fullscreenButton" type="button">⛶ CELÁ OBRAZOVKA</button>
+        </div>
+
+        <div class="dhead">
+          <strong id="displayLine">--</strong>
+          <span id="displayDestination">ČEKÁNÍ NA JÍZDU</span>
+        </div>
+
+        <div id="displayStops">
+          <div class="waiting">ČEKÁNÍ NA DATA Z PALUBNÍHO POČÍTAČE</div>
+        </div>
+
+        <div id="displayConnection">ODPOJENO</div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
