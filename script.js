@@ -96,15 +96,15 @@ function getZone(stopName) {
     .normalize("NFC")
     .toLocaleLowerCase("cs-CZ");
 
-  if (name.startsWith("snovín") || name.startsWith("lamov")) {
+  if (name.startsWith("snovín,") || name.startsWith("lamov,")) {
     return "B";
   }
 
-  if (name.startsWith("starý lízátkov")) {
+  if (name.startsWith("starý lízátkov,")) {
     return "C";
   }
 
-  if (name.startsWith("dobrovany")) {
+  if (name.startsWith("dobrovany,")) {
     return "D";
   }
 
