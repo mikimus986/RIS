@@ -83,6 +83,24 @@
         "Sovec",
         "Sminov, u lávky"
       ]
+    },
+      "11": {
+      "name": "Lamov, Vozovna",
+      "stops": [
+        "Nové nádraží",
+        "Hlavní nádraží",
+        "Sovec",
+        "Sminov, u lávky",
+        "Ústřední hřbitov",
+        "Lesní",
+        "NC Ana",
+        "Dinocesta Ana",
+        "Lamov, železniční stanice",
+        "-> 44 Lamov, vozovna",
+        "Lamov, minizoo",
+        "Lamov, před vozovnou",
+        "Lamov, vozovna"
+      ]
     }
   },
   "002": {
